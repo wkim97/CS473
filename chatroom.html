@@ -1,1 +1,70 @@
 <!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title> Chatroom </title>
+      <link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+      <script>
+      $(document)
+        .ready(function() {
+          $('.ui.menu .ui.dropdown').dropdown({
+            on: 'hover'
+          });
+          $('.ui.menu a.item')
+            .on('click', function() {
+              $(this)
+                .addClass('active')
+                .siblings()
+                .removeClass('active')
+              ;
+            })
+          ;
+        })
+      ;
+      </script>
+    </head>
+
+    <body>
+      <div>
+        <button class="circular ui compact icon button">
+          <i class="red times circle icon"></i>
+        </button>
+        <button class="circular ui compact icon button">
+          <i class="yellow minus circle icon"></i>
+        </button>
+        <button class="circular ui compact icon button">
+          <i class="green window maximize outline icon"></i>
+        </button>
+      </div>
+
+      <div class="ui tertiary brown inverted segment">
+        <div class="column">
+          <p>asdf</p>
+          <p>asdf</p>
+        </div>
+      </div>
+
+      <div class="ui three item menu">
+        <a class="active item">
+          <i class="globe icon"></i>
+        </a>
+        <a class="active item">
+          <i class="utensils icon"></i>
+        </a>
+        <a class="active item">
+          <i class="clock icon"></i>
+        </a>
+      </div>
+      <!-- <div class="ui bottom attached segment">
+        <p></p>
+      </div> -->
+
+      <script>
+        $(document).ready(function(){
+          $('.ui .item').on('click', function() {
+              $('.ui .item').removeClass('active');
+              $(this).addClass('active');
+          });
+        });
+      </script>
+    </body>
