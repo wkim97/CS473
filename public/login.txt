@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            window.login = function () {
+                var email = document.getElementById("username").value;
+                var pw = document.getElementById("pw").value;
+                alert(email);
+                alert(pw);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="page-login">
+        <div class="ui centered grid container">
+            <div class="nine wide column">
+                <div class="ui fluid card">
+                    <div class="content">
+                        <form class="ui form" method="POST">
+                            <div class="field">
+                                <label>Username</label>
+                                <input type="text" name="username" placeholder="Username" id="username">
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <input type="password" name="pass" placeholder="Password" id="pw">
+                            </div>
+                            <a href="#" onclick="login();" class="ui large form">
+                                <button class="ui primary labeled icon button" type="submit">
+                                    <i class="unlock alternate icon"></i>
+                                    Login
+                                </button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
