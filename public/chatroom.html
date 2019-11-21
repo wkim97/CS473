@@ -1,1 +1,95 @@
 <!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title> Chatroom </title>
+      <link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+      <script>
+      $(document)
+        .ready(function() {
+          $('.ui.menu .ui.dropdown').dropdown({
+            on: 'hover'
+          });
+          $('.ui.menu a.item')
+            .on('click', function() {
+              $(this)
+                .addClass('active')
+                .siblings()
+                .removeClass('active')
+              ;
+            })
+          ;
+        })
+      ;
+      </script>
+      <style>
+        .chatbox{
+          background: #05728f;
+          margin: auto;
+          padding: 10px 10px 5px 0px; */
+          width: 100%;
+          height: 60%;
+          overflow:scroll;
+        }
+        .received_msg{
+          overflow: hidden;
+          float: left;
+          margin: 26px 0px 26px;
+        }
+        .sent_msg{
+          overflow: hidden;
+          float: right;
+          margin: 26px 0px 26px;
+        }
+      </style>
+    </head>
+
+    <body>
+      <div>
+        <button class="circular ui compact icon button">
+          <i class="red times circle icon"></i>
+        </button>
+        <button class="circular ui compact icon button">
+          <i class="yellow minus circle icon"></i>
+        </button>
+        <button class="circular ui compact icon button">
+          <i class="green window maximize outline icon"></i>
+        </button>
+      </div>
+
+      <div class="chatbox">
+        <div class="sent_msg">
+          <div class="ui compact segment">
+            <p>right</p>
+          </div>
+        </div>
+        <div class="received_msg">
+          <div class="ui compact segment">
+            <p>left</p>
+          </div>
+        </div>
+      </div>
+      <div class="ui three item menu">
+        <a class="active item">
+          <i class="globe icon"></i>
+        </a>
+        <a class="active item">
+          <i class="utensils icon"></i>
+        </a>
+        <a class="active item">
+          <i class="clock icon"></i>
+        </a>
+      </div>
+      <!-- <div class="ui bottom attached segment">
+        <p></p>
+      </div> -->
+
+      <script>
+        $(document).ready(function(){
+          $('.ui .item').on('click', function() {
+              $('.ui .item').removeClass('active');
+              $(this).addClass('active');
+          });
+        });
+      </script>
+    </body>
