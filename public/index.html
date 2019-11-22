@@ -9,79 +9,29 @@
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
-
 </head>
+
 
 <body>
 
-    <p>Hello World!!!</p>
 
-         <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+  <br> 페이지 만들고 아래의 양식대로 만들어서 테스트 하시요. </br>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+  <input type="button" value="db_read_write" 
+   onclick="location.href = 'db_read_write.html';">
 
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyAD0Y04NLAtEukphcSJ1s6T8Ffp_AWx-ew",
-        authDomain: "galbi-3ce0c.firebaseapp.com",
-        databaseURL: "https://galbi-3ce0c.firebaseio.com",
-        projectId: "galbi-3ce0c",
-        storageBucket: "galbi-3ce0c.appspot.com",
-        messagingSenderId: "287266351759",
-        appId: "1:287266351759:web:3bdf04f7e5202420549efa"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
+  <input type="button" value="chatroom" 
+   onclick="location.href = 'chatroom.html';">
+ 
+  <input type="button" value="friends" 
+   onclick="location.href = 'friends.html';">
 
-      // Get a reference to the database service
-      var database = firebase.database();
-
-      var rootRef = database.ref('Chatroom/Dummy_Chatroom');
-
-      alert(rootRef);
-
-        rootRef.set({
-            Respond_Chat : {
-                User : "jaeone",
-                Content : "Me too Hello!!!"
-            }
-        });
-
-     var chat_data_ref = database.ref('Chatroom/Dummy_Chatroom/Respond_Chat').on('value', function(snapshot){
-
-  
-            alert("type of snapshot : " + typeof(snapshot));
-            alert("contents of snapshot : " + JSON.stringify(snapshot));
-            alert(Object.values(snapshot.val()));
-
-        
-     });    
-    
-
-    
-
-        
-
-
-
-    </script>
+  <input type="button" value="login" 
+   onclick="location.href = 'login.html';">
 
 
 
 
-
-
-
-
-    
 </body>
 
 </html>
-	
