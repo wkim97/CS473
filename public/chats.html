@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Semantic UI Sandbox </title> 
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+        </script>
+        <!-- <script type="text/javascript" src="chats.js"></script> -->
+        
+        <style>
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 80px auto auto 80px;
+            /* grid-template-rows: auto 80px; */
+            background-color: #f8f3e8;
+            padding: 2px;
+        }
+        .grid-item {
+            background-color: #f8f3e8;
+            padding: 2px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .profile {
+            grid-column: 1;
+            grid-row: 1  / span 2;
+        }
+
+        .name {
+            justify-items: start;
+            margin-left: 5%;
+            grid-column: 2 / Span 2;
+            grid-row: 1;
+        }
+
+        .restuarant {
+            margin-left: 0%;
+            font-size: 13px;
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .time {
+            margin-left: 0%;
+            font-size: 13px;
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .availability {
+            font-size: 13px;
+            grid-column: 4;
+            grid-row: 1 / Span 2;
+        }
+
+        .availablebutton {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 200 px;
+            width: 100%;
+            background-color: #f8f3e8;
+            color: black;
+            text-align: center;
+            padding: 40 px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: auto auto;
+            /* grid-template-rows: auto 80px; */
+            background-color: #f8f3e8;
+            padding: 10px;
+        }
+
+        body {
+            background-color: #f8f3e8;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            font-size: 18px;
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            font-size: 18px;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        
+        }
+
+        .show {display:block;}
+        </style>
+
+        
+    </head>
+    <body>
+        <div class = "ui container">
+            <!-- HEADER -->
+            <p> </p>
+            <h1 class = "ui header"> Chats
+                <button class = "ui basic right floated button" id = "create">
+                    <i class = "circular plus icon"></i>
+                </button>
+                <!-- Modal content -->
+                <div id="createmodal" class="modal">
+                    <div class="modal-content">
+                            <div class="close" id = "close2">x</div>
+                        <p> New Meal Schedule </p>
+                        <p> Restaurant </p>
+                        <!-- <div class = "ui selection dropdown" id = "restaurant-select">
+                            <input type = "hidden" name="restuarant">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">-</div>
+                            <div class="menu">
+                                <div class = "item" data-value = "anything">
+                                    Anything
+                                </div>
+                                <div class="item" data-value="hare">
+                                    Ha-Re</div>
+                                <div class="item" data-value="donghae">
+                                    DongHae</div>
+                                <div class="item" data-value="hoolala">
+                                    Hoolala Chicken</div>
+                                <div class="item" data-value="wangbisung">
+                                    Wang-Bi-Sung</div>
+                            </div>
+                        </div>
+                        <script>
+                            $('#restaurant-select').dropdown();
+                        </script> -->
+                            <select name = "cuisine_type" class = "ui fluid selection dropdown" id = "selected">
+                                <i class = "dropdown icon"></i>
+                                <option value = "-">-</option>
+                                <option value = "anything">Anything</option> 
+                                <option value = "hare">Hare</option> 
+                                <option value = "donghae">Donghae</option> 
+                                <option value = "hoolala">Hoolala</option> 
+                                <option value = "wangbisung">Wangbisung</option>         
+                            </select>
+                            <script>
+                                $('#selected').dropdown();
+                            </script>
+                        <br>
+                        <p> Time </p>
+                
+                    </div>
+                </div>
+                <script>
+                    var chatmodal = document.getElementById("createmodal");
+                    var createbtn = document.getElementById("create");
+                    //var span = document.getElementsByClassName("close")[0];
+                    var span2 = document.getElementById("close2");
+                    var restaurant = document.getElementById("restaurant");
+                    //var time = document.getElementById("time");
+        
+                    createbtn.onclick = function () {
+                        chatmodal.style.display = "block";
+                    }
+        
+                    span2.onclick = function() {
+                        chatmodal.style.display = "none";
+                    }
+        
+                    // window.onclick = function(event) {
+                    //     if (event.target == chatmodal) {
+                    //         chatmodal.style.display = "none";
+                    //     }
+                    // }
+                </script>
+                
+            </h1>
+            
+            <!-- List of Chatrooms -->
+            <br>
+            <div class = "grid-container">
+                <div class = "grid-item profile">
+                    <img src="chaewon.jpg" alt="Chat Profile" height="60" width="60">
+                </div>
+
+                <div class = "grid-item name"> 
+                    <p align="left"> 
+                        Jaeyub Song, Chae Won Kim
+                    </p>
+                </div>
+
+                <div class = "grid-item resuarant"> 
+                    <div class = "ui left floated label">
+                        Taepyeongso
+                    </div>
+                </div>
+
+                <div class = "grid-item time">
+                    <div class = "ui left floated label">
+                        6:00 pm
+                    </div>
+                </div>
+
+                <div class = "grid-item availability">
+                    <button class = "ui toggle basic icon button active" id = "tgl">
+                        <i class = "circle icon">
+                            <!-- Modal content -->
+                            
+                        </i>
+                        
+                    </button>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <div class="close" id = "close">x</div>
+                            <p>Are you done gathering people?</p>
+                            <div class = "ui button" id = "yes">
+                                yes
+                            </div>
+
+                            <div class = "ui button" id = "no">
+                                no
+                            </div>
+                        </div>
+                    
+                    </div>
+
+                    <script>
+                        var modal = document.getElementById("myModal");
+
+                        var btn = document.getElementById("tgl");
+                        //var span = document.getElementsByClassName("close")[0];
+                        var span = document.getElementById("close")
+                        var done = document.getElementById("yes");
+                        var notdone = document.getElementById("no");
+
+                        btn.onclick = function () {
+                            modal.style.display = "block";
+                        }
+
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        }
+
+                        notdone.onclick = function () {
+                            modal.style.display = "none";
+                        }
+
+                        done.onclick = function() {
+                            btn.classList.toggle('active');
+                            modal.style.display = "none";
+                        }
+
+                        // window.onclick = function(event) {
+                        //     if (event.target == modal) {
+                        //         modal.style.display = "none";
+                        //     }
+                        // }
+
+                    </script>
+                    
+                </div>
+            </div>
+
+            <br>
+
+            <div class = "grid-container">
+                <div class = "grid-item profile">
+                    <img src="chaewon.jpg" alt="Chat Profile" height="60" width="60">
+                </div>
+
+                <div class = "grid-item name"> 
+                    <p align="left"> 
+                        Jae Won Kim
+                    </p>
+                </div>
+
+                <div class = "grid-item resuarant"> 
+                    <div class = "ui left floated label">
+                        Mom's Touch
+                    </div>
+                </div>
+
+                <div class = "grid-item time">
+                    <div class = "ui left floated label">
+                        6: 30 pm
+                    </div>
+                </div>
+
+                <div class = "grid-item availability">
+                    <button class = "ui toggle basic icon button active" id = "tgl2">
+                        <i class = "circle icon"></i>
+                    </button>
+
+                    <script>
+                        $('#tgl2').click(function() {
+                            $(this).toggleClass('active');
+                        });
+                    </script>
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <div class="footer">
+                <div class = "footer-container">
+                    <button class="ui basic icon button">
+                        <i class="users icon"></i>
+                    </button>
+
+                    <button class="ui basic icon button">
+                        <i class="comment alternate outline icon"></i>
+                    </button>
+                </div>
+            </div>
+    
+
+        </div>
+    </body>
+</html>
