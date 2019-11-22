@@ -4,6 +4,11 @@
         <meta charset="utf-8">
         <title> Semantic UI Sandbox </title> 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
         <style>
             .grid-container {
                 display: grid;
@@ -102,7 +107,7 @@
                 display: grid;
                 grid-template-columns: auto auto;
                 /* grid-template-rows: auto 80px; */
-                background-color: #f3ead8;
+                background-color: #f8f3e8;
                 padding: 10px;
             }
 
@@ -111,11 +116,10 @@
             }
         </style>
         <script>
-
-            $('.ui.calendar').calendar();
-
+            $(function () {
+            $('.ui.dropdown').dropdown();
+            });
         </script>
-
 
 
     </head>
@@ -171,18 +175,11 @@
                     </select>
                 </div>
 
-                <div class="grid-item time">
-                    <form class="ui form">
-                        <div class="field">
-                            <div class="ui calendar">
-                                <div class="ui input left icon">
-                                <i class="calendar icon"></i>
-                                <input type="text" name="date_estimated_arrival" placeholder="Date/Time">
-                                </div>
-                            </div>
-                        
-                        </div>
-                    </form>
+                <div class="grid-item time">                        
+                    <form class = "ui form" action = "/action_page.php">
+                        <input type = "time" name = "usr_time">
+                        <!-- <input type = "submit"> -->
+                    </form>  
                 </div>
 
             </div>
@@ -356,9 +353,15 @@
                         <i class="users icon"></i>
                     </button>
 
-                    <button class="ui basic icon button">
+                    <button class="ui basic icon button"  onclick = "changeToChat()">
                         <i class="comment alternate outline icon"></i>
                     </button>
+
+                    <script>
+                        function changeToChat() {
+                            location.replace("chats.html")
+                        }
+                    </script>
                 </div>
                 
 

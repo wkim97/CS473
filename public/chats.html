@@ -4,9 +4,11 @@
         <meta charset="utf-8">
         <title> Semantic UI Sandbox </title> 
         <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
         <!-- <script type="text/javascript" src="chats.js"></script> -->
         
         <style>
@@ -133,7 +135,11 @@
         .show {display:block;}
         </style>
 
-        
+        <script>
+            $(function () {
+            $('.ui.dropdown').dropdown();
+            });
+        </script>
     </head>
     <body>
         <div class = "ui container">
@@ -147,9 +153,11 @@
                 <div id="createmodal" class="modal">
                     <div class="modal-content">
                             <div class="close" id = "close2">x</div>
-                        <p> New Meal Schedule </p>
-                        <p> Restaurant </p>
-                        <!-- <div class = "ui selection dropdown" id = "restaurant-select">
+                        <p style="text-align:center"> New Meal Schedule </p>
+                        <br>
+                        
+                        <p style="text-align:center"> Restaurant </p>
+                        <div class = "ui fluid selection dropdown" id = "restaurant-select">
                             <input type = "hidden" name="restuarant">
                             <i class="dropdown icon"></i>
                             <div class="default text">-</div>
@@ -167,24 +175,27 @@
                                     Wang-Bi-Sung</div>
                             </div>
                         </div>
-                        <script>
-                            $('#restaurant-select').dropdown();
-                        </script> -->
-                            <select name = "cuisine_type" class = "ui fluid selection dropdown" id = "selected">
-                                <i class = "dropdown icon"></i>
-                                <option value = "-">-</option>
-                                <option value = "anything">Anything</option> 
-                                <option value = "hare">Hare</option> 
-                                <option value = "donghae">Donghae</option> 
-                                <option value = "hoolala">Hoolala</option> 
-                                <option value = "wangbisung">Wangbisung</option>         
-                            </select>
-                            <script>
-                                $('#selected').dropdown();
-                            </script>
+                        
+
                         <br>
-                        <p> Time </p>
-                
+                        <p style="text-align:center"> Time </p>
+                        <div align = "center">
+                            <form action = "/action_page.php">
+                                <input type = "time" name = "usr_time">
+                                <!-- <input type = "submit"> -->
+                            </form>  
+                            <br>
+                            <br>
+                            
+                            <button class = "ui button" id = "done">
+                                Done
+                            </button>   
+                        </div>
+                          
+                        
+                        <script>
+                            
+                        </script>         
                     </div>
                 </div>
                 <script>
@@ -202,7 +213,11 @@
                     span2.onclick = function() {
                         chatmodal.style.display = "none";
                     }
-        
+                    var finished = document.getElementById("done");
+
+                    finished.onclick = function() {
+                        chatmodal.style.display = "none";
+                    }
                     // window.onclick = function(event) {
                     //     if (event.target == chatmodal) {
                     //         chatmodal.style.display = "none";
@@ -343,9 +358,15 @@
             <!-- Footer -->
             <div class="footer">
                 <div class = "footer-container">
-                    <button class="ui basic icon button">
+                    <button class="ui basic icon button" onclick = "changeToFriend()">
                         <i class="users icon"></i>
                     </button>
+
+                    <script>
+                        function changeToFriend() {
+                            location.replace("friends.html")
+                        }
+                    </script>
 
                     <button class="ui basic icon button">
                         <i class="comment alternate outline icon"></i>
