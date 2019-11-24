@@ -85,9 +85,9 @@
                   id : User_email,
                   pw : User_pw
                 });
-                localStorage.setItem("id", User_email);   
-                var email = localStorage.getItem("id");
-                alert(email);   
+                sessionStorage.setItem("id", User_email); 
+                var email = sessionStorage.getItem("id");
+                alert(email);
             }
         });
 
