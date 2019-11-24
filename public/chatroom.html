@@ -29,6 +29,7 @@
   			text-align: left;
   			float: left;
   			width: 100%;
+        margin: 0 0 10px;
 
   		}
 
@@ -256,84 +257,93 @@
   								</div>
   							</div>
 
-  							<div class="emojis">
-  								<div class="marks">
-  									<div class="ui basic six buttons">
-  										<button class="ui button">
-  											<i class="thumbs up outline icon"></i>
-  										</button><button class="ui button">
-  											<i class="thumbs down outline icon"></i>
-  										</button>
-  										<button class="ui button" onclick="append_incoming_msg();">
-  											Yes
-  										</button>
-  										<button class="ui button" onclick="append_outgoing_msg();">
-  											No
-  										</button>
-  										<button class="ui button">
-  											Good
-  										</button>
-  										<button class="ui button">
-  											Bad
-  										</button>
-  									</div>
+                <div class="ui form">
+                  <div class="fields" class="padding: 4px 0 0;">
+                    <div class="fourteen wide field">
+                      <input id="type_here" type="text" placeholder="Preferences">
+                    </div>
+                    <div class="two wide field">
+                      <button id="send" class="fluid ui button" onclick="send_msg();">
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
-  								</div>
+                <div class="emojis">
+                  <div class="marks">
+                    <div class="ui basic six buttons">
+                      <button class="ui button">
+                        <i class="thumbs up outline icon"></i>
+                      </button>
+                      <button class="ui button">
+                        <i class="thumbs down outline icon"></i>
+                      </button>
+                      <button class="ui button">
+                        Yes
+                      </button>
+                      <button class="ui button">
+                        No
+                      </button>
+                      <button class="ui button">
+                        Good
+                      </button>
+                      <button class="ui button">
+                        Bad
+                      </button>
+                    </div>
 
-  								<div class="preferences">
-  									<ul class="three tabs">
-  										<li class="tab-link current" data-tab="tab-1">
-  											<i class="globe icon" style="align: center;"></i>
-  										</li>
-  										<li class="tab-link" data-tab="tab-2">
-  											<i class="utensils icon" style="align: center;"></i>
-  										</li>
-  										<li class="tab-link" data-tab="tab-3">
-  											<i class="clock icon" style="align: center;"></i>
-  										</li>
-  									</ul>
-  									<div id="tab-1" class="tab-content current" style="height: 20%;">
-  										<div class="ui button" style="width: 30%; margin: 2px 0 2px">Korean</div>
-  										<div class="ui button" style="width: 30%; margin: 2px 0 2px">Japanese</div>
-  										<div class="ui button" style="width: 30%; margin: 2px 0 2px">Chinese</div>
-  										<div class="ui button" style="width: 30%; margin: 2px 0 2px">Thai</div>
-  										<div class="ui button" style="width: 30%; margin: 2px 0 2px">Indian</div>
-  										<div class="ui button" style="width: 30%; margin: 2px 0 2px">Italin</div>
-  									</div>
-  									<div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
-  										<div class="ui button" style="margin: 2px 0 2px">PulBitMaRu</div>
-  										<div class="ui button" style="margin: 2px 0 2px">DDDN</div>
-  										<div class="ui button" style="margin: 2px 0 2px">GoSoMi Chicken</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Noodle Tree</div>
-  										<div class="ui button" style="margin: 2px 0 2px">MoriMori</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Bab&Bulgogi</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Sand Brunch</div>
-  										<div class="ui button" style="margin: 2px 0 2px">KimChiWon</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Yoshida</div>
-  										<div class="ui button" style="margin: 2px 0 2px">111-7</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Malgm</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Omai Dong</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Do-Me Barbeque</div>
-  										<div class="ui button" style="margin: 2px 0 2px">MatGoeul</div>
-  										<div class="ui button" style="margin: 2px 0 2px">So-Do</div>
-  										<div class="ui button" style="margin: 2px 0 2px">Gwang-jang</div>
-  									</div>
-  									<div id="tab-3" class="tab-content" style="height: 20%;">
-  										<div class="grid-item time">
-  											<form class = "ui form" action = "/action_page.php">
-  												<input type = "time" name = "usr_time">
-  												<!-- <input type = "submit"> -->
-  											</form>
-  										</div>
-  										<div class="grid-item time">
-  											<form class = "ui form" action = "/action_page.php">
-  												<input type = "time" name = "usr_time">
-  												<!-- <input type = "submit"> -->
-  											</form>
-  										</div>
-  									</div>
-  								</div>
-  							</div>
+                  </div>
+
+                  <div class="preferences">
+                    <ul class="three tabs">
+                      <li class="tab-link current" data-tab="tab-1">
+                        <i class="globe icon" style="align: center;"></i>
+                      </li>
+                      <li class="tab-link" data-tab="tab-2">
+                        <i class="utensils icon" style="align: center;"></i>
+                      </li>
+                      <li class="tab-link" data-tab="tab-3">
+                        <i class="clock icon" style="align: center;"></i>
+                      </li>
+                    </ul>
+                    <div id="tab-1" class="tab-content current" style="height: 20%;">
+                      <div id="kor" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref();">Korean</div>
+                      <div id="jap" class="ui button" style="width: 30%; margin: 2px 0 2px">Japanese</div>
+                      <div id="chn" class="ui button" style="width: 30%; margin: 2px 0 2px">Chinese</div>
+                      <div id="thi" class="ui button" style="width: 30%; margin: 2px 0 2px">Thai</div>
+                      <div id="ind" class="ui button" style="width: 30%; margin: 2px 0 2px">Indian</div>
+                      <div id="ita" class="ui button" style="width: 30%; margin: 2px 0 2px">Italin</div>
+                    </div>
+                    <div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
+                      <div class="ui button" style="margin: 2px 0 2px">PulBitMaRu</div>
+                      <div class="ui button" style="margin: 2px 0 2px">DDDN</div>
+                      <div class="ui button" style="margin: 2px 0 2px">GoSoMi Chicken</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Noodle Tree</div>
+                      <div class="ui button" style="margin: 2px 0 2px">MoriMori</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Bab&Bulgogi</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Sand Brunch</div>
+                      <div class="ui button" style="margin: 2px 0 2px">KimChiWon</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Yoshida</div>
+                      <div class="ui button" style="margin: 2px 0 2px">111-7</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Malgm</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Omai Dong</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Do-Me Barbeque</div>
+                      <div class="ui button" style="margin: 2px 0 2px">MatGoeul</div>
+                      <div class="ui button" style="margin: 2px 0 2px">So-Do</div>
+                      <div class="ui button" style="margin: 2px 0 2px">Gwang-jang</div>
+                    </div>
+                    <div id="tab-3" class="tab-content" style="height: 20%;">
+                      <div class="grid-item time">
+                          <form class = "ui form" action = "/action_page.php">
+                              <input type = "time" name = "usr_time">
+                              <!-- <input type = "submit"> -->
+                          </form>
+                      </div>
+
+                    </div>
+                 </div>
+                </div>
 
            <!-- <div class="ui bottom attached segment">
              <p></p>
@@ -369,7 +379,7 @@
 
          	function append_incoming_msg(){
 
-				var rootelem = document.getElementsByClassName("msg_history")[0];
+		        var rootelem = document.getElementsByClassName("msg_history")[0];
 
          		var incomeelem = document.createElement("div");
          		incomeelem.setAttribute('class', 'incoming_msg');
@@ -401,7 +411,38 @@
 
          		rootelem.appendChild(incomeelem);
 
+
          	}
+
+          function type_pref(){
+            document.getElementById("type_here").setAttribute("value", "Korean");
+          }
+
+          function send_msg(){
+            var rootelem = document.getElementsByClassName("msg_history")[0];
+
+         		var outgoelem = document.createElement("div");
+         		outgoelem.setAttribute('class', 'outgoing_msg');
+
+         		var msgelem = document.createElement("div");
+         		msgelem.setAttribute('class', "sent_msg");
+
+         		var msg = document.createElement('p');
+            var text_msg = document.getElementById("type_here").getAttribute("value");
+         		msg.innerHTML = text_msg;
+
+         		var time = document.createElement("span");
+         		time.setAttribute('class', "time_date");
+         		time.innerHTML = "Time and date will be added!!!!!";
+
+         		msgelem.appendChild(msg);
+         		msgelem.appendChild(time);
+
+         		outgoelem.appendChild(msgelem);
+
+         		rootelem.appendChild(outgoelem);
+          }
+
          </script>
 
          <script>
