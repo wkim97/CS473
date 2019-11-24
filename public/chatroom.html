@@ -153,13 +153,17 @@
     }
 
     .tab-content{
+      overflow-y: scroll;
     	display: none;
     	background: #ededed;
     	padding: 15px;
+      height: 20%;
     }
 
     .tab-content.current{
+      overflow-y: scroll;
     	display: inherit;
+      height: 20%;
     }
 
   </style>
@@ -250,13 +254,6 @@
             </div>
           </div>
 
-          <!-- <div class="type_msg">
-            <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-            </div>
-          </div> -->
-
           <div class="emojis">
             <div class="marks">
               <div class="ui basic six buttons">
@@ -293,14 +290,45 @@
                   <i class="clock icon" style="align: center;"></i>
                 </li>
               </ul>
-              <div id="tab-1" class="tab-content current">
-              first
+              <div id="tab-1" class="tab-content current" style="height: 20%;">
+                <div class="ui button" style="width: 30%; margin: 2px 0 2px">Korean</div>
+                <div class="ui button" style="width: 30%; margin: 2px 0 2px">Japanese</div>
+                <div class="ui button" style="width: 30%; margin: 2px 0 2px">Chinese</div>
+                <div class="ui button" style="width: 30%; margin: 2px 0 2px">Thai</div>
+                <div class="ui button" style="width: 30%; margin: 2px 0 2px">Indian</div>
+                <div class="ui button" style="width: 30%; margin: 2px 0 2px">Italin</div>
               </div>
-              <div id="tab-2" class="tab-content">
-              second
+              <div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
+                <div class="ui button" style="margin: 2px 0 2px">PulBitMaRu</div>
+                <div class="ui button" style="margin: 2px 0 2px">DDDN</div>
+                <div class="ui button" style="margin: 2px 0 2px">GoSoMi Chicken</div>
+                <div class="ui button" style="margin: 2px 0 2px">Noodle Tree</div>
+                <div class="ui button" style="margin: 2px 0 2px">MoriMori</div>
+                <div class="ui button" style="margin: 2px 0 2px">Bab&Bulgogi</div>
+                <div class="ui button" style="margin: 2px 0 2px">Sand Brunch</div>
+                <div class="ui button" style="margin: 2px 0 2px">KimChiWon</div>
+                <div class="ui button" style="margin: 2px 0 2px">Yoshida</div>
+                <div class="ui button" style="margin: 2px 0 2px">111-7</div>
+                <div class="ui button" style="margin: 2px 0 2px">Malgm</div>
+                <div class="ui button" style="margin: 2px 0 2px">Omai Dong</div>
+                <div class="ui button" style="margin: 2px 0 2px">Do-Me Barbeque</div>
+                <div class="ui button" style="margin: 2px 0 2px">MatGoeul</div>
+                <div class="ui button" style="margin: 2px 0 2px">So-Do</div>
+                <div class="ui button" style="margin: 2px 0 2px">Gwang-jang</div>
               </div>
-              <div id="tab-3" class="tab-content">
-              third
+              <div id="tab-3" class="tab-content" style="height: 20%;">
+                <div class="grid-item time">
+                    <form class = "ui form" action = "/action_page.php">
+                        <input type = "time" name = "usr_time">
+                        <!-- <input type = "submit"> -->
+                    </form>
+                </div>
+                <div class="grid-item time">
+                    <form class = "ui form" action = "/action_page.php">
+                        <input type = "time" name = "usr_time">
+                        <!-- <input type = "submit"> -->
+                    </form>
+                </div>
               </div>
            </div>
           </div>
