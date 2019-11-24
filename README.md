@@ -1,6 +1,8 @@
 # CS473
 Project Galbi Hi-fi Prototype
 
+All important html files are located in "public" folder. Important Firebase files are located in root directory and "functions" folder. All images used in web pages are located in "images" folder.
+
 Our main javascript page is login.html, where users enter their user id and password.
 
 After login, user is directed to friends.html, where the user can 1) type in their meal preferences and 2) check their friends' meal preferences. 
