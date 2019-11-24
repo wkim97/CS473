@@ -2,461 +2,433 @@
 <html>
 <head>
 
-	<meta charset="utf-8" />
+  <meta charset="utf-8" />
   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> -->
-  	<title>chatroom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> -->
+    <title>chatroom</title>
 
-  	<link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
-  	<script src="chatroom.js"></script>
+    <script src="chatroom.js"></script>
 
-  	<!--- Example CSS -->
-  	<style>
-  		.container{
-  			max-width:1170px;
-  			margin: auto;
-  			height: 100%;
-  		}
+    <!--- Example CSS -->
+    <style>
+      .container{
+        max-width:1170px;
+        margin: auto;
+        height: 100%;
+      }
 
-  		img{
-  			max-width:100%;
-  		}
+      img{
+        max-width:100%;
+      }
 
-  		.mesgs {
-  			clear: both;
-  			overflow: hidden;
-  			text-align: left;
-  			float: left;
-  			width: 100%;
-        margin: 0 0 10px;
+      .mesgs {
+        clear: both;
+        overflow: hidden;
+        text-align: left;
+        float: left;
+        width: 100%;
 
-  		}
+      }
 
-  		.msg_history_border{
-  			border: 1px solid #c4c4c4;
-  			padding: 0px 5px 0px px;
-  			height: 40%
-  		}
+      .msg_history_border{
+        border: 1px solid #c4c4c4;
+        padding: 0px 5px 0px px;
+        height: 40%
+      }
 
-  		.msg_history {
-  			height: 400px;
-  			overflow-y: auto;
-  		}
+      .msg_history {
+        height: 400px;
+        overflow-y: auto;
+      }
 
-  		.incoming_msg_img {
-  			display: inline-block;
-  			width: 6%;
-  		}
-  		.incoming_msg {
-  			overflow: hidden;
-  			margin:25px 0 25px 20px;
-  		}
+      .incoming_msg_img {
+        display: inline-block;
+        width: 6%;
+      }
+      .incoming_msg {
+        overflow: hidden;
+        margin:25px 0 25px 20px;
+      }
 
-  		.received_msg {
-  			display: inline-block;
-  			padding: 0 0 0 10px;
-  			vertical-align: top;
-  			width: auto;
-  		}
-  		.received_msg p {
-  			background: #ebebeb none repeat scroll 0 0;
-  			border-radius: 3px;
-  			color: #646464;
-  			font-size: 14px;
-  			margin: 0;
-  			padding: 5px 10px 5px 12px;
-  			width: 100%;
-  		}
-  		.time_date {
-  			color: #747474;
-  			display: block;
-  			font-size: 12px;
-  			margin: 8px 0 0;
-  		}
-  		.received_withd_msg {
-  			width: 40%;
-  		}
+      .received_msg {
+        display: inline-block;
+        padding: 0 0 0 10px;
+        vertical-align: top;
+        width: auto;
+      }
+      .received_msg p {
+        background: #ebebeb none repeat scroll 0 0;
+        border-radius: 3px;
+        color: #646464;
+        font-size: 14px;
+        margin: 0;
+        padding: 5px 10px 5px 12px;
+        width: 100%;
+      }
+      .time_date {
+        color: #747474;
+        display: block;
+        font-size: 12px;
+        margin: 8px 0 0;
+      }
+      .received_withd_msg {
+        width: 40%;
+      }
 
-  		.outgoing_msg {
-  			overflow:hidden;
-  			margin:25px 25px 25px;
-  		}
+      .outgoing_msg {
+        overflow:hidden;
+        margin:25px 25px 25px;
+      }
 
-  		.sent_msg {
-  			text-align: right;
-  			float: right;
-  			width: auto;
-  		}
-  		.sent_msg p {
-  			background: #05728f none repeat scroll 0 0;
-  			border-radius: 3px;
-  			font-size: 14px;
-  			margin: 0;
-  			color:#fff;
-  			padding: 5px 10px 5px 12px;
-  			width:100%;
-  		}
+      .sent_msg {
+        text-align: right;
+        float: right;
+        width: auto;
+      }
+      .sent_msg p {
+        background: #05728f none repeat scroll 0 0;
+        border-radius: 3px;
+        font-size: 14px;
+        margin: 0;
+        color:#fff;
+        padding: 5px 10px 5px 12px;
+        width:100%;
+      }
 
-  		.input_msg_write input {
-  			background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  			border: 1px solid #c4c4c4;
-  			color: #4c4c4c;
-  			font-size: 15px;
-  			min-height: 48px;
-  			width: 100%;
-  		}
+      .input_msg_write input {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: 1px solid #c4c4c4;
+        color: #4c4c4c;
+        font-size: 15px;
+        min-height: 48px;
+        width: 100%;
+      }
 
-  		.type_msg {
-  			border-top: 1px solid #c4c4c4;
-  			position: relative;
-  		}
-  		.msg_send_btn {
-  			background: #05728f none repeat scroll 0 0;
-  			border: medium none;
-  			border-radius: 50%;
-  			color: #fff;
-  			cursor: pointer;
-  			font-size: 17px;
-  			height: 33px;
-  			position: absolute;
-  			right: 0;
-  			top: 11px;
-  			width: 33px;
-  		}
+      .type_msg {
+        border-top: 1px solid #c4c4c4;
+        position: relative;
+      }
+      .msg_send_btn {
+        background: #05728f none repeat scroll 0 0;
+        border: medium none;
+        border-radius: 50%;
+        color: #fff;
+        cursor: pointer;
+        font-size: 17px;
+        height: 33px;
+        position: absolute;
+        right: 0;
+        top: 11px;
+        width: 33px;
+      }
 
-  		.messaging { padding: 0 0 50px 0;}
+      .messaging { padding: 0 0 50px 0;}
 
-  		ul.tabs{
-  			margin: 0px;
-  			padding: 0px;
-  			list-style: none;
-  			width: 100%;
+      ul.tabs{
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        width: 100%;
 
-  		}
-  		ul.tabs li{
-  			background: none;
-  			color: #222;
-  			display: inline-block;
-  			padding: 10px 15px;
-  			cursor: pointer;
-  		}
+      }
+      ul.tabs li{
+        background: none;
+        color: #222;
+        display: inline-block;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
 
-  		ul.tabs li.current{
-  			background: #ededed;
-  			color: #222;
-  		}
-  		ul.tabs li.tab-link.current{
-  			width: 33%;
-  			align: center;
-  		}
-  		ul.tabs li.tab-link{
-  			width: 33%;
-  			align: center;
-  		}
+      ul.tabs li.current{
+        background: #ededed;
+        color: #222;
+      }
+      ul.tabs li.tab-link.current{
+        width: 33%;
+        align: center;
+      }
+      ul.tabs li.tab-link{
+        width: 33%;
+        align: center;
+      }
 
-  		.tab-content{
-  			overflow-y: scroll;
-  			display: none;
-  			background: #ededed;
-  			padding: 15px;
-  			height: 20%;
-  		}
+      .tab-content{
+        overflow-y: scroll;
+        display: none;
+        background: #ededed;
+        padding: 15px;
+        height: 20%;
+      }
 
-  		.tab-content.current{
-  			overflow-y: scroll;
-  			display: inherit;
-  			height: 20%;
-  		}
+      .tab-content.current{
+        overflow-y: scroll;
+        display: inherit;
+        height: 20%;
+      }
 
-  	</style>
-  	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </style>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-  	<!--- Example Javascript -->
-  	<script>
-  		$('.ui .item').on('click', function() {
-  			$('.ui .item').removeClass('active');
-  			$(this).addClass('active');
-  		});
-  	</script>
+    <!--- Example Javascript -->
+    <script>
+      $('.ui .item').on('click', function() {
+        $('.ui .item').removeClass('active');
+        $(this).addClass('active');
+      });
+    </script>
   </head>
   <body>
 
-  	<body>
-  		<div class="container">
-  			<h3 class=" text-center">Yeongwoo Song + 3</h3>
-  			<div class="mesgs">
-  				<div class="msg_history_border">
-  					<div class="msg_history">
+    <body>
+      <div class="container">
+        <h3 class=" text-center">Yeongwoo Song + 3</h3>
+        <div class="mesgs">
+          <div class="msg_history_border">
+            <div class="msg_history">
 
-  						<div class="incoming_msg">
-  							<div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
-  							<div class="received_msg">
-  								<p>Test, which is a new approach to have</p>
-  								<span class="time_date"> 11:01 AM    |    Yesterday</span>
-  							</div>
-  						</div>
+            </div>
+          </div>
+        </div>
 
-  						<div class="outgoing_msg">
-  							<div class="sent_msg">
-  								<p>Test which is a new approach to have allsolutions</p>
-  								<span class="time_date"> 11:01 AM    |    June 9</span> </div>
-  							</div>
+        <div class="emojis">
+          <div class="marks">
+            <div class="ui basic six buttons">
+              <button class="ui button">
+                <i class="thumbs up outline icon"></i>
+              </button><button class="ui button">
+                <i class="thumbs down outline icon"></i>
+              </button>
+              <button class="ui button" onclick="send_message('Me', 'Anything!!!');">
+                Yes
+              </button>
+              <button class="ui button" onclick="send_message('Others', 'Shut up!!!')">
+                No
+              </button>
+              <button class="ui button">
+                Good
+              </button>
+              <button class="ui button">
+                Bad
+              </button>
+            </div>
 
-  							<div class="incoming_msg">
-  								<div class="incoming_msg_img"> <img src="../images/hyngsik.jpg" alt="sunil"> </div>
-  								<div class="received_msg">
-  									<p>Test, which is a new approach to have</p>
-  									<span class="time_date"> 11:01 AM    |    Yesterday</span>
-  								</div>
-  							</div>
+          </div>
 
-  							<div class="outgoing_msg">
-  								<div class="sent_msg">
-  									<p>Apollo University, Delhi, India Test</p>
-  									<span class="time_date"> 11:01 AM    |    Today</span> </div>
-  								</div>
-
-  								<div class="incoming_msg">
-  									<div class="incoming_msg_img"> <img src="../images/jaewon.jpg" alt="sunil"> </div>
-  									<div class="received_msg">
-  										<p>Test, which is a new approach to have</p>
-  										<span class="time_date"> 11:01 AM    |    Yesterday</span>
-  									</div>
-  								</div>
-
-  								<div class="outgoing_msg">
-  									<div class="sent_msg">
-  										<p>Apollo University, Delhi, India Test</p>
-  										<span class="time_date"> 11:01 AM    |    Today</span> </div>
-  									</div>
-
-  									<div class="incoming_msg">
-  										<div class="incoming_msg_img"> <img src="../images/ryu.jpg" alt="sunil"> </div>
-  										<div class="received_msg">
-  											<p>Test, which is a new approach to have</p>
-  											<span class="time_date"> 11:01 AM    |    Yesterday</span>
-  										</div>
-  									</div>
-
-  									<div class="outgoing_msg">
-  										<div class="sent_msg">
-  											<p>Apollo University, Delhi, India Test</p>
-  											<span class="time_date"> 11:01 AM    |    Today</span> </div>
-  										</div>
-
-  										<div class="incoming_msg">
-  											<div class="incoming_msg_img"> <img src="../images/song.jpg" alt="sunil"> </div>
-  											<div class="received_msg">
-  												<p>Test, which is a new approach to have</p>
-  												<span class="time_date"> 11:01 AM    |    Yesterday</span>
-  											</div>
-  										</div>
-
-  									</div>
-  								</div>
-  							</div>
-
-                <div class="ui form">
-                  <div class="fields" class="padding: 4px 0 0;">
-                    <div class="fourteen wide field">
-                      <input id="type_here" type="text" placeholder="Preferences">
-                    </div>
-                    <div class="two wide field">
-                      <button id="send" class="fluid ui button" onclick="send_msg();">
-                        Send
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="emojis">
-                  <div class="marks">
-                    <div class="ui basic six buttons">
-                      <button class="ui button">
-                        <i class="thumbs up outline icon"></i>
-                      </button>
-                      <button class="ui button">
-                        <i class="thumbs down outline icon"></i>
-                      </button>
-                      <button class="ui button">
-                        Yes
-                      </button>
-                      <button class="ui button">
-                        No
-                      </button>
-                      <button class="ui button">
-                        Good
-                      </button>
-                      <button class="ui button">
-                        Bad
-                      </button>
-                    </div>
-
-                  </div>
-
-                  <div class="preferences">
-                    <ul class="three tabs">
-                      <li class="tab-link current" data-tab="tab-1">
-                        <i class="globe icon" style="align: center;"></i>
-                      </li>
-                      <li class="tab-link" data-tab="tab-2">
-                        <i class="utensils icon" style="align: center;"></i>
-                      </li>
-                      <li class="tab-link" data-tab="tab-3">
-                        <i class="clock icon" style="align: center;"></i>
-                      </li>
-                    </ul>
-                    <div id="tab-1" class="tab-content current" style="height: 20%;">
-                      <div id="kor" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref();">Korean</div>
-                      <div id="jap" class="ui button" style="width: 30%; margin: 2px 0 2px">Japanese</div>
-                      <div id="chn" class="ui button" style="width: 30%; margin: 2px 0 2px">Chinese</div>
-                      <div id="thi" class="ui button" style="width: 30%; margin: 2px 0 2px">Thai</div>
-                      <div id="ind" class="ui button" style="width: 30%; margin: 2px 0 2px">Indian</div>
-                      <div id="ita" class="ui button" style="width: 30%; margin: 2px 0 2px">Italin</div>
-                    </div>
-                    <div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
-                      <div class="ui button" style="margin: 2px 0 2px">PulBitMaRu</div>
-                      <div class="ui button" style="margin: 2px 0 2px">DDDN</div>
-                      <div class="ui button" style="margin: 2px 0 2px">GoSoMi Chicken</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Noodle Tree</div>
-                      <div class="ui button" style="margin: 2px 0 2px">MoriMori</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Bab&Bulgogi</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Sand Brunch</div>
-                      <div class="ui button" style="margin: 2px 0 2px">KimChiWon</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Yoshida</div>
-                      <div class="ui button" style="margin: 2px 0 2px">111-7</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Malgm</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Omai Dong</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Do-Me Barbeque</div>
-                      <div class="ui button" style="margin: 2px 0 2px">MatGoeul</div>
-                      <div class="ui button" style="margin: 2px 0 2px">So-Do</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Gwang-jang</div>
-                    </div>
-                    <div id="tab-3" class="tab-content" style="height: 20%;">
-                      <div class="grid-item time">
-                          <form class = "ui form" action = "/action_page.php">
-                              <input type = "time" name = "usr_time">
-                              <!-- <input type = "submit"> -->
-                          </form>
-                      </div>
-
-                    </div>
-                 </div>
-                </div>
+          <div class="preferences">
+            <ul class="three tabs">
+              <li class="tab-link current" data-tab="tab-1">
+                <i class="globe icon" style="align: center;"></i>
+              </li>
+              <li class="tab-link" data-tab="tab-2">
+                <i class="utensils icon" style="align: center;"></i>
+              </li>
+              <li class="tab-link" data-tab="tab-3">
+                <i class="clock icon" style="align: center;"></i>
+              </li>
+            </ul>
+            <div id="tab-1" class="tab-content current" style="height: 20%;">
+              <div class="ui button" style="width: 30%; margin: 2px 0 2px">Korean</div>
+              <div class="ui button" style="width: 30%; margin: 2px 0 2px">Japanese</div>
+              <div class="ui button" style="width: 30%; margin: 2px 0 2px">Chinese</div>
+              <div class="ui button" style="width: 30%; margin: 2px 0 2px">Thai</div>
+              <div class="ui button" style="width: 30%; margin: 2px 0 2px">Indian</div>
+              <div class="ui button" style="width: 30%; margin: 2px 0 2px">Italin</div>
+            </div>
+            <div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
+              <div class="ui button" style="margin: 2px 0 2px">PulBitMaRu</div>
+              <div class="ui button" style="margin: 2px 0 2px">DDDN</div>
+              <div class="ui button" style="margin: 2px 0 2px">GoSoMi Chicken</div>
+              <div class="ui button" style="margin: 2px 0 2px">Noodle Tree</div>
+              <div class="ui button" style="margin: 2px 0 2px">MoriMori</div>
+              <div class="ui button" style="margin: 2px 0 2px">Bab&Bulgogi</div>
+              <div class="ui button" style="margin: 2px 0 2px">Sand Brunch</div>
+              <div class="ui button" style="margin: 2px 0 2px">KimChiWon</div>
+              <div class="ui button" style="margin: 2px 0 2px">Yoshida</div>
+              <div class="ui button" style="margin: 2px 0 2px">111-7</div>
+              <div class="ui button" style="margin: 2px 0 2px">Malgm</div>
+              <div class="ui button" style="margin: 2px 0 2px">Omai Dong</div>
+              <div class="ui button" style="margin: 2px 0 2px">Do-Me Barbeque</div>
+              <div class="ui button" style="margin: 2px 0 2px">MatGoeul</div>
+              <div class="ui button" style="margin: 2px 0 2px">So-Do</div>
+              <div class="ui button" style="margin: 2px 0 2px">Gwang-jang</div>
+            </div>
+            <div id="tab-3" class="tab-content" style="height: 20%;">
+              <div class="grid-item time">
+                <form class = "ui form" action = "/action_page.php">
+                  <input type = "time" name = "usr_time">
+                  <!-- <input type = "submit"> -->
+                </form>
+              </div>
+              <div class="grid-item time">
+                <form class = "ui form" action = "/action_page.php">
+                  <input type = "time" name = "usr_time">
+                  <!-- <input type = "submit"> -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
 
            <!-- <div class="ui bottom attached segment">
              <p></p>
          </div> -->
-         <script>
-         	function append_outgoing_msg(){
 
-         		var rootelem = document.getElementsByClassName("msg_history")[0];
+         <!-- The core Firebase JS SDK is always required and must be listed first -->
+         <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
 
-         		var outgoelem = document.createElement("div");
-         		outgoelem.setAttribute('class', 'outgoing_msg');
-
-         		var msgelem = document.createElement("div");
-         		msgelem.setAttribute('class', "sent_msg");
-
-         		var msg = document.createElement('p');
-         		msg.innerHTML = "here we are!!!!!!";
-
-         		var time = document.createElement("span");
-         		time.setAttribute('class', "time_date");
-         		time.innerHTML = "Time and date will be added!!!!!";
-
-         		msgelem.appendChild(msg);
-         		msgelem.appendChild(time);
-
-         		outgoelem.appendChild(msgelem);
-
-         		rootelem.appendChild(outgoelem);
-
-         	}
-
-
-
-         	function append_incoming_msg(){
-
-		        var rootelem = document.getElementsByClassName("msg_history")[0];
-
-         		var incomeelem = document.createElement("div");
-         		incomeelem.setAttribute('class', 'incoming_msg');
-
-         		var imgelem = document.createElement("div");
-         		imgelem.setAttribute('class', 'incoming_msg_img');
-
-         		var img = document.createElement("img");
-         		img.setAttribute('src', "../images/chani.jpg");
-         		img.setAttribute('alt', "sunil");
-
-         		var msgelem = document.createElement("div");
-         		msgelem.setAttribute('class', "received_msg");
-
-         		var msg = document.createElement('p');
-         		msg.innerHTML = "here we are!!!!!!";
-
-         		var time = document.createElement("span");
-         		time.setAttribute('class', "time_date");
-         		time.innerHTML = "Time and date will be added!!!!!";
-
-
-         		imgelem.appendChild(img);
-         		msgelem.appendChild(msg);
-         		msgelem.appendChild(time);
-
-         		incomeelem.appendChild(imgelem);
-         		incomeelem.appendChild(msgelem);
-
-         		rootelem.appendChild(incomeelem);
-
-
-         	}
-
-          function type_pref(){
-            document.getElementById("type_here").setAttribute("value", "Korean");
-          }
-
-          function send_msg(){
-            var rootelem = document.getElementsByClassName("msg_history")[0];
-
-         		var outgoelem = document.createElement("div");
-         		outgoelem.setAttribute('class', 'outgoing_msg');
-
-         		var msgelem = document.createElement("div");
-         		msgelem.setAttribute('class', "sent_msg");
-
-         		var msg = document.createElement('p');
-            var text_msg = document.getElementById("type_here").getAttribute("value");
-         		msg.innerHTML = text_msg;
-
-         		var time = document.createElement("span");
-         		time.setAttribute('class', "time_date");
-         		time.innerHTML = "Time and date will be added!!!!!";
-
-         		msgelem.appendChild(msg);
-         		msgelem.appendChild(time);
-
-         		outgoelem.appendChild(msgelem);
-
-         		rootelem.appendChild(outgoelem);
-          }
-
-         </script>
+         <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+         <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+         <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
+         <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
+         <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
 
          <script>
-         	$(document).ready(function(){
-         		$('ul.tabs li').click(function(){
-         			var tab_id = $(this).attr('data-tab');
-         			$('ul.tabs li').removeClass('current');
-         			$('.tab-content').removeClass('current');
-         			$(this).addClass('current');
-         			$("#"+tab_id).addClass('current');
-         		})
-         	})
-         </script>
-     </div>
+       // Your web app's Firebase configuration
+       var firebaseConfig = {
+        apiKey: "AIzaSyAD0Y04NLAtEukphcSJ1s6T8Ffp_AWx-ew",
+        authDomain: "galbi-3ce0c.firebaseapp.com",
+        databaseURL: "https://galbi-3ce0c.firebaseio.com",
+        projectId: "galbi-3ce0c",
+        storageBucket: "galbi-3ce0c.appspot.com",
+        messagingSenderId: "287266351759",
+        appId: "1:287266351759:web:3bdf04f7e5202420549efa"
+       };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
- </body>
- </html>
+        // Get a reference to the database service
+        var database = firebase.database();
+
+        var ref_Dummy_Chatroom = database.ref('Chatroom/Dummy_Chatroom');
+
+
+        var chat_data_ref = database.ref('Chatroom/Dummy_Chatroom').on('child_added', function(snapshot){
+
+          var str_snapshot = JSON.stringify(snapshot);
+
+          var temp = str_snapshot.split(',')
+          var chat = temp[0].split(':')[1].replace(/['"{}]+/g, '');
+          var time = temp[1].split(':')[1].replace(/['"{}]+/g, '');
+          var user = temp[2].split(':')[1].replace(/['"{}]+/g, '');
+
+          if(user == "Me"){
+            append_outgoing_msg(chat, time);
+          }
+          else{
+            append_incoming_msg(chat, time);
+          }
+
+          
+
+        }); 
+
+
+
+        function send_message(usr, msg){
+
+          //var message = document.getElementById("chat").value;
+          var date = new Date();
+          var year = date.getFullYear() + "";
+          var month = (date.getMonth() + 1) + "";
+          month = (month[1] ? month : '0' + month);
+          var day = date.getDate() + "";
+          day = (day[1] ? day : '0' + day);
+          var hour = date.getHours() + "";
+          hour = (hour[1] ? hour : '0' + hour);
+          var minute = date.getMinutes() + "";
+          minute = (minute[1] ? minute : '0' + minute);
+          var second = date.getSeconds() + "";
+          second = (second[1] ? second : '0' + second);
+          var ms = date.getMilliseconds() + "";
+          var timeid = year + month + day + hour + minute + second + ms;
+          ref_Dummy_Chatroom.child('Respond_Chat' + timeid).set({
+            User : usr,
+            Content : msg,
+            Time : year+'.' + month+'.' + day+'.' + hour+'.' + minute+'.' + second
+          });
+
+        }
+
+
+        function append_outgoing_msg(chat, time){
+
+          var rootelem = document.getElementsByClassName("msg_history")[0];
+
+          var outgoelem = document.createElement("div");
+          outgoelem.setAttribute('class', 'outgoing_msg');
+
+          var msgelem = document.createElement("div");
+          msgelem.setAttribute('class', "sent_msg");
+
+          var msg = document.createElement('p');
+          msg.innerHTML = chat;
+
+          var tim = document.createElement("span");
+          tim.setAttribute('class', "time_date");
+          tim.innerHTML = time;
+
+          msgelem.appendChild(msg);
+          msgelem.appendChild(tim);
+
+          outgoelem.appendChild(msgelem);
+
+          rootelem.appendChild(outgoelem);
+
+        }
+
+
+
+        function append_incoming_msg(chat, time){
+
+          var rootelem = document.getElementsByClassName("msg_history")[0];
+
+          var incomeelem = document.createElement("div");
+          incomeelem.setAttribute('class', 'incoming_msg');
+
+          var imgelem = document.createElement("div");
+          imgelem.setAttribute('class', 'incoming_msg_img');
+
+          var img = document.createElement("img");
+          img.setAttribute('src', "../images/chani.jpg");
+          img.setAttribute('alt', "sunil");
+
+          var msgelem = document.createElement("div");
+          msgelem.setAttribute('class', "received_msg");
+
+          var msg = document.createElement('p');
+          msg.innerHTML = chat;
+
+          var tim = document.createElement("span");
+          tim.setAttribute('class', "time_date");
+          tim.innerHTML = time;
+
+
+          imgelem.appendChild(img);
+          msgelem.appendChild(msg);
+          msgelem.appendChild(tim);
+
+          incomeelem.appendChild(imgelem);
+          incomeelem.appendChild(msgelem);
+
+          rootelem.appendChild(incomeelem);
+
+        }
+      </script>
+
+      <script>
+        $(document).ready(function(){
+          $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+          })
+        })
+      </script>
+  </div>
+
+</body>
+</html>
