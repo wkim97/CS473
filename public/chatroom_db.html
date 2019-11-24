@@ -55,10 +55,6 @@
 
       var ref_Dummy_Chatroom = database.ref('Chatroom/Dummy_Chatroom');
 
-      
-
-      //alert(typeof(date.getYear()));
-
 
       function send_message(){
 
@@ -105,7 +101,9 @@
 
      var chat_data_ref = database.ref('Chatroom/Dummy_Chatroom').on('child_added', function(snapshot){
 
+     	console.log(snapshot.val());
       	var str_snapshot = JSON.stringify(snapshot);
+
 
       	var temp = str_snapshot.split(',')
       	var chat = temp[0].split(':')[1].replace(/['"{}]+/g, '');
