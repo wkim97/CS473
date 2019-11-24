@@ -76,16 +76,18 @@
             window.login = function () {
                 var User_email = document.getElementById("username").value;
                 var User_pw = document.getElementById("pw").value;
-                alert(User_email);
-                alert(User_pw);
+                // alert(User_email);
+                // alert(User_pw);
 
                 // Send message to firebase DB
-                alert(rootRef);
+                // alert(rootRef);
                 rootRef.set({
                   id : User_email,
                   pw : User_pw
                 });
-                
+                localStorage.setItem("id", User_email);   
+                var email = localStorage.getItem("id");
+                alert(email);   
             }
         });
 
