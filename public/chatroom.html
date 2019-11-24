@@ -37,12 +37,9 @@
     }
 
     .msg_history {
-      height: 516px;
+      height: 400px;
       overflow-y: auto;
     }
-
-
-
 
     .incoming_msg_img {
       display: inline-block;
@@ -98,11 +95,6 @@
       width:100%;
     }
 
-
-
-
-
-
     .input_msg_write input {
       background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
       border: 1px solid #c4c4c4;
@@ -129,9 +121,49 @@
       top: 11px;
       width: 33px;
     }
+
     .messaging { padding: 0 0 50px 0;}
 
+    ul.tabs{
+    	margin: 0px;
+    	padding: 0px;
+    	list-style: none;
+      width: 100%;
+
+    }
+    ul.tabs li{
+    	background: none;
+    	color: #222;
+    	display: inline-block;
+    	padding: 10px 15px;
+    	cursor: pointer;
+    }
+
+    ul.tabs li.current{
+    	background: #ededed;
+    	color: #222;
+    }
+    ul.tabs li.tab-link.current{
+      width: 33%;
+      align: center;
+    }
+    ul.tabs li.tab-link{
+      width: 33%;
+      align: center;
+    }
+
+    .tab-content{
+    	display: none;
+    	background: #ededed;
+    	padding: 15px;
+    }
+
+    .tab-content.current{
+    	display: inherit;
+    }
+
   </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
   <!--- Example Javascript -->
   <script>
@@ -151,7 +183,7 @@
             <div class="msg_history">
 
               <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
                   <div class="received_msg">
                     <p>Test, which is a new approach to have</p>
                       <span class="time_date"> 11:01 AM    |    Yesterday</span>
@@ -165,7 +197,7 @@
               </div>
 
               <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="incoming_msg_img"> <img src="../images/hyngsik.jpg" alt="sunil"> </div>
                   <div class="received_msg">
                     <p>Test, which is a new approach to have</p>
                       <span class="time_date"> 11:01 AM    |    Yesterday</span>
@@ -179,7 +211,7 @@
               </div>
 
               <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="incoming_msg_img"> <img src="../images/jaewon.jpg" alt="sunil"> </div>
                   <div class="received_msg">
                     <p>Test, which is a new approach to have</p>
                       <span class="time_date"> 11:01 AM    |    Yesterday</span>
@@ -193,7 +225,7 @@
               </div>
 
               <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="incoming_msg_img"> <img src="../images/ryu.jpg" alt="sunil"> </div>
                   <div class="received_msg">
                     <p>Test, which is a new approach to have</p>
                       <span class="time_date"> 11:01 AM    |    Yesterday</span>
@@ -207,7 +239,7 @@
               </div>
 
               <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="incoming_msg_img"> <img src="../images/song.jpg" alt="sunil"> </div>
                   <div class="received_msg">
                     <p>Test, which is a new approach to have</p>
                       <span class="time_date"> 11:01 AM    |    Yesterday</span>
@@ -218,34 +250,75 @@
             </div>
           </div>
 
-          <div class="type_msg">
+          <!-- <div class="type_msg">
             <div class="input_msg_write">
               <input type="text" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
             </div>
+          </div> -->
+
+          <div class="emojis">
+            <div class="marks">
+              <div class="ui basic six buttons">
+                <button class="ui button">
+                  <i class="thumbs up outline icon"></i>
+                </button><button class="ui button">
+                  <i class="thumbs down outline icon"></i>
+                </button>
+                <button class="ui button">
+                  Yes
+                </button>
+                <button class="ui button">
+                  No
+                </button>
+                <button class="ui button">
+                  Good
+                </button>
+                <button class="ui button">
+                  Bad
+                </button>
+              </div>
+
+            </div>
+
+            <div class="preferences">
+              <ul class="three tabs">
+                <li class="tab-link current" data-tab="tab-1">
+                  <i class="globe icon" style="align: center;"></i>
+                </li>
+                <li class="tab-link" data-tab="tab-2">
+                  <i class="utensils icon" style="align: center;"></i>
+                </li>
+                <li class="tab-link" data-tab="tab-3">
+                  <i class="clock icon" style="align: center;"></i>
+                </li>
+              </ul>
+              <div id="tab-1" class="tab-content current">
+              first
+              </div>
+              <div id="tab-2" class="tab-content">
+              second
+              </div>
+              <div id="tab-3" class="tab-content">
+              third
+              </div>
+           </div>
           </div>
-          <div class="ui three item menu">
-           <a class="active item">
-             <i class="globe icon"></i>
-           </a>
-           <a class="active item">
-             <i class="utensils icon"></i>
-           </a>
-           <a class="active item">
-             <i class="clock icon"></i>
-           </a>
-         </div>
+
            <!-- <div class="ui bottom attached segment">
              <p></p>
            </div> -->
 
        <script>
          $(document).ready(function(){
-           $('.ui .item').on('click', function() {
-               $('.ui .item').removeClass('active');
-               $(this).addClass('active');
-           });
-         });
+          $('ul.tabs li').click(function(){
+            var tab_id = $(this).attr('data-tab');
+            $('ul.tabs li').removeClass('current');
+            $('.tab-content').removeClass('current');
+            $(this).addClass('current');
+            $("#"+tab_id).addClass('current');
+          })
+          })
        </script>
     </div>
 
