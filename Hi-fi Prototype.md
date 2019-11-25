@@ -55,5 +55,8 @@ One useful skill I have learned while working on the high-fi prototype is using 
 
 #### 20160796 김채원
 -------------------
+I worked as a front-end programmer, implementing the friends list page and chat list page, using HTML, Javascript, and CSS. I designed the overall UI of the friends and chat list, and the basic features of the tasks that could be navigated without back-end development. Once back-end was established, I unified and fixed the overall UI design.
 
+I was new to web development, so I had to learn HTML and javascript. Since HTML has a lot of elements, it was difficult to decide on which element to use for the features, and to make the elements visually appealing. Also, the most difficult part was dynamically changing the content of HTML through javascript.
 
+I learned to make a basic static website without back-end support through HTML and javascript, and how to use modules and elements that are provided by external framework, such as Semantic UI
