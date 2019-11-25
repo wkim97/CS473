@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html>
 <head>
 
@@ -9,7 +11,6 @@
 
   	<link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
-  	<script src="chatroom.js"></script>
 
   	<!--- Example CSS -->
   	<style>
@@ -371,13 +372,18 @@
                  // Get a reference to the database service
                  var database = firebase.database();
 
-                 var ref_Dummy_Chatroom = database.ref('Chatroom/Dummy_Chatroom');
 
+                 var ChatroomNum = window.location.href.split("?")[1].split("=")[1];
+                 alert(ChatroomNum);
 
-                 var chat_data_ref = database.ref('Chatroom/Dummy_Chatroom').on('child_added', function(snapshot){
+                 var ChatroomMsg = database.ref('ChatroomMsg/Chatroom' + ChatroomNum);
+
+                 alert(ChatroomMsg);
+
+                 var chat_data_ref = ChatroomMsg.on('child_added', function(snapshot){
 
                    var str_snapshot = JSON.stringify(snapshot);
-
+                   alert(str_snapshot);
                    var temp = str_snapshot.split(',')
                    var chat = temp[0].split(':')[1].replace(/['"{}]+/g, '');
                    var time = temp[1].split(':')[1].replace(/['"{}]+/g, '');
@@ -394,6 +400,7 @@
                    rootelem.scrollTop = rootelem.scrollHeight;
                  });
 
+                 
 
 
                  function send_message(usr, msg){

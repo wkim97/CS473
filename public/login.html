@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -70,24 +71,25 @@
       // Get a reference to the database service
       var database = firebase.database();
 
-      var rootRef = database.ref().child('idpw');
+      var UserRef = database.ref("/Users");
 
       $(document).ready(function () {
             window.login = function () {
-                var User_email = document.getElementById("username").value;
+                var User_id = document.getElementById("username").value;
                 var User_pw = document.getElementById("pw").value;
                 // alert(User_email);
                 // alert(User_pw);
 
                 // Send message to firebase DB
                 // alert(rootRef);
-                rootRef.set({
-                  id : User_email,
-                  pw : User_pw
+
+                var LoginRef = UserRef.child(User_id)
+                LoginRef.set({
+                  Name : User_id,
                 });
-                localStorage.setItem("id", User_email);   
-                var email = localStorage.getItem("id");
-                alert(email);   
+                localStorage.setItem("id", User_id);   
+                var Username = localStorage.getItem("id");
+                alert(Username);   
             }
         });
 
