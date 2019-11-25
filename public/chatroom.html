@@ -16,7 +16,7 @@
   		.container{
   			max-width:1170px;
   			margin: auto;
-  			height: 100%;
+  			height: 66%;
   		}
 
   		img{
@@ -253,16 +253,9 @@
   									</div>
   								</div>
   							</div>
+							</div>
 
-                <!-- <div class="ui form">
-                  <div class="ui fluid input" style="padding: 4px 0 4px">
-                    <input id="type_here" type="text" placeholder="Preferences">
-                    <div class="ui button">Send</div>
-                  </div> -->
-
-
-
-                <div class="asdf">
+                <div class="container">
                   <div class="emojis">
                     <div class="ui basic six buttons">
                       <button class="ui button">
@@ -287,7 +280,7 @@
                   </div>
 
                   <div class="ui fluid input" style="padding: 4px 0 4px">
-                    <input id="type_here" value ="" type="text" placeholder="Preferences">
+                    <input id="type_here" value ="" type="text">
                     <div class="ui button" onclick="send_msg();">Send</div>
                   </div>
 
@@ -312,35 +305,37 @@
                       <div id="Itlian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Italin</div>
                     </div>
                     <div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
-                      <div class="ui button" style="margin: 2px 0 2px">PulBitMaRu</div>
-                      <div class="ui button" style="margin: 2px 0 2px">DDDN</div>
-                      <div class="ui button" style="margin: 2px 0 2px">GoSoMi Chicken</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Noodle Tree</div>
-                      <div class="ui button" style="margin: 2px 0 2px">MoriMori</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Bab&Bulgogi</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Sand Brunch</div>
-                      <div class="ui button" style="margin: 2px 0 2px">KimChiWon</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Yoshida</div>
-                      <div class="ui button" style="margin: 2px 0 2px">111-7</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Malgm</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Omai Dong</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Do-Me Barbeque</div>
-                      <div class="ui button" style="margin: 2px 0 2px">MatGoeul</div>
-                      <div class="ui button" style="margin: 2px 0 2px">So-Do</div>
-                      <div class="ui button" style="margin: 2px 0 2px">Gwang-jang</div>
+                      <div id="PulBitMaRu" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">PulBitMaRu</div>
+                      <div id="DDDN" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">DDDN</div>
+                      <div id="GoSoMi Chicken" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">GoSoMi Chicken</div>
+                      <div id="Noodle Tree" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Noodle Tree</div>
+                      <div id="MoriMori" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">MoriMori</div>
+                      <div id="Bab&Bulgogi" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Bab&Bulgogi</div>
+                      <div id="Sand Brunch" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Sand Brunch</div>
+                      <div id="KimChiWon" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">KimChiWon</div>
+                      <div id="Yoshida" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Yoshida</div>
+                      <div id="111-7" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">111-7</div>
+                      <div id="Malgm" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Malgm</div>
+                      <div id="OmaiDong" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">OmaiDong</div>
+                      <div id="Do-Me Barbeque" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Do-Me Barbeque</div>
+                      <div id="MatGoeul" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">MatGoeul</div>
+                      <div id="So-Do" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">So-Do</div>
+                      <div id="Gwang-jang" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Gwang-jang</div>
                     </div>
+
                     <div id="tab-3" class="tab-content" style="height: 20%;">
                       <div class="grid-item time">
                           <form class = "ui form" action = "/action_page.php">
-                              <input type = "time" name = "usr_time">
+                              <input type = "time" id="apt_time" name = "usr_time">
                               <!-- <input type = "submit"> -->
+															<div type="send" class="ui button" onclick="set_time();">
+																select time
+															</div>
                           </form>
                       </div>
-
                     </div>
                  </div>
                 </div>
-              </div>
 
            <!-- <div class="ui bottom attached segment">
              <p></p>
@@ -517,7 +512,16 @@
                 		outgoelem.appendChild(msgelem);
 
                 		rootelem.appendChild(outgoelem);
+
+										document.getElementById("type_here").setAttribute("value", "")
                  }
+
+								 function set_time(){
+									 var time_val = document.getElementById("apt_time").value;
+
+									 // alert(time_val);
+									 document.getElementById("type_here").setAttribute("value", time_val);
+								 }
                </script>
 
          <script>
