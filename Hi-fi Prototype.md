@@ -18,15 +18,29 @@ Project Summary
 
 Important Links
 ---------------
-*Prototype link*
+[Prototype Link](https://galbi-3ce0c.firebaseapp.com) - https://galbi-3ce0c.firebaseapp.com
 
 [GitHub Link](https://github.com/wkim97/CS473) - https://github.com/wkim97/CS473
 
 Instruction
 -----------
-*Screenshots*
 
-*Steps to follow*
+Our application is aimed at providing users with a service to arrange a group to eat with more easily and efficiently.
+
+
+<center><img src="images/1.png" width=50%></center>
+
+On this screen, the user can see friends’ meal preferences and also register his or her own meal preferences.
+
+
+<left><img src="images/2-1.png" width=49%></left>
+<right><img src="images/2-2.png" width=49%></right>
+With our active status feature, the user can confirm that he or she is done gathering members for a specific meal and also see whether other meal plans are still available!
+
+
+*Keyword Conversation*
+
+Conversation is made through keywords (emoji and reactions). The user can express his or her preference of cuisine type, restuarant, and time. It shows that our service provides users with a pool of conversation tools related only to eating and meal arrangements with a keyboard of keywords.
 
 Libraries and Frameworks Used
 -----------------------------
@@ -44,8 +58,13 @@ Individual Reflections
 
 #### 20160319 송영우
 -------------------
+I worked on the front-end of our service, especially the UI inside the chatroom. I designed the overall interface of the chatroom, and implemented the keyword-based chatting system.
 
-#### 20160796 김우재 
+It was my first time to develop a web page, so I had troubles designing and styling each elements of our platform. It was hard to place and align the components that I intended to do at the first place. However, I've got to designing the interface by organizing the nested components one by one, and putting in order the inherited attributes.
+
+The main thing I struggled on was developing the keyword-based conversation. First, fetching the data from keyword-button clicking action, and then appropriately parsed the input data so that users can smoothly chat with the given keyword-buttons, rather than having keyboard to enter texts.
+
+#### 20160796 김우재
 -------------------
 I mainly worked on the back-end of the developing process. I mainly took care of storing data to the database and calling in data from database on the UI web page that has been established by teammates. I took care of the back-end process on the html pages showing friends list and chats list.
 
