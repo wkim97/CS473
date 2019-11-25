@@ -3,13 +3,23 @@
 
 <head>
     <meta charset="utf-8">
-    <title> Semantic UI Sandbox </title>
+    <title> Friends </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <style>
         .grid-container {
             display: grid;
             grid-template-columns: 80px auto auto auto;
-            /* grid-template-rows: auto 80px; */
+            background-color: #f8f3e8;
+            padding: 2px;
+        }
+
+        .mygrid-container {
+            display: grid;
+            grid-template-columns: 80px auto auto auto 70px;
             background-color: #f8f3e8;
             padding: 2px;
         }
@@ -50,12 +60,10 @@
             grid-row: 2;
         }
 
-        .show {
-                {
-                display: block;
-            }
+        .done {
+            grid-column: 5;
+            grid-row: 2;
         }
-
         .dropdown {
             transition: 'drop'
         }
@@ -99,7 +107,7 @@
             bottom: 0;
             height: 200 px;
             width: 100%;
-            background-color: #f3ead8;
+            background-color: #f8f3e8;
             color: black;
             text-align: center;
             padding: 40 px;
@@ -109,7 +117,7 @@
             display: grid;
             grid-template-columns: auto auto;
             /* grid-template-rows: auto 80px; */
-            background-color: #f3ead8;
+            background-color: #f8f3e8;
             padding: 10px;
         }
 
@@ -118,9 +126,9 @@
         }
     </style>
     <script>
-
-        $('.ui.calendar').calendar();
-
+        $(function () {
+            $('.ui.dropdown').dropdown();
+        });
     </script>
 
 
@@ -197,9 +205,9 @@
         <!-- MY PROFILE -->
         <br>
 
-        <div class="grid-container">
+        <div class="mygrid-container">
             <div class="grid-item profile">
-                <img src="chaewon.jpg" alt="My test image" height="60" width="60">
+                <img src="../images/profile.jpg" alt="me" height="60" width="60">
             </div>
 
             <div class="grid-item name">
@@ -237,15 +245,17 @@
                         <div class="ui calendar">
                             <div class="ui input left icon">
                                 <i class="calendar icon"></i>
-                                <input type="text" name="date_estimated_arrival" placeholder="Date/Time" id="time">
+                                <input type = "time" id="time">
+                                <!-- <input type="number" min="0" max="59" placeholder="00" id="minute">
+                                <input type="text" name="date_estimated_arrival" placeholder="Date/Time" id="time"> -->
                             </div>
                         </div>
 
                     </div>
                 </form>
             </div>
-            <a href="#" onclick="save_preferences();" class="ui form">
-                <button class="ui primary labeled icon button" type="submit">
+            <a href="#" onclick="save_preferences();" class="grid-item done">
+                <button class="ui yellow right floated icon button" type="submit">
                     Done
                 </button>
             </a>
@@ -362,12 +372,12 @@
 
         <div class="grid-container">
             <div class="grid-item profile">
-                <img src="../images/youngwoo.png" alt="My test image" height="60" width="60">
+                <img src="../images/yeongwoo.png" alt="My test image" height="60" width="60">
             </div>
 
             <div class="grid-item name">
                 <p align="left">
-                    Youngwoo Song
+                    Yeongwoo Song
                 </p>
             </div>
 
