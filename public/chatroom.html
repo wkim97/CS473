@@ -220,7 +220,7 @@
         <button class="ui basic icon button" onclick="goBack();">
           <i class="angle left icon"></i>
         </button>
-        <h3 class="text-center" style="display: inline-block;">Yeongwoo Song + 3</h3>
+        <h3 class="text-center" style="display: inline-block;"></h3>
 
   			<div class="mesgs">
   				<div class="msg_history_border">
@@ -369,7 +369,10 @@
 
                  var ChatroomMsg = database.ref('ChatroomMsg/Chatroom' + ChatroomNum);
 
+                var ChatroomaPart = database.ref('ChatroomPart/Chatroom' + ChatroomNum);
+
                  alert(ChatroomMsg);
+
 
                  var chat_data_ref = ChatroomMsg.on('child_added', function(snapshot){
 
