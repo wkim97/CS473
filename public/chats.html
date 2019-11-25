@@ -217,9 +217,24 @@
 
             var rootelem = document.getElementById("chatList");
 
+            
+
             var container = document.createElement("div");
             container.setAttribute('class', "grid-container");
             container.setAttribute('id', "firstChat");
+
+
+            var div_profile = document.createElement('div');
+            div_profile.setAttribute('class', "grid-item profile");
+
+            var img_profile = document.createElement('img');
+            img_profile.src = '../images/profile.jpg';
+            img_profile.height = '60';
+            img_profile.width = '60';
+            
+            div_profile.appendChild(img_profile);
+            container.appendChild(div_profile);
+
 
             var div_name = document.createElement("div");
             div_name.setAttribute('class', "grid-item name");
