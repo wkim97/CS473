@@ -252,14 +252,6 @@
 
             container.appendChild(div_time);
 
-            var div_ava = document.createElement("div");
-            div_ava.setAttribute('class', "grid-item availability");
-
-            var button_ava = document.createElement("div");
-
-            // button_ava.setAttribute('id', "tgl");
-
-
             // ADDED join button
             var join = document.createElement('div');
             join.classList.add('grid-item', 'join');
@@ -270,38 +262,42 @@
             join.appendChild(joinbtn);
             container.appendChild(join);
 
+            joinbtn.addEventListener('click', function() {
+                var joinmodal = document.getElementById("joinModal");
+                var joinchat = document.getElementById("joinchat");
+                var nochat = document.getElementById("nochat");
+                var span = document.getElementById("close3");
 
-
-            var joinmodal = document.getElementById("joinModal");
-            var joinchat = document.getElementById("joinchat");
-            var nochat = document.getElementById("nochat");
-            var span = document.getElementById("close3");
-
-            joinbtn.onclick = function () {
                 joinmodal.style.display = "block";
-            }
-
-            span.onclick = function () {
-                joinmodal.style.display = "none";
-            }
-
-            nochat.onclick = function () {
-                joinmodal.style.display = "none";
-            }
-
-            joinchat.onclick = function () {
-                joinbtn.innerHTML = "Joined";
-                joinmodal.style.display = "none";
-                joinbtn.classList.add('disabled');
                 
-                var user = sessionStorage.getItem("id");
-                database.ref('ChatroomPart/Chatroom'+chat_id+"/"+user).set(false);
-            }
+                span.onclick = function () {
+                    joinmodal.style.display = "none";
+                }
+
+                nochat.onclick = function () {
+                    joinmodal.style.display = "none";
+                }
+                joinchat.onclick = function () {
+                    joinbtn.innerHTML = "Joined";
+                    joinmodal.style.display = "none";
+                    joinbtn.classList.add('disabled');
+                    // add link to chatroom
+                    
+                    var user = sessionStorage.getItem("id");
+                    database.ref('ChatroomPart/Chatroom'+chat_id+"/"+user).set(false);
+                }
+            });
 
 
+            var div_ava = document.createElement("div");
+            div_ava.setAttribute('class', "grid-item availability");
 
+            var button_ava = document.createElement("div");
 
+         
             var icon_ava = document.createElement('button');
+
+
             icon_ava.setAttribute('id', "avail_button");
             if (available == "true") {
                 icon_ava.setAttribute('class', "ui toggle basic icon button active");
@@ -309,8 +305,6 @@
             else {
                 icon_ava.setAttribute('class', "ui toggle basic icon button inactive");
             }
-            // icon_ava.className = "ui toggle basic icon button active";
-            icon_ava.id = "tgl";
 
             var icon_ava2 = document.createElement('i');
             icon_ava2.className = "circle icon";
@@ -325,30 +319,43 @@
 
             rootelem.prepend(container);
 
-            var available = true;
+          
+            button_ava.addEventListener("click", function() {
+                var modal = document.getElementById("myModal");
+                var span = document.getElementById("close");
+                var done = document.getElementById("yes");
+                var notdone = document.getElementById("no");
 
-            var modal = document.getElementById("myModal");
-            var span = document.getElementById("close");
-            var done = document.getElementById("yes");
-            var notdone = document.getElementById("no");
-
-            button_ava.onclick = function () {
                 modal.style.display = "block";
-            }
+                
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
 
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
+                notdone.onclick = function () {
+                    modal.style.display = "none";
+                }
+                done.onclick = function () {
+                    icon_ava.classList.toggle('active');
+                    database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
+                    modal.style.display = "none";
+                }
+            });
+            // button_ava.onclick = function () {
+            //     modal.style.display = "block";
+            // }
 
-            notdone.onclick = function () {
-                modal.style.display = "none";
-            }
+            // span.onclick = function () {
+            //     modal.style.display = "none";
+            // }
 
-            done.onclick = function () {
-                icon_ava.classList.toggle('active');
-                database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
-                modal.style.display = "none";
-            }
+            // notdone.onclick = function () {
+            //     modal.style.display = "none";
+            // }
+
+            // done.onclick = function () {
+                
+            // }
 
             var chatname = "";
             var chatname_ref = database.ref("ChatroomPart/Chatroom" + chat_id).on("child_added", function (snapshot) {
@@ -418,7 +425,7 @@
                     <p style="text-align:center"> Time </p>
                     <div align="center">
                         <div>
-                            <input type="number" min="0" max="23" placeholder="18" id="hour">:
+                            <input type="number" min="0" max="23" placeholder="00" id="hour">:
                             <input type="number" min="0" max="59" placeholder="00" id="minute">
                         </div>
                         <br>
