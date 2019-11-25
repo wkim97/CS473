@@ -18,15 +18,30 @@ Project Summary
 
 Important Links
 ---------------
-*Prototype link*
+[Prototype Link](https://galbi-3ce0c.firebaseapp.com) - https://galbi-3ce0c.firebaseapp.com
 
 [GitHub Link](https://github.com/wkim97/CS473) - https://github.com/wkim97/CS473
 
 Instruction
 -----------
-*Screenshots*
 
-*Steps to follow*
+Our application is aimed at providing users with a service to arrange a group to eat with more easily and efficiently.
+
+
+*Friends' Meal Preferences*
+
+On this screen, the user can see friends’ meal preferences and also register his or her own meal preferences.
+
+
+*Active Status Display*
+
+With our active status feature, the user can confirm that he or she is done gathering members for a specific meal and also see whether other meal plans are still available!
+
+
+*Keyword Conversation*
+
+Conversation is made through keywords (emoji and reactions). It shows that our service provides users with a pool of conversation tools related only to eating and meal arrangements with a keyboard of keywords.
+
 
 Libraries and Frameworks Used
 -----------------------------
