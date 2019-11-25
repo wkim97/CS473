@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -19,22 +18,20 @@
             <div class="nine wide column">
                 <div class="ui fluid card">
                     <div class="content">
-                        <form class="ui form" method="POST">
-                            <div class="field">
-                                <label>Username</label>
-                                <input type="text" name="username" placeholder="Username" id="username">
-                            </div>
-                            <div class="field">
-                                <label>Password</label>
-                                <input type="password" name="pass" placeholder="Password" id="pw">
-                            </div>
-                            <a href="#" onclick="login();" class="ui large form">
-                                <button class="ui primary labeled icon button" type="submit">
-                                    <i class="unlock alternate icon"></i>
-                                    Login
-                                </button>
-                            </a>
-                        </form>
+                        <div class="field">
+                            <label>Username</label>
+                            <input type="text" name="username" placeholder="Username" id="username">
+                        </div>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" name="pass" placeholder="Password" id="pw">
+                        </div>
+                        <a href="#" onclick="login();" class="ui large form">
+                            <button class="ui primary labeled icon button" type="submit">
+                                <i class="unlock alternate icon"></i>
+                                Login
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -42,7 +39,7 @@
     </div>
 
 
-     <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -55,47 +52,37 @@
 
 
     <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyAD0Y04NLAtEukphcSJ1s6T8Ffp_AWx-ew",
-        authDomain: "galbi-3ce0c.firebaseapp.com",
-        databaseURL: "https://galbi-3ce0c.firebaseio.com",
-        projectId: "galbi-3ce0c",
-        storageBucket: "galbi-3ce0c.appspot.com",
-        messagingSenderId: "287266351759",
-        appId: "1:287266351759:web:3bdf04f7e5202420549efa"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAD0Y04NLAtEukphcSJ1s6T8Ffp_AWx-ew",
+            authDomain: "galbi-3ce0c.firebaseapp.com",
+            databaseURL: "https://galbi-3ce0c.firebaseio.com",
+            projectId: "galbi-3ce0c",
+            storageBucket: "galbi-3ce0c.appspot.com",
+            messagingSenderId: "287266351759",
+            appId: "1:287266351759:web:3bdf04f7e5202420549efa"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-      // Get a reference to the database service
-      var database = firebase.database();
+        // Get a reference to the database service
+        var database = firebase.database();
 
-      var UserRef = database.ref("/Users");
+        var UserRef = database.ref("/Users");
 
-      $(document).ready(function () {
+        $(document).ready(function () {
             window.login = function () {
                 var User_id = document.getElementById("username").value;
                 var User_pw = document.getElementById("pw").value;
-                // alert(User_email);
-                // alert(User_pw);
-
-                // Send message to firebase DB
-                // alert(rootRef);
 
                 var LoginRef = UserRef.child(User_id)
                 LoginRef.set({
-                  Name : User_id,
+                    Name: User_id,
                 });
-<<<<<<< HEAD
-                localStorage.setItem("id", User_id);   
-                var Username = localStorage.getItem("id");
-                alert(Username);   
-=======
-                sessionStorage.setItem("id", User_email); 
+                sessionStorage.setItem("id", User_id);
                 var email = sessionStorage.getItem("id");
-                alert(email);
->>>>>>> 908d72131d56331a71a8ba52329bf6704889d29c
+                
+                window.location.href = "friends.html";
             }
         });
 
@@ -104,8 +91,7 @@
 
 
 
-    
+
 </body>
 
 </html>
-	

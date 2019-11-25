@@ -158,7 +158,6 @@
 
         var rootRef = database.ref();
 
-        var user = sessionStorage.getItem('id');
         function save_preferences() {
             var cuisine = document.getElementById("cuisine").value;
             var restaurant = document.getElementById("restaurant").value;
@@ -168,7 +167,7 @@
             // alert(time);
 
             // Send message to firebase DB
-            rootRef.child('Users').child(user).set({
+            rootRef.child('User').child('Chaewon Kim').set({
                 Cuisine: cuisine,
                 Restaurant: restaurant,
                 Time: time
@@ -420,15 +419,9 @@
                     <i class="users icon"></i>
                 </button>
 
-                <button class="ui basic icon button" onclick="changeToChat()">
+                <button class="ui basic icon button">
                     <i class="comment alternate outline icon"></i>
                 </button>
-
-                <script>
-                    function changeToChat() {
-                        location.replace("chats.html")
-                    }
-                </script>
             </div>
         </div>
 
