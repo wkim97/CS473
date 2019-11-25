@@ -14,10 +14,16 @@
 
   	<!--- Example CSS -->
   	<style>
-  		.container{
+  		.container1{
   			max-width:1170px;
   			margin: auto;
-  			height: 66%;
+  			height: 68%;
+  		}
+
+			.container2{
+  			max-width:1170px;
+  			margin: auto;
+
   		}
 
   		img{
@@ -184,7 +190,7 @@
   <body>
 
   	<body>
-  		<div class="container">
+  		<div class="container1">
 
         <button class="ui basic icon button">
           <i class="angle left icon"></i>
@@ -195,7 +201,7 @@
   				<div class="msg_history_border">
   					<div class="msg_history">
 
-  						<div class="incoming_msg">
+  						<!-- <div class="incoming_msg">
   							<div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
   							<div class="received_msg">
   								<p>Test, incoming</p>
@@ -207,58 +213,28 @@
   							<div class="sent_msg">
   								<p>Test, outgoing</p>
   								<span class="time_date"> 11:01 AM    |    June 9</span> </div>
-  							</div>
-
-                <div class="incoming_msg">
-    							<div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
-    							<div class="received_msg">
-    								<p>Test, incoming</p>
-    								<span class="time_date"> 11:01 AM    |    Yesterday</span>
-    							</div>
-    						</div>
-
-    						<div class="outgoing_msg">
-    							<div class="sent_msg">
-    								<p>Test, outgoing</p>
-    								<span class="time_date"> 11:01 AM    |    June 9</span> </div>
-    							</div>
-
-                  <div class="incoming_msg">
-      							<div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
-      							<div class="received_msg">
-      								<p>Test, incoming</p>
-      								<span class="time_date"> 11:01 AM    |    Yesterday</span>
-      							</div>
-      						</div>
-
-      						<div class="outgoing_msg">
-      							<div class="sent_msg">
-      								<p>Test, outgoing</p>
-      								<span class="time_date"> 11:01 AM    |    June 9</span> </div>
-      							</div>
-
-                    <div class="incoming_msg">
-        							<div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
-        							<div class="received_msg">
-        								<p>Test, incoming</p>
-        								<span class="time_date"> 11:01 AM    |    Yesterday</span>
-        							</div>
-        						</div>
-
-        						<div class="outgoing_msg">
-        							<div class="sent_msg">
-        								<p>Test, outgoing</p>
-        								<span class="time_date"> 11:01 AM    |    June 9</span> </div>
-        							</div>
+  							</div> -->
 
   									</div>
   								</div>
   							</div>
 							</div>
 
-                <div class="container">
-                  <div class="emojis">
-                    <div class="ui basic six buttons">
+                <div class="container2">
+									<div class="ui fluid input" style="padding: 0 0 4px;">
+                    <input id="type_here" value ="" type="text" style="margin: 0 3px 0 0;">
+										<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
+											Delete
+											<!-- <i class="window close icon"></i> -->
+										</div>
+                    <div class="ui button" onclick="send_msg();" style="margin: 0 0 0 0;">
+											Send
+											<!-- <i class="reply icon"></i> -->
+										</div>
+                  </div>
+
+									<div class="emojis">
+                    <div class="ui basic six buttons" style="margin: 0 0 3px;">
                       <button class="ui button" id="Good" onclick="type_pref(this.id);">
                         Good
                       </button>
@@ -278,18 +254,6 @@
                         .
                       </button>
                     </div>
-                  </div>
-
-                  <div class="ui fluid input" style="padding: 4px 0 4px;">
-                    <input id="type_here" value ="" type="text" style="margin: 0 3px 0 0;">
-										<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
-											Delete
-											<!-- <i class="window close icon"></i> -->
-										</div>
-                    <div class="ui button" onclick="send_msg();" style="margin: 0 0 0 0;">
-											Send
-											<!-- <i class="reply icon"></i> -->
-										</div>
                   </div>
 
                   <div class="preferences">
@@ -402,7 +366,7 @@
                    rootelem.scrollTop = rootelem.scrollHeight;
                  });
 
-                 
+
 
 
                  function send_message(usr, msg){
@@ -518,7 +482,7 @@
 									 var text = document.getElementById("type_here").getAttribute("value");
 									 var len = text.length;
 									 // alert(text.charAt(len-1));
-									 if (["?", "."].includes(text.charAt(len-1))){
+									 if (["Good", "Bad", "Yes", "No", "?", "."].includes(text.charAt(len-1))){
 										 text = text.substring(0, len-1);
 										 // alert(text);
 									 }
