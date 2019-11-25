@@ -14,6 +14,7 @@
 
   	<!--- Example CSS -->
   	<style>
+
   		.container1{
   			max-width:1170px;
   			margin: auto;
@@ -23,6 +24,7 @@
 			.container2{
   			max-width:1170px;
   			margin: auto;
+
 
   		}
 
@@ -139,10 +141,11 @@
   			padding: 0px;
   			list-style: none;
   			width: 100%;
+				text-align: center;
 
   		}
   		ul.tabs li{
-  			background: none;
+  			background: #e0e1e2;
   			color: #222;
   			display: inline-block;
   			padding: 10px 15px;
@@ -150,31 +153,46 @@
   		}
 
   		ul.tabs li.current{
-  			background: #ededed;
+  			background: #f2f2f2;
   			color: #222;
   		}
   		ul.tabs li.tab-link.current{
-  			width: 33%;
+  			width: auto;
   			align: center;
+				flex-grow: 1;
   		}
   		ul.tabs li.tab-link{
-  			width: 33%;
+  			width: auto;
   			align: center;
+				flex-grow: 1;
+
   		}
 
   		.tab-content{
   			overflow-y: scroll;
   			display: none;
-  			background: #ededed;
+  			background: #f8f3e8;
   			padding: 15px;
   			height: 20%;
+
   		}
 
   		.tab-content.current{
   			overflow-y: scroll;
   			display: inherit;
   			height: 20%;
+				background: #f2f2f2;
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-around;
+				align-content: space-around;
+
   		}
+
+			body {
+					background-color: #f8f3e8;
+					font-family: Arial, Helvetica, sans-serif;
+			}
 
   	</style>
   	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -190,9 +208,10 @@
   <body>
 
   	<body>
+
   		<div class="container1">
 
-        <button class="ui basic icon button">
+        <button class="ui basic icon button" onclick="goBack();">
           <i class="angle left icon"></i>
         </button>
         <h3 class="text-center" style="display: inline-block;">Yeongwoo Song + 3</h3>
@@ -233,8 +252,8 @@
 										</div>
                   </div>
 
-									<div class="emojis">
-                    <div class="ui basic six buttons" style="margin: 0 0 3px;">
+									<div class="emojis" style="background-color: #f2f2f2;">
+                    <div class="ui basic six buttons" style="padding: 0 0 3px;">
                       <button class="ui button" id="Good" onclick="type_pref(this.id);">
                         Good
                       </button>
@@ -258,18 +277,18 @@
 
                   <div class="preferences">
                     <ul class="three tabs">
-                      <li class="tab-link current" data-tab="tab-1">
-                        <i class="globe icon" style="align: center;"></i>
+                      <li class="tab-link current" data-tab="tab-1" style="align: center;">
+                        <i class="globe icon"></i>
                       </li>
-                      <li class="tab-link" data-tab="tab-2">
-                        <i class="utensils icon" style="align: center;"></i>
+                      <li class="tab-link" data-tab="tab-2" style="align: center;">
+                        <i class="utensils icon"></i>
                       </li>
-                      <li class="tab-link" data-tab="tab-3">
-                        <i class="clock icon" style="align: center;"></i>
+                      <li class="tab-link" data-tab="tab-3" style="align: center;">
+                        <i class="clock icon"></i>
                       </li>
                     </ul>
                     <div id="tab-1" class="tab-content current" style="height: 20%;">
-                      <div id="Korean" value="Korean" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id);">Korean</div>
+                      <div id="Korean" value="Korean" class="ui button" style="width: 30%; margin: 2px 0 2px;" onclick="type_pref(this.id);">Korean</div>
                       <div id="Japanese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Japanese</div>
                       <div id="Chinese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Chinese</div>
                       <div id="Thai" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Thai</div>
@@ -298,9 +317,9 @@
                     <div id="tab-3" class="tab-content" style="height: 20%;">
                       <div class="grid-item time">
                           <form class = "ui form" action = "/action_page.php">
-                              <input type = "time" id="apt_time">
+                              <input type = "time" id="apt_time" style="width: auto;">
                               <!-- <input type = "submit"> -->
-															<div type="send" class="ui button" onclick="set_time();">
+															<div type="send" class="ui button" onclick="set_time();" style="width: auto;">
 																select time
 															</div>
                           </form>
@@ -367,6 +386,9 @@
                  });
 
 
+								 function goBack(){
+									 location.replace("chats.html");
+								 }
 
 
                  function send_message(usr, msg){
