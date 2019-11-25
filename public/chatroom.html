@@ -18,14 +18,12 @@
   		.container1{
   			max-width:1170px;
   			margin: auto;
-  			height: 68%;
+  			height: 65%;
   		}
 
 			.container2{
   			max-width:1170px;
   			margin: auto;
-
-
   		}
 
   		img{
@@ -38,20 +36,23 @@
   			text-align: left;
   			float: left;
   			width: 100%;
-        margin: 0 0 10px;
+        /* margin: 0 0 10px; */
+				height: 87%;
 
+  		}
+
+			.msg_history {
+  			height: 100%;
+  			overflow-y: auto;
   		}
 
   		.msg_history_border{
   			border: 1px solid #c4c4c4;
   			padding: 0px 5px 0px 0px;
-  			height: 40%
+				height: 100%
   		}
 
-  		.msg_history {
-  			height: 400px;
-  			overflow-y: auto;
-  		}
+
 
   		.incoming_msg_img {
   			display: inline-block;
@@ -98,7 +99,7 @@
   			width: auto;
   		}
   		.sent_msg p {
-  			background: #05728f none repeat scroll 0 0;
+  			background: #000000 none repeat scroll 0 0;
   			border-radius: 3px;
   			font-size: 14px;
   			margin: 0;
@@ -121,7 +122,7 @@
   			position: relative;
   		}
   		.msg_send_btn {
-  			background: #05728f none repeat scroll 0 0;
+  			background: #000000 none repeat scroll 0 0;
   			border: medium none;
   			border-radius: 50%;
   			color: #fff;
@@ -135,6 +136,7 @@
   		}
 
   		.messaging { padding: 0 0 50px 0;}
+
 			ul.three.tabs{
 				width: 100%;
 				display: flex;
@@ -147,7 +149,6 @@
   			list-style: none;
   			width: 100%;
 				text-align: center;
-
   		}
   		ul.tabs li{
   			background: #e0e1e2;
@@ -162,38 +163,65 @@
   			color: #222;
   		}
   		ul.tabs li.tab-link.current{
-  			width: 33%;
+  			width: calc(100%/3);
   			align: center;
 				padding: auto;
+				border-top: 1px solid #c4c4c4;
+				border-right: 1px solid #c4c4c4;
+				border-left: 1px solid #c4c4c4;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
 
   		}
   		ul.tabs li.tab-link{
-  			width: 33%;
+  			width: calc(100%/3);
   			align: center;
 				padding: auto;
+				border-top: 1px solid #c4c4c4;
+				border-right: 1px solid #c4c4c4;
+				border-left: 1px solid #c4c4c4;
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
 
   		}
 
   		.tab-content{
-  			overflow-y: scroll;
+  			overflow: auto;
   			display: none;
+				height: 110px;
   			background: #f8f3e8;
-  			padding: 15px;
-  			height: 20%;
-
+  			padding: 10px 0 10px;
+				margin: auto;
+				border-right: 1px solid #c4c4c4;
+				border-left: 1px solid #c4c4c4;
+				border-bottom: 1px solid #c4c4c4;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
   		}
 
   		.tab-content.current{
-  			overflow-y: scroll;
+  			overflow: auto;
   			display: inherit;
-  			height: 20%;
+  			height: 110px;
 				background: #f2f2f2;
+				padding: 10px 0 10px;
+				margin: auto;
+				border-right: 1px solid #c4c4c4;
+				border-left: 1px solid #c4c4c4;
+				border-bottom: 1px solid #c4c4c4;
+				border-bottom-left-radius: 5px;
+				border-bottom-right-radius: 5px;
 				display: flex;
 				flex-flow: row wrap;
 				justify-content: space-around;
-				align-content: space-around;
-
+				align-content: space-between;
   		}
+
+			.preferences{
+				/* border: 1px solid #c4c4c4;
+				border-radius: 5px; */
+				background-color: #f8f3e8;
+			}
 
 			body {
 					background-color: #f8f3e8;
@@ -220,7 +248,7 @@
         <button class="ui basic icon button" onclick="goBack();">
           <i class="angle left icon"></i>
         </button>
-        <h3 class="text-center" style="display: inline-block;">Yeongwoo Song + 3</h3>
+        <h3 class="text-center" style="display: inline-block; margin:15px 0 15px;">Yeongwoo Song + 3</h3>
 
   			<div class="mesgs">
   				<div class="msg_history_border">
@@ -246,7 +274,7 @@
 							</div>
 
                 <div class="container2">
-									<div class="ui fluid input" style="padding: 0 0 4px;">
+									<div class="ui fluid input" style="padding: 0 0 6px;">
                     <input id="type_here" value ="" type="text" style="margin: 0 3px 0 0;">
 										<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
 											Delete
@@ -259,7 +287,7 @@
                   </div>
 
 									<div class="emojis" style="background-color: #f2f2f2;">
-                    <div class="ui basic six buttons" style="padding: 0 0 3px;">
+                    <div class="ui basic six buttons" style="padding: 0 0 0px;">
                       <button class="ui button" id="Good" onclick="type_pref(this.id);">
                         Good
                       </button>
@@ -293,7 +321,7 @@
                         <i class="clock icon"></i>
                       </li>
                     </ul>
-                    <div id="tab-1" class="tab-content current" style="height: 20%;">
+                    <div id="tab-1" class="tab-content current" style="align-content: space-between;">
                       <div id="Korean" value="Korean" class="ui button" style="width: 30%; margin: 2px 0 2px;" onclick="type_pref(this.id);">Korean</div>
                       <div id="Japanese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Japanese</div>
                       <div id="Chinese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Chinese</div>
@@ -301,7 +329,7 @@
                       <div id="Indian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Indian</div>
                       <div id="Itlian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Italian</div>
                     </div>
-                    <div id="tab-2" class="tab-content" style="height: 10%; overflow-y: scroll">
+                    <div id="tab-2" class="tab-content" style="align-content: space-between;">
                       <div id="PulBitMaRu" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">PulBitMaRu</div>
                       <div id="DDDN" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">DDDN</div>
                       <div id="GoSoMi Chicken" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">GoSoMi Chicken</div>
@@ -320,7 +348,7 @@
                       <div id="Gwang-jang" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Gwang-jang</div>
                     </div>
 
-                    <div id="tab-3" class="tab-content" style="height: 20%;">
+                    <div id="tab-3" class="tab-content" style="align-content: space-around;">
                       <div class="grid-item time">
                           <form class = "ui form" action = "/action_page.php">
                               <input type = "time" id="apt_time" style="width: auto;">
