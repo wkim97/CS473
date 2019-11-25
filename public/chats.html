@@ -15,7 +15,7 @@
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: 80px auto auto 80px;
+            grid-template-columns: 80px auto auto auto 80px;
             /* grid-template-rows: auto 80px; */
             background-color: #f8f3e8;
             padding: 2px;
@@ -36,7 +36,7 @@
         .name {
             justify-items: start;
             /* margin-left: 5%; */
-            grid-column: 2 / Span 2;
+            grid-column: 2 / Span 3;
             grid-row: 1;
         }
 
@@ -54,9 +54,16 @@
             grid-row: 2;
         }
 
-        .availability {
+        .join {
+            margin-left: 0%;
             font-size: 13px;
             grid-column: 4;
+            grid-row: 2;
+        }
+
+        .availability {
+            font-size: 13px;
+            grid-column: 5;
             grid-row: 1 / Span 2;
         }
 
@@ -185,30 +192,28 @@
 
         var rootRef = database.ref();
 
-        var chat_data_ref = database.ref('Chatroom').on('child_added', function (snapshot) {
-
+        var chat_data_ref = database.ref('ChatroomMeta').on('child_added', function (snapshot) {
             var str_snapshot = JSON.stringify(snapshot);
             // alert(str_snapshot);
 
             var temp = str_snapshot.split(',');
-            var available = temp[0].split(':')[1];
-            // alert(typeof(available));
-            var hour = temp[1].split(':')[1].replace(/['"{}]+/g, '');
+            var available = temp[0].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(available);
+            var chat_id = temp[1].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(chat_id);
+            var hour = temp[2].split(':')[1].replace(/['"{}]+/g, '');
             // alert(hour);
-            var min = temp[2].split(':')[1].replace(/['"{}]+/g, '');
+            var min = temp[3].split(':')[1].replace(/['"{}]+/g, '');
             // alert(min);
             var time = hour.toString() + ":" + min.toString();
             // alert(time);
             var restaurant = temp[4].split(':')[1].replace(/['"{}]+/g, '');
             // alert(restaurant);
-            var name = temp[3].split(':')[1].replace(/['"{}]+/g, '');
-            // alert(temp[4]);
-            // alert(name);
-            append_chatroom(available, name, restaurant, time);
+            append_chatroom(chat_id, available, name, restaurant, time);
             // alert("Done");
         });
 
-        function append_chatroom(available, name, restaurant, time) {
+        function append_chatroom(chat_id, available, name, restaurant, time) {
 
             var rootelem = document.getElementById("chatList");
 
@@ -220,7 +225,7 @@
             div_name.setAttribute('class', "grid-item name");
 
             var p_name = document.createElement('p');
-            p_name.innerHTML = name;
+            p_name.setAttribute('id', chat_id);
             div_name.appendChild(p_name);
 
             container.appendChild(div_name);
@@ -252,10 +257,49 @@
 
             var button_ava = document.createElement("div");
 
-            
             // button_ava.setAttribute('id', "tgl");
 
+
+            // ADDED join button
+            var join = document.createElement('div');
+            join.classList.add('grid-item', 'join');
+
+            var joinbtn = document.createElement('div');
+            joinbtn.className = "ui left floated mini button";
+            joinbtn.appendChild(document.createTextNode("Join"));
+            join.appendChild(joinbtn);
+            container.appendChild(join);
+
+
+
+            var joinmodal = document.getElementById("joinModal");
+            var joinchat = document.getElementById("joinchat");
+            var nochat = document.getElementById("nochat");
+            var span = document.getElementById("close3");
+
+            joinbtn.onclick = function () {
+                joinmodal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                joinmodal.style.display = "none";
+            }
+
+            nochat.onclick = function () {
+                joinmodal.style.display = "none";
+            }
+
+            joinchat.onclick = function () {
+                joinbtn.innerHTML = "Joined";
+                joinmodal.style.display = "none";
+                joinbtn.classList.add('disabled');
+            }
+
+
+
+
             var icon_ava = document.createElement('button');
+            icon_ava.setAttribute('id', "avail_button");
             if (available == "true") {
                 icon_ava.setAttribute('class', "ui toggle basic icon button active");
             }
@@ -281,7 +325,7 @@
             var available = true;
 
             var modal = document.getElementById("myModal");
-            var span = document.getElementById("close")
+            var span = document.getElementById("close");
             var done = document.getElementById("yes");
             var notdone = document.getElementById("no");
 
@@ -299,10 +343,35 @@
 
             done.onclick = function () {
                 icon_ava.classList.toggle('active');
-                available = false;
+                database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
                 modal.style.display = "none";
             }
 
+            var chatname = "";
+            var chatname_ref = database.ref("ChatroomPart/Chatroom" + chat_id).on("child_added", function (snapshot) {
+                var name = snapshot.key;
+                var owner = snapshot.val();
+                if (owner == true) {
+                    chatname = name + ", " + chatname;
+                }
+                else {
+                    chatname = chatname + name + ", ";
+                }
+                document.getElementById(chat_id).innerHTML = chatname.substring(0, chatname.length - 2);
+            });
+
+            // var button_ref = database.ref("ChatroomMeta/Chatroom" + chat_id).on("child_changed", function (snapshot) {
+            //     var str_snapshot = JSON.stringify(snapshot);
+
+            //     var temp = str_snapshot.split(',');
+            //     var available = temp[0];
+            //     if (available.toString() == "true") {
+            //         document.getElementById("avail_button").className = "ui toggle basic icon button active";
+            //     }
+            //     else {
+            //         document.getElementById("avail_button").className = "ui toggle basic icon button inactive";
+            //     }
+            // });
         }
 
         function trim(s) {
@@ -370,12 +439,25 @@
                         <br>
                         <br>
                         <div class="ui button" id="yes">
-                            yes
+                            Yes
                         </div>
 
                         <div class="ui button" id="no">
-                            no
+                            No
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "joinModal" class = "modal">
+                <div align = "center">
+                    <div class = "modal-content">
+                        <div class = "close" id = "close3">x</div> 
+                        <br>
+                        <p> Are you sure you want to join this chatroom? </p>
+                        <br>
+                        <div class = "ui button" id = "joinchat"> Yes </div>
+                        <div class = "ui button" id = "nochat"> No </div>
                     </div>
                 </div>
             </div>
@@ -455,6 +537,9 @@
                     // time.appendChild(timeLabel);
                     // chat.appendChild(time);
 
+                    
+
+
                     // Availability Button
 
                     var btn = document.createElement('div');
@@ -499,7 +584,6 @@
                         modal.style.display = "none";
                     }
 
-
                     var first = document.getElementById('firstChat');
                     var parentDiv = first.parentNode;
 
@@ -510,14 +594,17 @@
                     var date = today.getFullYear().toString() + ("0" + (today.getMonth() + 1)).slice(-2) + ("0" + today.getDate()).slice(-2);
                     var time = ("0" + today.getHours()).slice(-2) + ("0" + today.getMinutes()).slice(-2) + ("0" + today.getSeconds()).slice(-2);
                     var dateTime = date + time;
-
                     var username = sessionStorage.getItem("id");
-                    rootRef.child("Chatroom").child("chat_" + dateTime).set({
-                        Restaurant: restaurantValue,
+
+                    rootRef.child("ChatroomMeta").child("Chatroom" + dateTime).set({
+                        Availability: true,
+                        ChatroomNum: dateTime,
                         Hour: hourValue,
                         Minute: minValue,
-                        Availability: available,
-                        Participants: username
+                        Restaurant: restaurantValue
+                    });
+                    rootRef.child("ChatroomPart").child("Chatroom" + dateTime).set({
+                        username: true
                     });
                 }
             </script>
@@ -550,6 +637,12 @@
                     </div>
                 </div>
 
+                <div class = "grid-item join">
+                    <div class = "ui left floated mini button">
+                        Join
+                    </div>
+                </div>
+
                 <div class="grid-item availability">
                     <button class="ui toggle basic icon button active" id="tgl">
                         <i class="circle icon"></i>
@@ -579,6 +672,12 @@
                 <div class="grid-item time">
                     <div class="ui left floated label">
                         6: 30 pm
+                    </div>
+                </div>
+
+                <div class = "grid-item join">
+                    <div class = "ui left floated mini button">
+                        Join
                     </div>
                 </div>
 

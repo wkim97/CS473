@@ -1,0 +1,20 @@
+Users
+	User name
+		id
+		pw
+		cuisine
+		restaurant
+		time
+Chatrooms
+	Chatroom#
+		Avaliabiltiy
+		Hour
+		Minute
+		Participants
+		Restaurant
+		messages#
+Messages
+	messages#
+		chat#
+			text
+			user
