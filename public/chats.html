@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title> Semantic UI Sandbox </title> 
-        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+<head>
+    <meta charset="utf-8">
+    <title> Semantic UI Sandbox </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-        <!-- <script type="text/javascript" src="chats.js"></script> -->
-        
-        <style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <!-- <script type="text/javascript" src="chats.js"></script> -->
 
+    <style>
         .grid-container {
             display: grid;
             grid-template-columns: 80px auto auto 80px;
@@ -20,6 +20,7 @@
             background-color: #f8f3e8;
             padding: 2px;
         }
+
         .grid-item {
             background-color: #f8f3e8;
             padding: 2px;
@@ -29,7 +30,7 @@
 
         .profile {
             grid-column: 1;
-            grid-row: 1  / span 2;
+            grid-row: 1 / span 2;
         }
 
         .name {
@@ -92,17 +93,26 @@
 
         /* The Modal (background) */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
             font-size: 18px;
         }
 
@@ -129,295 +139,502 @@
             color: #000;
             text-decoration: none;
             cursor: pointer;
-        
+
         }
 
-        .show {display:block;}
-        </style>
+        .show {
+            display: block;
+        }
+    </style>
 
-        <script>
-            $(function () {
+    <script>
+        $(function () {
             $('.ui.dropdown').dropdown();
+        });
+    </script>
+</head>
+
+<body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyAD0Y04NLAtEukphcSJ1s6T8Ffp_AWx-ew",
+            authDomain: "galbi-3ce0c.firebaseapp.com",
+            databaseURL: "https://galbi-3ce0c.firebaseio.com",
+            projectId: "galbi-3ce0c",
+            storageBucket: "galbi-3ce0c.appspot.com",
+            messagingSenderId: "287266351759",
+            appId: "1:287266351759:web:3bdf04f7e5202420549efa"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        var database = firebase.database();
+
+        var rootRef = database.ref();
+
+        var chat_data_ref = database.ref('ChatroomMeta').on('child_added', function (snapshot) {
+            var str_snapshot = JSON.stringify(snapshot);
+            // alert(str_snapshot);
+
+            var temp = str_snapshot.split(',');
+            var available = temp[0].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(available);
+            var chat_id = temp[1].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(chat_id);
+            var hour = temp[2].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(hour);
+            var min = temp[3].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(min);
+            var time = hour.toString() + ":" + min.toString();
+            // alert(time);
+            var restaurant = temp[4].split(':')[1].replace(/['"{}]+/g, '');
+            // alert(restaurant);
+            append_chatroom(chat_id, available, name, restaurant, time);
+            // alert("Done");
+        });
+
+        function append_chatroom(chat_id, available, name, restaurant, time) {
+
+            var rootelem = document.getElementById("chatList");
+
+            var container = document.createElement("div");
+            container.setAttribute('class', "grid-container");
+            container.setAttribute('id', "firstChat");
+
+            var div_name = document.createElement("div");
+            div_name.setAttribute('class', "grid-item name");
+
+            var p_name = document.createElement('p');
+            p_name.setAttribute('id', chat_id);
+            div_name.appendChild(p_name);
+
+            container.appendChild(div_name);
+
+            var div_res = document.createElement("div");
+            div_res.setAttribute('class', "grid-item restaurant");
+
+            var res_label = document.createElement("div");
+            res_label.setAttribute('class', "ui left floated label");
+            res_label.innerHTML = restaurant;
+
+            div_res.appendChild(res_label);
+
+            container.appendChild(div_res);
+
+            var div_time = document.createElement("div");
+            div_time.setAttribute('class', "grid-item time");
+
+            var time_label = document.createElement("div");
+            time_label.setAttribute('class', "ui left floated label");
+            time_label.innerHTML = time;
+
+            div_time.appendChild(time_label);
+
+            container.appendChild(div_time);
+
+            var div_ava = document.createElement("div");
+            div_ava.setAttribute('class', "grid-item availability");
+
+            var button_ava = document.createElement("div");
+
+            // button_ava.setAttribute('id', "tgl");
+
+            var icon_ava = document.createElement('button');
+            icon_ava.setAttribute('id', "avail_button");
+            if (available == "true") {
+                icon_ava.setAttribute('class', "ui toggle basic icon button active");
+            }
+            else {
+                icon_ava.setAttribute('class', "ui toggle basic icon button inactive");
+            }
+            // icon_ava.className = "ui toggle basic icon button active";
+            icon_ava.id = "tgl";
+
+            var icon_ava2 = document.createElement('i');
+            icon_ava2.className = "circle icon";
+
+            icon_ava.appendChild(icon_ava2);
+
+            button_ava.appendChild(icon_ava);
+
+            div_ava.appendChild(button_ava);
+
+            container.appendChild(div_ava);
+
+            rootelem.prepend(container);
+
+            var available = true;
+
+            var modal = document.getElementById("myModal");
+            var span = document.getElementById("close")
+            var done = document.getElementById("yes");
+            var notdone = document.getElementById("no");
+
+            button_ava.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            notdone.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            done.onclick = function () {
+                icon_ava.classList.toggle('active');
+                database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
+                modal.style.display = "none";
+            }
+
+            var chatname = "";
+            var chatname_ref = database.ref("ChatroomPart/Chatroom" + chat_id).on("child_added", function (snapshot) {
+                var name = snapshot.key;
+                var owner = snapshot.val();
+                if (owner == true) {
+                    chatname = name + ", " + chatname;
+                }
+                else {
+                    chatname = chatname + name + ", ";
+                }
+                document.getElementById(chat_id).innerHTML = chatname.substring(0, chatname.length - 2);
             });
-        </script>
-    </head>
-    <body>
-        <div class = "ui container">
-            <!-- HEADER -->
-            <p> </p>
-            <h1 class = "ui header"> Chats
-                <button class = "ui basic right floated button" id = "create">
-                    <i class = "circular plus icon"></i>
-                </button>
-                <!-- Modal content -->
-                <div id="createmodal" class="modal">
-                    <div class="modal-content">
-                            <div class="close" id = "close2">x</div>
-                        <p style="text-align:center"> New Meal Schedule </p>
-                        <br>
-                        
-                        <p style="text-align:center"> Restaurant </p>
-                        <select name="restaurant_type" class="ui fluid selection dropdown" id="restaurant">
-                            <i class="dropdown icon"></i>
-                            <option value="">-</option>
-                            <option value="Hare">Ha-Re</option>
-                            <option value="DongHae">DongHae</option>
-                            <option value="Hoolala">Hoolala Chicken</option>
-                            <option value="WangBiSung">Wang Bi Sung</option>
-                            <option value="MomsTouch">Mom's Touch</option>
-                            <option value="WesternKitchen">Western Kitchen</option>
-                        </select>
-                        
 
-                        <br>
-                        <p style="text-align:center"> Time </p>
-                        <div align = "center">
-                            <div>
-                                <input type = "number" min = "0" max = "23" placeholder = "18" id = "hour">:
-                                <input type = "number" min = "0" max = "59" placeholder = "00" id = "minute">
-                            </div>
-                            <br>
-                            <br>
-                            
-                            <div class = "ui button" id = "done" onclick="createChat()"> Done </div>   
+            // var button_ref = database.ref("ChatroomMeta/Chatroom" + chat_id).on("child_changed", function (snapshot) {
+            //     var str_snapshot = JSON.stringify(snapshot);
+
+            //     var temp = str_snapshot.split(',');
+            //     var available = temp[0];
+            //     if (available.toString() == "true") {
+            //         document.getElementById("avail_button").className = "ui toggle basic icon button active";
+            //     }
+            //     else {
+            //         document.getElementById("avail_button").className = "ui toggle basic icon button inactive";
+            //     }
+            // });
+        }
+
+        function trim(s) {
+            return (s || '').replace(/^\s+|\s+$/ + /"/g, '');
+        }
+    </script>
+
+    <!-- <script src="js/program.js"></script>
+    <script src=semantic/dist/semantic.min.js> </script>  -->
+    <!-- <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script> -->
+
+    <div class="ui container">
+        <!-- HEADER -->
+        <p> </p>
+        <h1 class="ui header"> Chats
+            <button class="ui basic right floated button" id="create">
+                <i class="circular plus icon"></i>
+            </button>
+            <!-- Modal content -->
+            <div id="createmodal" class="modal">
+                <div class="modal-content">
+                    <div class="close" id="close2">x</div>
+                    <p style="text-align:center"> New Meal Schedule </p>
+                    <br>
+
+                    <p style="text-align:center"> Restaurant </p>
+                    <select name="restaurant_type" class="ui fluid selection dropdown" id="restaurant">
+                        <i class="dropdown icon"></i>
+                        <option value="">-</option>
+                        <option value="Hare">Ha-Re</option>
+                        <option value="DongHae">DongHae</option>
+                        <option value="Hoolala">Hoolala Chicken</option>
+                        <option value="WangBiSung">Wang Bi Sung</option>
+                        <option value="MomsTouch">Mom's Touch</option>
+                        <option value="WesternKitchen">Western Kitchen</option>
+                    </select>
+
+
+                    <br>
+                    <p style="text-align:center"> Time </p>
+                    <div align="center">
+                        <div>
+                            <input type="number" min="0" max="23" placeholder="18" id="hour">:
+                            <input type="number" min="0" max="59" placeholder="00" id="minute">
                         </div>
-                          
-                    
-                    </div>
-                </div>
+                        <br>
+                        <br>
 
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-                    <div align = "center">
+                        <div class="ui button" id="done"> Done </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <div align="center">
                     <!-- Modal content -->
                     <div class="modal-content">
-                        <div class="close" id = "close">x</div>
+                        <div class="close" id="close">x</div>
                         <br>
                         <p>Are you done gathering people?</p>
                         <br>
                         <br>
-                        <div class = "ui button" id = "yes">
+                        <div class="ui button" id="yes">
                             yes
                         </div>
 
-                        <div class = "ui button" id = "no">
+                        <div class="ui button" id="no">
                             no
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
 
-                    
-                <script>
-                    var chatmodal = document.getElementById("createmodal");
-                    var createbtn = document.getElementById("create");
-                    var span2 = document.getElementById("close2");
-        
-                    createbtn.onclick = function () {
-                        chatmodal.style.display = "block";
+
+            <script>
+                var chatmodal = document.getElementById("createmodal");
+                var createbtn = document.getElementById("create");
+                var span2 = document.getElementById("close2");
+
+                createbtn.onclick = function () {
+                    chatmodal.style.display = "block";
+                }
+
+                span2.onclick = function () {
+                    chatmodal.style.display = "none";
+                }
+                var finished = document.getElementById("done");
+
+
+                finished.onclick = function () {
+                    chatmodal.style.display = "none";
+
+                    var chat = document.createElement('div');
+                    chat.id = 'myChat';
+                    chat.classList.add("grid-container");
+
+                    // Display Profile
+                    var profile = document.createElement('div');
+                    profile.classList.add('grid-item', 'profile');
+
+                    var photo = document.createElement('img');
+                    photo.src = '../images/chaewon.jpg';
+                    photo.height = '60';
+                    photo.width = '60';
+
+                    // profile.appendChild(photo);
+                    // chat.appendChild(profile);
+
+                    var name = document.createElement('div');
+                    name.className = 'name';
+                    name.classList.add('grid-item', 'name');
+
+                    var id = sessionStorage.getItem("id");
+                    var myname = document.createTextNode(id);
+                    // name.appendChild(myname);
+                    // chat.appendChild(name);
+
+
+                    // Display Restaurant
+                    var restaurant = document.createElement('div');
+                    restaurant.classList.add('grid-item', 'restaurant');
+
+
+                    var restaurantLabel = document.createElement('div');
+                    restaurantLabel.className = 'ui left floated label';
+
+                    var restaurantValue = document.getElementById("restaurant").value;
+                    // restaurantLabel.appendChild(document.createTextNode(restaurantValue));
+                    // restaurant.appendChild(restaurantLabel);
+                    // chat.appendChild(restaurant);
+
+
+                    // Display Time
+                    var hourValue = document.getElementById("hour").value;
+                    var minValue = document.getElementById("minute").value;
+
+                    var time = document.createElement('div');
+                    // time.classList.add('grid-item', 'time');
+
+
+                    var timeLabel = document.createElement('div');
+                    // timeLabel.className = 'ui left floated label';
+
+                    var timeText = document.createTextNode(hourValue + " : " + minValue);
+                    // timeLabel.appendChild(timeText);
+                    // time.appendChild(timeLabel);
+                    // chat.appendChild(time);
+
+                    // Availability Button
+
+                    var btn = document.createElement('div');
+                    btn.classList.add('grid-item', 'availability');
+
+
+                    var circleicon = document.createElement('button');
+                    circleicon.className = "ui toggle basic icon button active";
+                    circleicon.id = "tgl";
+
+                    var circleicon2 = document.createElement('i');
+                    circleicon2.className = "circle icon";
+
+                    circleicon.appendChild(circleicon2);
+                    // btn.appendChild(circleicon);
+
+                    // chat.appendChild(btn);
+
+                    //Availability Action
+                    var available = true;
+
+                    var modal = document.getElementById("myModal");
+                    var span = document.getElementById("close")
+                    var done = document.getElementById("yes");
+                    var notdone = document.getElementById("no");
+
+                    btn.onclick = function () {
+                        modal.style.display = "block";
                     }
-        
-                    span2.onclick = function() {
-                        chatmodal.style.display = "none";
+
+                    span.onclick = function () {
+                        modal.style.display = "none";
                     }
-                    var finished = document.getElementById("done");
-                    
 
-                    finished.onclick = function() {
-                        chatmodal.style.display = "none";
-
-                        var chat = document.createElement('div');
-                        chat.id = 'myChat';
-                        chat.classList.add("grid-container");
-                        
-                        // Display Profile
-                        var profile = document.createElement('div');
-                        profile.classList.add('grid-item', 'profile');
-
-                        var photo = document.createElement('img');
-                        photo.src = '../images/chaewon.jpg';
-                        photo.height = '60';
-                        photo.width = '60';
-
-                        profile.appendChild(photo);
-                        chat.appendChild(profile);
-
-                        var name = document.createElement('div');
-                        name.className = 'name';
-                        name.classList.add('grid-item','name');
-                        
-                        var myname = document.createTextNode('Chae Won Kim');
-                        name.appendChild(myname);
-                        chat.appendChild(name);
-
-
-                        // Display Restaurant
-                        var restaurant = document.createElement('div');
-                        restaurant.classList.add ('grid-item', 'restaurant');
-
-                        
-                        var restaurantLabel = document.createElement('div');
-                        restaurantLabel.className = 'ui left floated label';
-
-                        var restaurantValue = document.getElementById("restaurant").value;
-                        restaurantLabel.appendChild(document.createTextNode(restaurantValue));
-                        restaurant.appendChild(restaurantLabel);
-                        chat.appendChild(restaurant);
-
-
-                        // Display Time
-                        var hourValue = document.getElementById("hour").value;
-                        var minValue = document.getElementById("minute").value;
-
-                        var time = document.createElement('div');
-                        time.classList.add('grid-item', 'time');
-
-
-                        var timeLabel = document.createElement('div');
-                        timeLabel.className = 'ui left floated label';
-
-                        var timeText = document.createTextNode(hourValue + " : " + minValue);
-                        timeLabel.appendChild(timeText);
-                        time.appendChild(timeLabel);
-                        chat.appendChild(time);
-
-                        // Availability Button
-
-                        var btn = document.createElement('div');
-                        btn.classList.add('grid-item', 'availability');
-
-
-                        var circleicon = document.createElement('button');
-                        circleicon.className = "ui toggle basic icon button active";
-                        circleicon.id = "tgl";
-
-                        var circleicon2 = document.createElement('i');
-                        circleicon2.className = "circle icon";
-
-                        circleicon.appendChild(circleicon2);
-                        btn.appendChild(circleicon);
-
-                        chat.appendChild(btn);
-
-                        //Availability Action
-                        var modal = document.getElementById("myModal");
-                        var span = document.getElementById("close")
-                        var done = document.getElementById("yes");
-                        var notdone = document.getElementById("no");
-
-                        btn.onclick = function () {
-                            modal.style.display = "block";
-                        }
-
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        notdone.onclick = function () {
-                            modal.style.display = "none";
-                        }
-
-                        done.onclick = function() {
-                            circleicon.classList.toggle('active');
-                            modal.style.display = "none";
-                        }
-
-
-                        var first = document.getElementById('firstChat');
-                        var parentDiv = first.parentNode;
-
-                        parentDiv.insertBefore(chat, first);
+                    notdone.onclick = function () {
+                        modal.style.display = "none";
                     }
-                </script>
-                
-            </h1>
-            
-            <!-- List of Chatrooms -->
-            <br>
-            <div id = "chatList">
-            <div class = "grid-container" id = "firstChat">
-                <div class = "grid-item profile">
+
+                    done.onclick = function () {
+                        circleicon.classList.toggle('active');
+                        available = false;
+                        modal.style.display = "none";
+                    }
+
+                    var first = document.getElementById('firstChat');
+                    var parentDiv = first.parentNode;
+
+                    parentDiv.insertBefore(chat, first);
+
+                    // Save restaurant and time to DB
+                    var today = new Date();
+                    var date = today.getFullYear().toString() + ("0" + (today.getMonth() + 1)).slice(-2) + ("0" + today.getDate()).slice(-2);
+                    var time = ("0" + today.getHours()).slice(-2) + ("0" + today.getMinutes()).slice(-2) + ("0" + today.getSeconds()).slice(-2);
+                    var dateTime = date + time;
+                    var username = sessionStorage.getItem("id");
+
+                    rootRef.child("ChatroomMeta").child("Chatroom" + dateTime).set({
+                        Availability: true,
+                        ChatroomNum: dateTime,
+                        Hour: hourValue,
+                        Minute: minValue,
+                        Restaurant: restaurantValue
+                    });
+                    rootRef.child("ChatroomPart").child("Chatroom" + dateTime).set({
+                        username: true
+                    });
+                }
+            </script>
+
+        </h1>
+
+        <!-- List of Chatrooms -->
+        <br>
+        <div id="chatList">
+            <div class="grid-container" id="firstChat">
+                <!-- <div class="grid-item profile">
                     <img src="../images/song.jpg" alt="Chat Profile" height="60" width="60">
-                </div>
+                </div> -->
 
-                <div class = "grid-item name"> 
-                    <p align="left"> 
+                <div class="grid-item name">
+                    <p align="left">
                         Jaeyub Song, Youngwoo Song
                     </p>
                 </div>
 
-                <div class = "grid-item restaurant"> 
-                    <div class = "ui left floated label">
+                <div class="grid-item restaurant">
+                    <div class="ui left floated label">
                         Taepyeongso
                     </div>
                 </div>
 
-                <div class = "grid-item time">
-                    <div class = "ui left floated label">
+                <div class="grid-item time">
+                    <div class="ui left floated label">
                         6:00 pm
                     </div>
                 </div>
 
-                <div class = "grid-item availability">
-                    <button class = "ui toggle basic icon button active" id = "tgl">
-                        <i class = "circle icon"></i>
+                <div class="grid-item availability">
+                    <button class="ui toggle basic icon button active" id="tgl">
+                        <i class="circle icon"></i>
                     </button>
                 </div>
             </div>
 
             <br>
 
-            <div class = "grid-container">
-                <div class = "grid-item profile">
+            <div class="grid-container">
+                <!-- <div class="grid-item profile">
                     <img src="../images/jaewon.jpg" alt="Chat Profile" height="60" width="60">
-                </div>
+                </div> -->
 
-                <div class = "grid-item name"> 
-                    <p align="left"> 
+                <div class="grid-item name">
+                    <p align="left">
                         Jae Won Kim
                     </p>
                 </div>
 
-                <div class = "grid-item restaurant"> 
-                    <div class = "ui left floated label">
+                <div class="grid-item restaurant">
+                    <div class="ui left floated label">
                         Mom's Touch
                     </div>
                 </div>
 
-                <div class = "grid-item time">
-                    <div class = "ui left floated label">
+                <div class="grid-item time">
+                    <div class="ui left floated label">
                         6: 30 pm
                     </div>
                 </div>
 
-                <div class = "grid-item availability">
-                    <button class = "ui toggle basic icon button active" id = "tgl2">
-                        <i class = "circle icon"></i>
+                <div class="grid-item availability">
+                    <button class="ui toggle basic icon button active" id="tgl2">
+                        <i class="circle icon"></i>
                     </button>
                 </div>
             </div>
-            </div>
-
-            <!-- Footer -->
-            <div class="footer">
-                <div class = "footer-container">
-                    <button class="ui basic icon button" onclick = "changeToFriend()">
-                        <i class="users icon"></i>
-                    </button>
-
-                    <script>
-                        function changeToFriend() {
-                            location.replace("friends.html")
-                        }
-                    </script>
-
-                    <button class="ui basic icon button">
-                        <i class="comment alternate outline icon"></i>
-                    </button>
-                </div>
-            </div>
-    
-
         </div>
-    </body>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-container">
+                <button class="ui basic icon button" onclick="changeToFriend()">
+                    <i class="users icon"></i>
+                </button>
+
+                <script>
+                    function changeToFriend() {
+                        location.replace("friends.html")
+                    }
+                </script>
+
+                <button class="ui basic icon button">
+                    <i class="comment alternate outline icon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
 </html>

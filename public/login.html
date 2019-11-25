@@ -87,9 +87,15 @@
                 LoginRef.set({
                   Name : User_id,
                 });
+<<<<<<< HEAD
                 localStorage.setItem("id", User_id);   
                 var Username = localStorage.getItem("id");
                 alert(Username);   
+=======
+                sessionStorage.setItem("id", User_email); 
+                var email = sessionStorage.getItem("id");
+                alert(email);
+>>>>>>> 908d72131d56331a71a8ba52329bf6704889d29c
             }
         });
 
