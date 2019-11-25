@@ -255,7 +255,7 @@
   					<div class="msg_history">
 
   						<!-- <div class="incoming_msg">
-  							<div class="incoming_msg_img"> <img src="../images/chani.jpg" alt="sunil"> </div>
+  							<div class="incoming_msg_img"> <img src="chani.jpg" alt="sunil"> </div>
   							<div class="received_msg">
   								<p>Test, incoming</p>
   								<span class="time_date"> 11:01 AM    |    Yesterday</span>
@@ -444,12 +444,15 @@
 			                    var ms = date.getMilliseconds() + "";
 			                    var timeid = year + month + day + hour + minute + second + ms;
 			                    var msg = document.getElementById("type_here").getAttribute("value");
+
+                          console.log(typeof(msg));
 			                    var usr = sessionStorage.getItem("id");
 			                    database.ref().child('ChatroomMsg/Chatroom' + ChatroomNum +'/Chat' + timeid).set({
 			                      User : usr,
 			                      Content : msg,
 			                      Time : year+'.' + month+'.' + day+'.' + hour+'.' + minute+'.' + second
 			                    });
+                          document.getElementById("type_here").setAttribute("value", "");
 			                  }
 			                  function append_outgoing_msg(chat, time){
 			                    var rootelem = document.getElementsByClassName("msg_history")[0];
@@ -474,7 +477,7 @@
 			                    var imgelem = document.createElement("div");
 			                    imgelem.setAttribute('class', 'incoming_msg_img');
 			                    var img = document.createElement("img");
-			                    img.setAttribute('src', "../images/chani.jpg");
+			                    img.setAttribute('src', "chani.jpg");
 			                    // img.setAttribute('alt', "sunil");
 			                    var msgelem = document.createElement("div");
 			                    msgelem.setAttribute('class', "received_msg");
@@ -517,7 +520,7 @@
 			                    }
 			                    document.getElementById("type_here").setAttribute("value", text);
 			                  }
-			                  function send_message(){
+			                  function send_msg(){
 			                    var rootelem = document.getElementsByClassName("msg_history")[0];
 			                    var outgoelem = document.createElement("div");
 			                    outgoelem.setAttribute('class', 'outgoing_msg');
@@ -538,7 +541,11 @@
 			                  function set_time(){
 			                   var time_val = document.getElementById("apt_time").value;
 			 									 // alert(time_val);
-			 									 type_pref(time_val);
+
+                         time_val = time_val.replace(":",";");
+			 									 console.log(time_val);
+                         type_pref(time_val);
+
 			 									 // document.getElementById("type_here").setAttribute("value", time_val);
 			                  }
 			                </script>
