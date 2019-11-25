@@ -15,7 +15,7 @@
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: 80px auto auto 80px;
+            grid-template-columns: 80px auto auto auto 80px;
             /* grid-template-rows: auto 80px; */
             background-color: #f8f3e8;
             padding: 2px;
@@ -36,7 +36,7 @@
         .name {
             justify-items: start;
             /* margin-left: 5%; */
-            grid-column: 2 / Span 2;
+            grid-column: 2 / Span 3;
             grid-row: 1;
         }
 
@@ -54,9 +54,16 @@
             grid-row: 2;
         }
 
-        .availability {
+        .join {
+            margin-left: 0%;
             font-size: 13px;
             grid-column: 4;
+            grid-row: 2;
+        }
+
+        .availability {
+            font-size: 13px;
+            grid-column: 5;
             grid-row: 1 / Span 2;
         }
 
@@ -252,6 +259,45 @@
 
             // button_ava.setAttribute('id', "tgl");
 
+
+            // ADDED join button
+            var join = document.createElement('div');
+            join.classList.add('grid-item', 'join');
+
+            var joinbtn = document.createElement('div');
+            joinbtn.className = "ui left floated mini button";
+            joinbtn.appendChild(document.createTextNode("Join"));
+            join.appendChild(joinbtn);
+            container.appendChild(join);
+
+
+
+            var joinmodal = document.getElementById("joinModal");
+            var joinchat = document.getElementById("joinchat");
+            var nochat = document.getElementById("nochat");
+            var span = document.getElementById("close3");
+
+            joinbtn.onclick = function () {
+                joinmodal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                joinmodal.style.display = "none";
+            }
+
+            nochat.onclick = function () {
+                joinmodal.style.display = "none";
+            }
+
+            joinchat.onclick = function () {
+                joinbtn.innerHTML = "Joined";
+                joinmodal.style.display = "none";
+                joinbtn.classList.add('disabled');
+            }
+
+
+
+
             var icon_ava = document.createElement('button');
             icon_ava.setAttribute('id', "avail_button");
             if (available == "true") {
@@ -279,7 +325,7 @@
             var available = true;
 
             var modal = document.getElementById("myModal");
-            var span = document.getElementById("close")
+            var span = document.getElementById("close");
             var done = document.getElementById("yes");
             var notdone = document.getElementById("no");
 
@@ -393,12 +439,25 @@
                         <br>
                         <br>
                         <div class="ui button" id="yes">
-                            yes
+                            Yes
                         </div>
 
                         <div class="ui button" id="no">
-                            no
+                            No
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id = "joinModal" class = "modal">
+                <div align = "center">
+                    <div class = "modal-content">
+                        <div class = "close" id = "close3">x</div> 
+                        <br>
+                        <p> Are you sure you want to join this chatroom? </p>
+                        <br>
+                        <div class = "ui button" id = "joinchat"> Yes </div>
+                        <div class = "ui button" id = "nochat"> No </div>
                     </div>
                 </div>
             </div>
@@ -477,6 +536,9 @@
                     // timeLabel.appendChild(timeText);
                     // time.appendChild(timeLabel);
                     // chat.appendChild(time);
+
+                    
+
 
                     // Availability Button
 
@@ -575,6 +637,12 @@
                     </div>
                 </div>
 
+                <div class = "grid-item join">
+                    <div class = "ui left floated mini button">
+                        Join
+                    </div>
+                </div>
+
                 <div class="grid-item availability">
                     <button class="ui toggle basic icon button active" id="tgl">
                         <i class="circle icon"></i>
@@ -604,6 +672,12 @@
                 <div class="grid-item time">
                     <div class="ui left floated label">
                         6: 30 pm
+                    </div>
+                </div>
+
+                <div class = "grid-item join">
+                    <div class = "ui left floated mini button">
+                        Join
                     </div>
                 </div>
 
