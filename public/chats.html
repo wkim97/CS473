@@ -242,11 +242,13 @@
             var p_name = document.createElement('p');
             p_name.setAttribute('id', chat_id);
             div_name.appendChild(p_name);
+            div_name.addEventListener('click', enterChatroom());
 
             container.appendChild(div_name);
 
             var div_res = document.createElement("div");
             div_res.setAttribute('class', "grid-item restaurant");
+            div_res.addEventListener('click', enterChatroom());
 
             var res_label = document.createElement("div");
             res_label.setAttribute('class', "ui left floated label");
@@ -258,6 +260,7 @@
 
             var div_time = document.createElement("div");
             div_time.setAttribute('class', "grid-item time");
+            div_time.addEventListener('click', enterChatroom());
 
             var time_label = document.createElement("div");
             time_label.setAttribute('class', "ui left floated label");
@@ -356,21 +359,15 @@
                     modal.style.display = "none";
                 }
             });
-            // button_ava.onclick = function () {
-            //     modal.style.display = "block";
-            // }
 
-            // span.onclick = function () {
-            //     modal.style.display = "none";
-            // }
 
-            // notdone.onclick = function () {
-            //     modal.style.display = "none";
-            // }
-
-            // done.onclick = function () {
+            
+            function enterChatroom() {
+                this.onclick = function () {
+                    location.replace("chatroom.html"); 
+                }
                 
-            // }
+            }
 
             var chatname = "";
             var chatname_ref = database.ref("ChatroomPart/Chatroom" + chat_id).on("child_added", function (snapshot) {
@@ -402,6 +399,8 @@
         function trim(s) {
             return (s || '').replace(/^\s+|\s+$/ + /"/g, '');
         }
+
+        
     </script>
 
     <!-- <script src="js/program.js"></script>
