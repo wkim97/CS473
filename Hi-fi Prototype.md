@@ -55,6 +55,12 @@ Individual Reflections
 ----------------------
 #### 20150187 김재원
 -------------------
+My main part was back-end. I mainly did designing database schema, managing DB data on server, making core codes about communicate to database and showing new chat on the page when it is arrived.
+
+Last year, I took "Introduction of Database" course, and I experienced very simple SQL query and back-end using jQuery. However, firebase is NoSQL database, in other words, firebase doesn't need database tables. I confused to add new data to database without strict rules. At the last, since every single web pages have different data structure, I changed and rebuild database structure.
+
+The Big achievement while making High-Fi prototype is that I can read and understand other’s code and adapt to my code faster than before. Since we didn’t prepare compatibility between back-end code and front-end code, replacing from hard coded data in front-end code to database data is very important and tough job.
+
 
 #### 20160319 송영우
 -------------------
