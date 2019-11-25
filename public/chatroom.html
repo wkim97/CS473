@@ -258,30 +258,37 @@
                 <div class="container">
                   <div class="emojis">
                     <div class="ui basic six buttons">
-                      <button class="ui button">
-                        <i class="thumbs up outline icon"></i>
-                      </button>
-                      <button class="ui button">
-                        <i class="thumbs down outline icon"></i>
-                      </button>
-                      <button class="ui button">
-                        Yes
-                      </button>
-                      <button class="ui button">
-                        No
-                      </button>
-                      <button class="ui button">
+                      <button class="ui button" id="Good" onclick="type_pref(this.id);">
                         Good
                       </button>
-                      <button class="ui button">
+                      <button class="ui button" id="Bad" onclick="type_pref(this.id);">
                         Bad
+                      </button>
+                      <button class="ui button" id="Yes" onclick="type_pref(this.id);">
+                        Yes
+                      </button>
+                      <button class="ui button" id="No" onclick="type_pref(this.id);">
+                        No
+                      </button>
+                      <button class="ui button" id="?" onclick="type_pref(this.id);">
+                        ?
+                      </button>
+                      <button class="ui button" id="." onclick="type_pref(this.id);">
+                        .
                       </button>
                     </div>
                   </div>
 
-                  <div class="ui fluid input" style="padding: 4px 0 4px">
-                    <input id="type_here" value ="" type="text">
-                    <div class="ui button" onclick="send_msg();">Send</div>
+                  <div class="ui fluid input" style="padding: 4px 0 4px;">
+                    <input id="type_here" value ="" type="text" style="margin: 0 3px 0 0;">
+										<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
+											Delete
+											<!-- <i class="window close icon"></i> -->
+										</div>
+                    <div class="ui button" onclick="send_msg();" style="margin: 0 0 0 0;">
+											Send
+											<!-- <i class="reply icon"></i> -->
+										</div>
                   </div>
 
                   <div class="preferences">
@@ -326,7 +333,7 @@
                     <div id="tab-3" class="tab-content" style="height: 20%;">
                       <div class="grid-item time">
                           <form class = "ui form" action = "/action_page.php">
-                              <input type = "time" id="apt_time" name = "usr_time">
+                              <input type = "time" id="apt_time">
                               <!-- <input type = "submit"> -->
 															<div type="send" class="ui button" onclick="set_time();">
 																select time
@@ -484,43 +491,74 @@
                  function type_pref(abc){
 
                    text = document.getElementById("type_here").getAttribute("value");
-                   text = text + ' ' + abc;
+
+									 if (["Good", "Bad", "Yes", "No", "?", "."].includes(abc)){
+										 text = text + abc;
+									 }
+									 else{
+										 text = text + '/' + abc;
+									 }
+
+
+									 if (text[0]=='/'){
+										 text = text.slice(1,);
+									 }
 
                    document.getElementById("type_here").setAttribute("value", text);
                  }
 
+								 function untype_pref(){
+									 var text = document.getElementById("type_here").getAttribute("value");
+									 var len = text.length;
+									 // alert(text.charAt(len-1));
+									 if (["?", "."].includes(text.charAt(len-1))){
+										 text = text.substring(0, len-1);
+										 // alert(text);
+									 }
+
+									 else{
+										 var lastidx = text.lastIndexOf('/');
+
+										 text = text.substring(0, lastidx);
+									 }
+
+									 document.getElementById("type_here").setAttribute("value", text);
+								 }
+
                  function send_msg(){
                    var rootelem = document.getElementsByClassName("msg_history")[0];
 
-                		var outgoelem = document.createElement("div");
-                		outgoelem.setAttribute('class', 'outgoing_msg');
+									 var outgoelem = document.createElement("div");
+									 outgoelem.setAttribute('class', 'outgoing_msg');
 
-                		var msgelem = document.createElement("div");
-                		msgelem.setAttribute('class', "sent_msg");
+									 var msgelem = document.createElement("div");
+									 msgelem.setAttribute('class', "sent_msg");
 
-                		var msg = document.createElement('p');
-                    var text_msg = document.getElementById("type_here").getAttribute("value");
-                		msg.innerHTML = text_msg;
+									 var msg = document.createElement('p');
+									 var text_msg = document.getElementById("type_here").getAttribute("value");
+									 msg.innerHTML = text_msg;
 
-                		var time = document.createElement("span");
-                		time.setAttribute('class', "time_date");
-                		time.innerHTML = "Time and date will be added!!!!!";
+									 var time = document.createElement("span");
+									 time.setAttribute('class', "time_date");
+									 time.innerHTML = "Time and date will be added!!!!!";
 
-                		msgelem.appendChild(msg);
-                		msgelem.appendChild(time);
+									 msgelem.appendChild(msg);
+									 msgelem.appendChild(time);
 
-                		outgoelem.appendChild(msgelem);
+									 outgoelem.appendChild(msgelem);
 
-                		rootelem.appendChild(outgoelem);
+									 rootelem.appendChild(outgoelem);
 
-										document.getElementById("type_here").setAttribute("value", "")
+									 document.getElementById("type_here").setAttribute("value", "")
                  }
 
 								 function set_time(){
 									 var time_val = document.getElementById("apt_time").value;
 
 									 // alert(time_val);
-									 document.getElementById("type_here").setAttribute("value", time_val);
+
+									 type_pref(time_val);
+									 // document.getElementById("type_here").setAttribute("value", time_val);
 								 }
                </script>
 
