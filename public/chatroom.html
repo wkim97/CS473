@@ -135,7 +135,12 @@
   		}
 
   		.messaging { padding: 0 0 50px 0;}
-
+			ul.three.tabs{
+				width: 100%;
+				display: flex;
+				flex-flow: row wrap;
+				justify-content: space-between;
+			}
   		ul.tabs{
   			margin: 0px;
   			padding: 0px;
@@ -157,14 +162,15 @@
   			color: #222;
   		}
   		ul.tabs li.tab-link.current{
-  			width: auto;
+  			width: 33%;
   			align: center;
-				flex-grow: 1;
+				padding: auto;
+
   		}
   		ul.tabs li.tab-link{
-  			width: auto;
+  			width: 33%;
   			align: center;
-				flex-grow: 1;
+				padding: auto;
 
   		}
 
@@ -293,9 +299,9 @@
                       <div id="Chinese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Chinese</div>
                       <div id="Thai" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Thai</div>
                       <div id="Indian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Indian</div>
-                      <div id="Itlian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Italin</div>
+                      <div id="Itlian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Italian</div>
                     </div>
-                    <div id="tab-2" class="tab-content" style="height: 10%; overflow: scroll">
+                    <div id="tab-2" class="tab-content" style="height: 10%; overflow-y: scroll">
                       <div id="PulBitMaRu" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">PulBitMaRu</div>
                       <div id="DDDN" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">DDDN</div>
                       <div id="GoSoMi Chicken" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">GoSoMi Chicken</div>
