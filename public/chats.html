@@ -293,6 +293,9 @@
                 joinbtn.innerHTML = "Joined";
                 joinmodal.style.display = "none";
                 joinbtn.classList.add('disabled');
+                
+                var user = sessionStorage.getItem("id");
+                database.ref('ChatroomPart/Chatroom'+chat_id+"/"+user).set(false);
             }
 
 
@@ -603,9 +606,7 @@
                         Minute: minValue,
                         Restaurant: restaurantValue
                     });
-                    rootRef.child("ChatroomPart").child("Chatroom" + dateTime).set({
-                        username: true
-                    });
+                    rootRef.child("ChatroomPart").child("Chatroom" + dateTime + "/" + username).set(true);
                 }
             </script>
 
