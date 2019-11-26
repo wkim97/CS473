@@ -38,7 +38,7 @@ On this screen, the user can see friends’ meal preferences and also register h
 With our active status feature, the user can confirm that he or she is done gathering members for a specific meal and also see whether other meal plans are still available!
 
 
-*Keyword Conversation*
+<center><img src="images/3.png" width=50%></center>
 
 Conversation is made through keywords (emoji and reactions). The user can express his or her preference of cuisine type, restuarant, and time. It shows that our service provides users with a pool of conversation tools related only to eating and meal arrangements with a keyboard of keywords.
 
