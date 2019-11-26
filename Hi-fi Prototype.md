@@ -25,22 +25,22 @@ Important Links
 Instruction
 -----------
 
-Our application is aimed at providing users with a service to arrange a group to eat with more easily and efficiently.
+Our application is aimed at providing users with a service to arrange a group to eat with more easily and efficiently. First the user is asked to enter his/her login info, or their name and password.
 
 
-<center><img src="images/1.png" width=50%></center>
+<left><img src="images/1.png" width=50%></center>
 
-On this screen, the user can see friends’ meal preferences and also register his or her own meal preferences.
+After the login, the user is directed to "Friends" tab, as shown in the image above. On this screen, the user can see friends’ meal preferences and also register his or her own meal preferences.
 
 
 <left><img src="images/2-1.png" width=49%></left>
 <right><img src="images/2-2.png" width=49%></right>
-With our active status feature, the user can confirm that he or she is done gathering members for a specific meal and also see whether other meal plans are still available!
+By clicking on the "chats" UI button on the bottom right corner, the user can move on to the "chats" tab. In this section, user can open up a chat room by clicking on "plus" button on the top right corner. The user can then register his/her meal plans on the pop-up screen. Clicking "done" will create a new chat room, and this new chat room will also be shown on other users' chats sections. User can always join the chat room by clicking the respective room's "join" button. As shown above, with our active status feature, the user can confirm that he/she is done gathering members for a specific meal and also see whether other meal plans are still available!
 
 
-<center><img src="images/3.png" width=50%></center>
+<left><img src="images/3.png" width=50%></center>
 
-Conversation is made through keywords (emoji and reactions). The user can express his or her preference of cuisine type, restuarant, and time. It shows that our service provides users with a pool of conversation tools related only to eating and meal arrangements with a keyboard of keywords.
+By clicking on the chat room itself on the chats tab, the user can enter the chatting platform. In this room, conversation is made through keywords. The user can express his or her preference of cuisine type, restuarant, and time. The screenshot above shows that our service provides users with a pool of conversation tools related only to eating and meal arrangements with a keyboard of keywords.
 
 Libraries and Frameworks Used
 -----------------------------
@@ -72,13 +72,13 @@ The main thing I struggled on was developing the keyword-based conversation. Fir
 
 #### 20160796 김우재
 -------------------
-I mainly worked on the back-end of the developing process. I mainly took care of storing data to the database and calling in data from database on the UI web page that has been established by teammates. I took care of the back-end process on the html pages showing friends list and chats list.
+I mainly worked on the back-end of the developing process. I took care of storing data to the database and calling in data from database on the UI web page that has been established by teammates. I also arranged the database structure and created mappings among the html pages. I took care of the back-end process on friends.html and chats.html.
 
-Since I, along with my teammates, was totally new to designing and building web pages, I had to start development process from the scratch. Main difficulty came from unfamiliarity - I had to search every components of HTML and javascript, ranging from syntax to storing data to Firebase and also calling it in onto webpage in a real-time basis.
+Since I, along with my teammates, was totally new to designing and building web pages, I had to start development process from the scratch. Main difficulty came from unfamiliarity - I had to search every components of HTML and javascript, ranging from syntax to storing data to Firebase and also calling it in onto webpage in a real-time basis. This slowed down our development process, but my work efficiency boosted towards the end, as I became more familiar with web development tools and know-hows.
 
-One useful skill I have learned while working on the high-fi prototype is using HTML and javascript to build a platform that provides social interaction.
+One useful skill I have learned while working on the high-fi prototype is designing a basic database structure for web pages and using html/javascript to manipulate data in the database structure. I learned to efficiently structure database so that it is easier to store to the database and also call data from it to use on the UI. 
 
-#### 20160796 김채원
+#### 20160801 김채원
 -------------------
 I worked as a front-end programmer, implementing the friends list page and chat list page, using HTML, Javascript, and CSS. I designed the overall UI of the friends and chat list, and the basic features of the tasks that could be navigated without back-end development. Once back-end was established, I unified and fixed the overall UI design.
 
