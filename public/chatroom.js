@@ -179,7 +179,41 @@ function set_time() {
   // document.getElementById("type_here").setAttribute("value", time_val);
 }
 
-
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("tgl");
+var avail_ref = database.ref("ChatroomMeta/Chatroom" + ChatroomNum);
+avail_ref.on('value', function(snapshot) {
+    var str_snapshot = JSON.stringify(snapshot);
+    var data = str_snapshot.split(',')[0];
+    available = data.split(':')[1];
+    console.log(available);
+    if (available == "true") {
+      btn.setAttribute('class', "ui toggle basic icon button active");
+      console.log("Set active");
+    }
+    else {
+      btn.setAttribute('class', "ui toggle basic icon button inactive");
+      console.log("Set inactive");
+    }
+});
+// var span = document.getElementsByClassName("close")[0];
+var span = document.getElementById("close")
+var done = document.getElementById("yes");
+var notdone = document.getElementById("no");
+btn.onclick = function () {
+  modal.style.display = "block";
+}
+span.onclick = function () {
+  modal.style.display = "none";
+}
+notdone.onclick = function () {
+  modal.style.display = "none";
+}
+done.onclick = function () {
+  btn.classList.toggle('active');
+  database.ref("ChatroomMeta/Chatroom" + ChatroomNum + "/Availability").set(false);
+  modal.style.display = "none";
+}
 
 $(document).ready(function () {
   $('ul.tabs li').click(function () {

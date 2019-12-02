@@ -20,13 +20,30 @@ $(document).ready(function () {
         var User_id = document.getElementById("username").value;
         var User_pw = document.getElementById("pw").value;
 
-        var LoginRef = UserRef.child(User_id)
-        LoginRef.set({
-            Name: User_id,
-        });
+        var LoginRef = UserRef.child(User_id);
         sessionStorage.setItem("id", User_id);
         var email = sessionStorage.getItem("id");
-        
-        window.location.href = "friends.html";
+
+        var Userlist = UserRef.on("value", function(snapshot) {
+            var str_snapshot = JSON.stringify(snapshot);
+            var IDs = Object.keys(snapshot.val());
+
+            //console.log("temp_arr : " + temp_arr);
+            if(IDs.includes(User_id)){
+                console.log("Yes! we have " + User_id);
+            }
+            else{
+                console.log("No! we don't have " + User_id);
+                var LoginRef = UserRef.child(User_id);
+                loginRef.set({
+                    Cuisine: cuisine,
+                    Restaurant: restaurant,
+                    Time: time
+                });
+            }
+
+            window.location.href = "friends.html";
+        });
+
     }
 });
