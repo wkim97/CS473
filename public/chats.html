@@ -368,7 +368,7 @@
                     modal.style.display = "none";
                 }
                 done.onclick = function () {
-                    icon_ava.classList.toggle('active');
+                    icon_ava.classList.add('inactive');
                     database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
                     modal.style.display = "none";
                 }
