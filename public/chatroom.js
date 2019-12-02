@@ -68,15 +68,21 @@ function send_message() {
   var ms = date.getMilliseconds() + "";
   var timeid = year + month + day + hour + minute + second + ms;
   var msg = document.getElementById("type_here").getAttribute("value");
+  console.log(msg.length);
 
-  // console.log(typeof (msg));
-  var usr = sessionStorage.getItem("id");
-  database.ref().child('ChatroomMsg/Chatroom' + ChatroomNum + '/Chat' + timeid).set({
-    User: usr,
-    Content: msg,
-    Time: year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
-  });
-  document.getElementById("type_here").setAttribute("value", "");
+  if (msg.length == 0){
+    
+  }
+  else{
+    var usr = sessionStorage.getItem("id");
+    database.ref().child('ChatroomMsg/Chatroom' + ChatroomNum + '/Chat' + timeid).set({
+      User: usr,
+      Content: msg,
+      Time: year + '.' + month + '.' + day + '.' + hour + '.' + minute + '.' + second
+    });
+    document.getElementById("type_here").setAttribute("value", "");
+  }
+
 }
 function append_outgoing_msg(chat, time) {
   console.log(chat);
@@ -103,7 +109,7 @@ function append_incoming_msg(user, chat, time) {
   var imgelem = document.createElement("div");
   imgelem.setAttribute('class', 'incoming_msg_img');
   var img = document.createElement("img");
-  img.setAttribute('src', "done.jpg");
+  img.setAttribute('src', "profile.jpg");
   // img.setAttribute('alt', "sunil");
   var msgelem = document.createElement("div");
   msgelem.setAttribute('class', "received_msg");
