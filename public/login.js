@@ -36,9 +36,9 @@ $(document).ready(function () {
                 console.log("No! we don't have " + User_id);
                 var LoginRef = UserRef.child(User_id);
                 LoginRef.set({
-                    Cuisine: cuisine,
-                    Restaurant: restaurant,
-                    Time: time
+                    Cuisine: "Null",
+                    Restaurant: "Null",
+                    Time: "Null"
                 });
             }
 
