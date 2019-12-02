@@ -185,6 +185,8 @@
             messagingSenderId: "287266351759",
             appId: "1:287266351759:web:3bdf04f7e5202420549efa"
         };
+
+        var name = sessionStorage.getItem("id");
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
 
@@ -279,7 +281,7 @@
             joinbtn.className = "ui left floated mini button";
             joinbtn.appendChild(document.createTextNode("Join"));
             join.appendChild(joinbtn);
-            container.appendChild(join);
+            // container.appendChild(join);
 
             var joined = document.createElement('div');
             joined.classList.add('grid-item', 'join');
@@ -291,7 +293,28 @@
 
             // if joined append here
             //container.appendChild(joined);
-            
+            var joined_ref = database.ref("ChatroomPart/Chatroom" + chat_id);
+            joined_ref.on('value',function(snapshot) {
+                var str_snapshot = JSON.stringify(snapshot);
+                // console.log(str_snapshot);
+                var temp = str_snapshot.split(',');
+                var length = temp.length;
+                // console.log(temp);
+                var i;
+                for (i = 0; i < length; i++) {
+                    temp[i] = temp[i].split(':')[0].replace(/['"{}]+/g, '');
+                }
+                // console.log(temp);
+                // console.log(name);
+                var in_chatroom = temp.includes(name);
+                // console.log(in_chatroom);
+                if (in_chatroom == true) {
+                    container.appendChild(joined);
+                }
+                else {
+                    container.appendChild(join);
+                }
+            });  
 
 
             joinbtn.addEventListener('click', function() {
