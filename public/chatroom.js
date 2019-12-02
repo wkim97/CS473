@@ -210,7 +210,7 @@ notdone.onclick = function () {
   modal.style.display = "none";
 }
 done.onclick = function () {
-  btn.classList.toggle('active');
+  btn.classList.add('inactive');
   database.ref("ChatroomMeta/Chatroom" + ChatroomNum + "/Availability").set(false);
   modal.style.display = "none";
 }
