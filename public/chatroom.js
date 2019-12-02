@@ -103,7 +103,7 @@ function append_incoming_msg(user, chat, time) {
   var imgelem = document.createElement("div");
   imgelem.setAttribute('class', 'incoming_msg_img');
   var img = document.createElement("img");
-  img.setAttribute('src', "done.jpg");
+  img.setAttribute('src', "profile.jpg");
   // img.setAttribute('alt', "sunil");
   var msgelem = document.createElement("div");
   msgelem.setAttribute('class', "received_msg");
