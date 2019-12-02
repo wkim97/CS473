@@ -35,7 +35,7 @@ $(document).ready(function () {
             else{
                 console.log("No! we don't have " + User_id);
                 var LoginRef = UserRef.child(User_id);
-                loginRef.set({
+                LoginRef.set({
                     Cuisine: cuisine,
                     Restaurant: restaurant,
                     Time: time
