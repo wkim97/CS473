@@ -15,7 +15,7 @@
 <style>
     .grid-container {
         display: grid;
-        grid-template-columns: 80px auto auto auto 80px;
+        grid-template-columns: 80px 1fr 1fr 1fr 80px;
         /* grid-template-rows: auto 80px; */
         background-color: #f8f3e8;
         padding: 2px;
@@ -280,6 +280,19 @@
             joinbtn.appendChild(document.createTextNode("Join"));
             join.appendChild(joinbtn);
             container.appendChild(join);
+
+            var joined = document.createElement('div');
+            joined.classList.add('grid-item', 'join');
+
+            var joinedbtn = document.createElement('div');
+            joinedbtn.className = "ui left floated disabled mini button";
+            joinedbtn.appendChild(document.createTextNode("Joined"));
+            joined.appendChild(joinedbtn);
+
+            // if joined append here
+            //container.appendChild(joined);
+            
+
 
             joinbtn.addEventListener('click', function() {
                 var joinmodal = document.getElementById("joinModal");
