@@ -2,386 +2,422 @@
 
 
 <html>
+
 <head>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> -->
-  	<title>chatroom</title>
+	<title>chatroom</title>
 
-  	<link rel = "stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-
-
-  	<!--- Example CSS -->
-  	<style>
-
-  		.container1{
-  			max-width:1170px;
-  			margin: auto;
-  			height: 65%;
-  		}
-
-			.container2{
-  			max-width:1170px;
-  			margin: auto;
-  		}
-
-  		img{
-  			max-width:100%;
-  		}
-
-  		.mesgs {
-  			clear: both;
-  			overflow: hidden;
-  			text-align: left;
-  			float: left;
-  			width: 100%;
-        /* margin: 0 0 10px; */
-				height: 87%;
-
-  		}
-
-			.msg_history {
-  			height: 100%;
-  			overflow-y: auto;
-  		}
-
-  		.msg_history_border{
-  			border: 1px solid #c4c4c4;
-  			padding: 0px 5px 0px 0px;
-				height: 100%
-  		}
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 
 
+	<!--- Example CSS -->
+	<style>
+		.container1 {
+			max-width: 1170px;
+			margin: auto;
+			height: 65%;
+		}
 
-  		.incoming_msg_img {
-  			display: inline-block;
-  			width: 7%;
-  		}
-  		.incoming_msg {
-  			overflow: hidden;
-  			margin:25px 0 25px 20px;
-  		}
+		.container2 {
+			max-width: 1170px;
+			margin: auto;
+		}
 
-  		.received_msg {
-  			display: inline-block;
-  			padding: 0 0 0 10px;
-  			vertical-align: top;
-  			width: auto;
-  		}
-  		.received_msg p {
-  			background: #ebebeb none repeat scroll 0 0;
-  			border-radius: 3px;
-  			color: #646464;
-  			font-size: 14px;
-  			margin: 0;
-  			padding: 5px 10px 5px 12px;
-  			width: 100%;
-  		}
-			.user_name {
-				display: block;
-				font-weight: bold;
-				font-size: 13px;
-				margin: 0 0 6px;
-			}
-  		.time_date {
-  			color: #747474;
-  			display: block;
-  			font-size: 12px;
-  			margin: 6px 0 0;
-  		}
-  		.received_withd_msg {
-  			width: 40%;
-  		}
+		img {
+			max-width: 100%;
+		}
 
-  		.outgoing_msg {
-  			overflow:hidden;
-  			margin:25px 25px 25px;
-  		}
+		.mesgs {
+			clear: both;
+			overflow: hidden;
+			text-align: left;
+			float: left;
+			width: 100%;
+			/* margin: 0 0 10px; */
+			height: 87%;
 
-  		.sent_msg {
-  			text-align: right;
-  			float: right;
-  			width: auto;
-  		}
-  		.sent_msg p {
-  			background: #000000 none repeat scroll 0 0;
-  			border-radius: 3px;
-  			font-size: 14px;
-  			margin: 0;
-  			color:#fff;
-  			padding: 5px 10px 5px 12px;
-  			width:100%;
-  		}
+		}
 
-  		.input_msg_write input {
-  			background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  			border: 1px solid #c4c4c4;
-  			color: #4c4c4c;
-  			font-size: 15px;
-  			min-height: 48px;
-  			width: 100%;
-  		}
+		.msg_history {
+			height: 100%;
+			overflow-y: auto;
+		}
 
-  		.type_msg {
-  			border-top: 1px solid #c4c4c4;
-  			position: relative;
-  		}
-  		.msg_send_btn {
-  			background: #000000 none repeat scroll 0 0;
-  			border: medium none;
-  			border-radius: 50%;
-  			color: #fff;
-  			cursor: pointer;
-  			font-size: 17px;
-  			height: 33px;
-  			position: absolute;
-  			right: 0;
-  			top: 11px;
-  			width: 33px;
-  		}
+		.msg_history_border {
+			border: 1px solid #c4c4c4;
+			padding: 0px 5px 0px 0px;
+			height: 100%
+		}
 
-  		.messaging { padding: 0 0 50px 0;}
 
-			ul.three.tabs{
-				width: 100%;
-				display: flex;
-				flex-flow: row wrap;
-				justify-content: space-between;
-			}
-  		ul.tabs{
-  			margin: 0px;
-  			padding: 0px;
-  			list-style: none;
-  			width: 100%;
-				text-align: center;
-  		}
-  		ul.tabs li{
-  			background: #e0e1e2;
-  			color: #222;
-  			display: inline-block;
-  			padding: 10px 15px;
-  			cursor: pointer;
-  		}
 
-  		ul.tabs li.current{
-  			background: #f2f2f2;
-  			color: #222;
-  		}
-  		ul.tabs li.tab-link.current{
-  			width: calc(100%/3);
-  			align: center;
-				padding: auto;
-				border-top: 1px solid #c4c4c4;
-				border-right: 1px solid #c4c4c4;
-				border-left: 1px solid #c4c4c4;
-				border-top-left-radius: 5px;
-				border-top-right-radius: 5px;
+		.incoming_msg_img {
+			display: inline-block;
+			width: 7%;
+		}
 
-  		}
-  		ul.tabs li.tab-link{
-  			width: calc(100%/3);
-  			align: center;
-				padding: auto;
-				border-top: 1px solid #c4c4c4;
-				border-right: 1px solid #c4c4c4;
-				border-left: 1px solid #c4c4c4;
-				border-top-left-radius: 5px;
-				border-top-right-radius: 5px;
+		.incoming_msg {
+			overflow: hidden;
+			margin: 25px 0 25px 20px;
+		}
 
-  		}
+		.received_msg {
+			display: inline-block;
+			padding: 0 0 0 10px;
+			vertical-align: top;
+			width: auto;
+		}
 
-  		.tab-content{
-  			overflow: auto;
-  			display: none;
-				height: 110px;
-  			background: #f8f3e8;
-  			padding: 10px 0 10px;
-				margin: auto;
-				border-right: 1px solid #c4c4c4;
-				border-left: 1px solid #c4c4c4;
-				border-bottom: 1px solid #c4c4c4;
-				border-bottom-left-radius: 5px;
-				border-bottom-right-radius: 5px;
-  		}
+		.received_msg p {
+			background: #ebebeb none repeat scroll 0 0;
+			border-radius: 3px;
+			color: #646464;
+			font-size: 14px;
+			margin: 0;
+			padding: 5px 10px 5px 12px;
+			width: 100%;
+		}
 
-  		.tab-content.current{
-  			overflow: auto;
-  			display: inherit;
-  			height: 110px;
-				background: #f2f2f2;
-				padding: 10px 0 10px;
-				margin: auto;
-				border-right: 1px solid #c4c4c4;
-				border-left: 1px solid #c4c4c4;
-				border-bottom: 1px solid #c4c4c4;
-				border-bottom-left-radius: 5px;
-				border-bottom-right-radius: 5px;
-				display: flex;
-				flex-flow: row wrap;
-				justify-content: space-around;
-				align-content: space-between;
-  		}
+		.user_name {
+			display: block;
+			font-weight: bold;
+			font-size: 13px;
+			margin: 0 0 6px;
+		}
 
-			.preferences{
-				/* border: 1px solid #c4c4c4;
+		.time_date {
+			color: #747474;
+			display: block;
+			font-size: 12px;
+			margin: 6px 0 0;
+		}
+
+		.received_withd_msg {
+			width: 40%;
+		}
+
+		.outgoing_msg {
+			overflow: hidden;
+			margin: 25px 25px 25px;
+		}
+
+		.sent_msg {
+			text-align: right;
+			float: right;
+			width: auto;
+		}
+
+		.sent_msg p {
+			background: #000000 none repeat scroll 0 0;
+			border-radius: 3px;
+			font-size: 14px;
+			margin: 0;
+			color: #fff;
+			padding: 5px 10px 5px 12px;
+			width: 100%;
+		}
+
+		.input_msg_write input {
+			background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+			border: 1px solid #c4c4c4;
+			color: #4c4c4c;
+			font-size: 15px;
+			min-height: 48px;
+			width: 100%;
+		}
+
+		.type_msg {
+			border-top: 1px solid #c4c4c4;
+			position: relative;
+		}
+
+		.msg_send_btn {
+			background: #000000 none repeat scroll 0 0;
+			border: medium none;
+			border-radius: 50%;
+			color: #fff;
+			cursor: pointer;
+			font-size: 17px;
+			height: 33px;
+			position: absolute;
+			right: 0;
+			top: 11px;
+			width: 33px;
+		}
+
+		.messaging {
+			padding: 0 0 50px 0;
+		}
+
+		ul.three.tabs {
+			width: 100%;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+		}
+
+		ul.tabs {
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+			width: 100%;
+			text-align: center;
+		}
+
+		ul.tabs li {
+			background: #e0e1e2;
+			color: #222;
+			display: inline-block;
+			padding: 10px 15px;
+			cursor: pointer;
+		}
+
+		ul.tabs li.current {
+			background: #f2f2f2;
+			color: #222;
+		}
+
+		ul.tabs li.tab-link.current {
+			width: calc(100%/3);
+			align: center;
+			padding: auto;
+			border-top: 1px solid #c4c4c4;
+			border-right: 1px solid #c4c4c4;
+			border-left: 1px solid #c4c4c4;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+
+		}
+
+		ul.tabs li.tab-link {
+			width: calc(100%/3);
+			align: center;
+			padding: auto;
+			border-top: 1px solid #c4c4c4;
+			border-right: 1px solid #c4c4c4;
+			border-left: 1px solid #c4c4c4;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+
+		}
+
+		.tab-content {
+			overflow: auto;
+			display: none;
+			height: 110px;
+			background: #f8f3e8;
+			padding: 10px 0 10px;
+			margin: auto;
+			border-right: 1px solid #c4c4c4;
+			border-left: 1px solid #c4c4c4;
+			border-bottom: 1px solid #c4c4c4;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
+		.tab-content.current {
+			overflow: auto;
+			display: inherit;
+			height: 110px;
+			background: #f2f2f2;
+			padding: 10px 0 10px;
+			margin: auto;
+			border-right: 1px solid #c4c4c4;
+			border-left: 1px solid #c4c4c4;
+			border-bottom: 1px solid #c4c4c4;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-around;
+			align-content: space-between;
+		}
+
+		.preferences {
+			/* border: 1px solid #c4c4c4;
 				border-radius: 5px; */
-				background-color: #f8f3e8;
-			}
+			background-color: #f8f3e8;
+		}
 
-			body {
-					background-color: #f8f3e8;
-					font-family: Arial, Helvetica, sans-serif;
-			}
+		body {
+			background-color: #f8f3e8;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
-  	</style>
-  	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<!--- Example Javascript -->
+	<script>
+		$('.ui .item').on('click', function () {
+			$('.ui .item').removeClass('active');
+			$(this).addClass('active');
+		});
+	</script>
+</head>
 
-  	<!--- Example Javascript -->
-  	<script>
-  		$('.ui .item').on('click', function() {
-  			$('.ui .item').removeClass('active');
-  			$(this).addClass('active');
-  		});
-  	</script>
-  </head>
-  <body>
+<body>
 
-  	<body>
+	<body>
 
-  		<div class="container1">
+		<div class="container1">
 
-        <button class="ui basic icon button" onclick="goBack();">
-          <i class="angle left icon"></i>
-        </button>
-        <h3 class="text-center" style="display: inline-block; margin:15px 0 15px;"> </h3>
+			<button class="ui basic icon button" onclick="goBack();">
+				<i class="angle left icon"></i>
+			</button>
+			<h3 class="text-center" style="display: inline-block; margin:15px 0 15px;"> </h3>
 
-  			<div class="mesgs">
-  				<div class="msg_history_border">
-  					<div class="msg_history">
+			<div class="mesgs">
+				<div class="msg_history_border">
+					<div class="msg_history">
 
-  						<div class="incoming_msg">
-  							<div class="incoming_msg_img"> <img src="done.jpg" alt="sunil"> </div>
-  							<div class="received_msg">
-									<span class="user_name">chatroom.html 263 line 보시오</span>
-									<p>Test, incoming</p>
-  								<span class="time_date"> 11:01 AM    |    Yesterday</span>
-  							</div>
-  						</div>
-
-  						<div class="outgoing_msg">
-  							<div class="sent_msg">
-  								<p>Test, outgoing</p>
-  								<span class="time_date"> 11:01 AM    |    June 9</span> </div>
-  							</div>
-
-  									</div>
-  								</div>
-  							</div>
+						<div class="incoming_msg">
+							<div class="incoming_msg_img"> <img src="done.jpg" alt="sunil"> </div>
+							<div class="received_msg">
+								<span class="user_name">chatroom.html 263 line 보시오</span>
+								<p>Test, incoming</p>
+								<span class="time_date"> 11:01 AM | Yesterday</span>
 							</div>
+						</div>
 
-                <div class="container2">
-									<div class="ui fluid input" style="padding: 0 0 6px;">
-                    <input id="type_here" value ="" type="text" style="margin: 0 3px 0 0;">
-										<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
-											Delete
-											<!-- <i class="window close icon"></i> -->
-										</div>
-                    <div class="ui button" onclick="send_message();" style="margin: 0 0 0 0;">
-											Send
-											<!-- <i class="reply icon"></i> -->
-										</div>
-                  </div>
+						<div class="outgoing_msg">
+							<div class="sent_msg">
+								<p>Test, outgoing</p>
+								<span class="time_date"> 11:01 AM | June 9</span>
+							</div>
+						</div>
 
-									<div class="emojis" style="background-color: #f2f2f2;">
-                    <div class="ui basic six buttons" style="padding: 0 0 0px;">
-                      <button class="ui button" id="Good" onclick="type_pref(this.id);">
-                        Good
-                      </button>
-                      <button class="ui button" id="Bad" onclick="type_pref(this.id);">
-                        Bad
-                      </button>
-                      <button class="ui button" id="Yes" onclick="type_pref(this.id);">
-                        Yes
-                      </button>
-                      <button class="ui button" id="No" onclick="type_pref(this.id);">
-                        No
-                      </button>
-                      <button class="ui button" id="?" onclick="type_pref(this.id);">
-                        ?
-                      </button>
-                      <button class="ui button" id="." onclick="type_pref(this.id);">
-                        .
-                      </button>
-                    </div>
-                  </div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                  <div class="preferences">
-                    <ul class="three tabs">
-                      <li class="tab-link current" data-tab="tab-1" style="align: center;">
-                        <i class="globe icon"></i>
-                      </li>
-                      <li class="tab-link" data-tab="tab-2" style="align: center;">
-                        <i class="utensils icon"></i>
-                      </li>
-                      <li class="tab-link" data-tab="tab-3" style="align: center;">
-                        <i class="clock icon"></i>
-                      </li>
-                    </ul>
-                    <div id="tab-1" class="tab-content current" style="align-content: space-between;">
-                      <div id="Korean" value="Korean" class="ui button" style="width: 30%; margin: 2px 0 2px;" onclick="type_pref(this.id);">Korean</div>
-                      <div id="Japanese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Japanese</div>
-                      <div id="Chinese" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Chinese</div>
-                      <div id="Thai" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">Thai</div>
-                      <div id="Indian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Indian</div>
-                      <div id="Itlian" class="ui button" style="width: 30%; margin: 2px 0 2px"  onclick="type_pref(this.id)">Italian</div>
-                    </div>
-                    <div id="tab-2" class="tab-content" style="align-content: space-between;">
-                      <div id="PulBitMaRu" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">PulBitMaRu</div>
-                      <div id="DDDN" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">DDDN</div>
-                      <div id="GoSoMi Chicken" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">GoSoMi Chicken</div>
-                      <div id="Noodle Tree" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Noodle Tree</div>
-                      <div id="MoriMori" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">MoriMori</div>
-                      <div id="Bab&Bulgogi" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Bab&Bulgogi</div>
-                      <div id="Sand Brunch" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Sand Brunch</div>
-                      <div id="KimChiWon" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">KimChiWon</div>
-                      <div id="Yoshida" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Yoshida</div>
-                      <div id="111-7" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">111-7</div>
-                      <div id="Malgm" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Malgm</div>
-                      <div id="OmaiDong" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">OmaiDong</div>
-                      <div id="Do-Me Barbeque" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Do-Me Barbeque</div>
-                      <div id="MatGoeul" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">MatGoeul</div>
-                      <div id="So-Do" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">So-Do</div>
-                      <div id="Gwang-jang" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Gwang-jang</div>
-                    </div>
+		<div class="container2">
+			<div class="ui fluid input" style="padding: 0 0 6px;">
+				<input id="type_here" value="" type="text" style="margin: 0 3px 0 0;">
+				<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
+					Delete
+					<!-- <i class="window close icon"></i> -->
+				</div>
+				<div class="ui button" onclick="send_message();" style="margin: 0 0 0 0;">
+					Send
+					<!-- <i class="reply icon"></i> -->
+				</div>
+			</div>
 
-                    <div id="tab-3" class="tab-content" style="align-content: space-around;">
-                      <div class="grid-item time">
-                          <form class = "ui form" action = "/action_page.php">
-                              <input type = "time" id="apt_time" style="width: auto;">
-                              <!-- <input type = "submit"> -->
-															<div type="send" class="ui button" onclick="set_time();" style="width: auto;">
-																select time
-															</div>
-                          </form>
-                      </div>
-                    </div>
-                 </div>
-                </div>
+			<div class="emojis" style="background-color: #f2f2f2;">
+				<div class="ui basic six buttons" style="padding: 0 0 0px;">
+					<button class="ui button" id="Good" onclick="type_pref(this.id);">
+						Good
+					</button>
+					<button class="ui button" id="Bad" onclick="type_pref(this.id);">
+						Bad
+					</button>
+					<button class="ui button" id="Yes" onclick="type_pref(this.id);">
+						Yes
+					</button>
+					<button class="ui button" id="No" onclick="type_pref(this.id);">
+						No
+					</button>
+					<button class="ui button" id="?" onclick="type_pref(this.id);">
+						?
+					</button>
+					<button class="ui button" id="." onclick="type_pref(this.id);">
+						.
+					</button>
+				</div>
+			</div>
 
-           <!-- <div class="ui bottom attached segment">
+			<div class="preferences">
+				<ul class="three tabs">
+					<li class="tab-link current" data-tab="tab-1" style="align: center;">
+						<i class="globe icon"></i>
+					</li>
+					<li class="tab-link" data-tab="tab-2" style="align: center;">
+						<i class="utensils icon"></i>
+					</li>
+					<li class="tab-link" data-tab="tab-3" style="align: center;">
+						<i class="clock icon"></i>
+					</li>
+				</ul>
+				<div id="tab-1" class="tab-content current" style="align-content: space-between;">
+					<div id="Korean" value="Korean" class="ui button" style="width: 30%; margin: 2px 0 2px;"
+						onclick="type_pref(this.id);">Korean</div>
+					<div id="Japanese" class="ui button" style="width: 30%; margin: 2px 0 2px"
+						onclick="type_pref(this.id)">Japanese</div>
+					<div id="Chinese" class="ui button" style="width: 30%; margin: 2px 0 2px"
+						onclick="type_pref(this.id)">Chinese</div>
+					<div id="Thai" class="ui button" style="width: 30%; margin: 2px 0 2px" onclick="type_pref(this.id)">
+						Thai</div>
+					<div id="Indian" class="ui button" style="width: 30%; margin: 2px 0 2px"
+						onclick="type_pref(this.id)">Indian</div>
+					<div id="Itlian" class="ui button" style="width: 30%; margin: 2px 0 2px"
+						onclick="type_pref(this.id)">Italian</div>
+				</div>
+				<div id="tab-2" class="tab-content" style="align-content: space-between;">
+					<div id="PulBitMaRu" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						PulBitMaRu</div>
+					<div id="DDDN" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">DDDN</div>
+					<div id="GoSoMi Chicken" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						GoSoMi Chicken</div>
+					<div id="Noodle Tree" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						Noodle Tree</div>
+					<div id="MoriMori" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						MoriMori</div>
+					<div id="Bab&Bulgogi" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						Bab&Bulgogi</div>
+					<div id="Sand Brunch" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Sand
+						Brunch</div>
+					<div id="KimChiWon" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						KimChiWon</div>
+					<div id="Yoshida" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Yoshida
+					</div>
+					<div id="111-7" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">111-7
+					</div>
+					<div id="Malgm" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">Malgm
+					</div>
+					<div id="OmaiDong" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						OmaiDong</div>
+					<div id="Do-Me Barbeque" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						Do-Me Barbeque</div>
+					<div id="MatGoeul" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						MatGoeul</div>
+					<div id="So-Do" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">So-Do
+					</div>
+					<div id="Gwang-jang" class="ui button" style="margin: 2px 0 2px" onclick="type_pref(this.id);">
+						Gwang-jang</div>
+				</div>
+
+				<div id="tab-3" class="tab-content" style="align-content: space-around;">
+					<div class="grid-item time">
+						<form class="ui form" action="/action_page.php">
+							<input type="time" id="apt_time" style="width: auto;">
+							<!-- <input type = "submit"> -->
+							<div type="send" class="ui button" onclick="set_time();" style="width: auto;">
+								select time
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="ui bottom attached segment">
              <p></p>
          </div> -->
-         <!-- The core Firebase JS SDK is always required and must be listed first -->
-                  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
 
-                  <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-                  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
-                  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
-                  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
-                  <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
-									<script src="chatroom.js"></script>
-									<!-- <script>
+		<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+		<script src="chatroom.js"></script>
+		<!-- <script>
 			                 // Your web app's Firebase configuration
 			                 var firebaseConfig = {
 			                  apiKey: "AIzaSyAD0Y04NLAtEukphcSJ1s6T8Ffp_AWx-ew",
@@ -568,7 +604,8 @@
          		})
          	})
          </script> -->
-     </div>
+		</div>
 
- </body>
- </html>
+	</body>
+
+</html>
