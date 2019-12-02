@@ -245,13 +245,13 @@
             var p_name = document.createElement('p');
             p_name.setAttribute('id', chat_id);
             div_name.appendChild(p_name);
-            div_name.addEventListener('click', function () {location.replace("chatroom.html?num="+chat_id);});
+            
 
             container.appendChild(div_name);
 
             var div_res = document.createElement("div");
             div_res.setAttribute('class', "grid-item restaurant");
-            div_res.addEventListener('click', function () {location.replace("chatroom.html?num="+chat_id);});
+            
 
             var res_label = document.createElement("div");
             res_label.setAttribute('class', "ui left floated label");
@@ -263,7 +263,7 @@
 
             var div_time = document.createElement("div");
             div_time.setAttribute('class', "grid-item time");
-            div_time.addEventListener('click', function () {location.replace("chatroom.html?num="+chat_id);});
+            
 
             var time_label = document.createElement("div");
             time_label.setAttribute('class', "ui left floated label");
@@ -310,6 +310,9 @@
                 // console.log(in_chatroom);
                 if (in_chatroom == true) {
                     container.appendChild(joined);
+                    div_name.addEventListener('click', function () {location.replace("chatroom.html?num="+chat_id);});
+                    div_res.addEventListener('click', function () {location.replace("chatroom.html?num="+chat_id);});
+                    div_time.addEventListener('click', function () {location.replace("chatroom.html?num="+chat_id);});
                 }
                 else {
                     container.appendChild(join);
