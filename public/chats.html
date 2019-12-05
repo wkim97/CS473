@@ -30,13 +30,18 @@
 
     .profile {
         grid-column: 1;
-        grid-row: 1 / span 2;
+        grid-row: 1 / span 3;
+    }
+
+    .status {
+        grid-column: 5;
+        grid-row: 1;
     }
 
     .name {
         justify-items: start;
         /* margin-left: 5%; */
-        grid-column: 2 / Span 3;
+        grid-column: 2 / Span 2;
         grid-row: 1;
     }
 
@@ -44,27 +49,27 @@
         margin-left: 0%;
         font-size: 13px;
         grid-column: 2;
-        grid-row: 2;
+        grid-row: 3;
     }
 
     .time {
         margin-left: 0%;
         font-size: 13px;
         grid-column: 3;
-        grid-row: 2;
+        grid-row: 3;
     }
 
     .join {
         margin-left: 0%;
         font-size: 13px;
         grid-column: 4;
-        grid-row: 2;
+        grid-row: 2 / Span 2;
     }
 
     .availability {
         font-size: 13px;
         grid-column: 5;
-        grid-row: 1 / Span 2;
+        grid-row: 2 / Span 2;
     }
 
     .availablebutton {
@@ -278,7 +283,8 @@
             join.classList.add('grid-item', 'join');
 
             var joinbtn = document.createElement('div');
-            joinbtn.className = "ui left floated mini button";
+            joinbtn.className = "ui right floated large yellow button";
+            joinbtn.style.cssText = "width: 90px"; 
             joinbtn.appendChild(document.createTextNode("Join"));
             join.appendChild(joinbtn);
             // container.appendChild(join);
@@ -287,7 +293,8 @@
             joined.classList.add('grid-item', 'join');
 
             var joinedbtn = document.createElement('div');
-            joinedbtn.className = "ui left floated disabled mini button";
+            joinedbtn.className = "ui right floated disabled large yellow button";
+            joinedbtn.style.cssText = "width: 90px"; 
             joinedbtn.appendChild(document.createTextNode("Joined"));
             joined.appendChild(joinedbtn);
 
@@ -346,6 +353,18 @@
                 }
             });
 
+            var status = document.createElement("div");
+            status.setAttribute('class', "grid-item status");
+  
+
+            if (available == "true") {
+                status.appendChild(document.createTextNode("In Progress"));
+            }
+            else {
+                status.appendChild(document.createTextNode("Completed"));
+            }
+            container.appendChild(status);
+
 
             var div_ava = document.createElement("div");
             div_ava.setAttribute('class', "grid-item availability");
@@ -358,10 +377,10 @@
 
             icon_ava.setAttribute('id', "avail_button");
             if (available == "true") {
-                icon_ava.setAttribute('class', "ui toggle basic icon button active");
+                icon_ava.setAttribute('class', "ui toggle basic icon button large active");
             }
             else {
-                icon_ava.setAttribute('class', "ui toggle basic icon button inactive");
+                icon_ava.setAttribute('class', "ui toggle basic icon button large inactive");
             }
 
             var icon_ava2 = document.createElement('i');
@@ -405,9 +424,9 @@
             function enterChatroom(chat_id) {
                 this.onclick = function () {
                     location.href = "chatroom.html?num=" + chat_id; 
-                }
+                };
                 
-            }
+            };
 
             var chatname = "";
             var chatname_ref = database.ref("ChatroomPart/Chatroom" + chat_id).on("child_added", function (snapshot) {
@@ -421,7 +440,6 @@
                 }
                 document.getElementById(chat_id).innerHTML = chatname.substring(0, chatname.length - 2);
             });
-
 
 
             // var button_ref = database.ref("ChatroomMeta/Chatroom" + chat_id).on("child_changed", function (snapshot) {
@@ -442,6 +460,7 @@
             return (s || '').replace(/^\s+|\s+$/ + /"/g, '');
         }
 
+        
         
     </script>
 
