@@ -15,11 +15,17 @@
 <style>
     .grid-container {
         display: grid;
-        grid-template-columns: 80px 1fr 1fr 1fr 80px;
+        grid-template-columns: 80px 1fr 1fr 1fr 100px;
         /* grid-template-rows: auto 80px; */
-        background-color: #f8f3e8;
+        background-color: #f2f8e8;
+        border-style: solid;
+        border-width: 2px;
         padding: 2px;
         cursor: pointer;
+    }
+    
+    .grid-item.name:hover{
+        background-color: rgba(229, 255, 0, 0.514);
     }
 
     .grid-item {
@@ -27,6 +33,10 @@
         padding: 2px;
         font-size: 18px;
         /* text-align: center; */
+    }
+
+    .grid-item.filler {
+        background-color: #f2f8e8;
     }
 
     .profile {
@@ -395,6 +405,10 @@
 
             container.appendChild(div_ava);
 
+            var filler = document.createElement("span");
+            filler.setAttribute('class', 'grid-item fillter');
+
+            rootelem.prepend(filler);
             rootelem.prepend(container);
 
 
