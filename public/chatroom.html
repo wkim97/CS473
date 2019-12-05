@@ -106,11 +106,17 @@
 		.input_msg_write input {
 			background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 			border: 1px solid #c4c4c4;
-			color: #4c4c4c;
+			/* color: #4c4c4c; */
 			font-size: 15px;
 			min-height: 48px;
-			width: 100%;
+
+			color: transparent;
+		  text-shadow: 0 0 0 red;
 		}
+		.input_msg_write input:focus{
+			outline: none;
+		}
+
 		.type_msg {
 			border-top: 1px solid #c4c4c4;
 			position: relative;
@@ -324,17 +330,18 @@
 		</div>
 
 		<div class="container2">
-			<div class="ui fluid input" style="padding: 4px 0px 0px 0px;">
-				<input id="type_here" value="" type="text" style="margin: 0 3px 0 0;">
-				<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
-					Delete
-					<!-- <i class="window close icon"></i> -->
+				<div class="ui fluid input" style="padding: 4px 0px 0px 0px; display: flex; min-width: fit-content;">
+					<input id="type_here" value="" type="text" style="margin: 0 3px 0 0; min-width: auto;" placeholder="Click below button to input messages." readonly>
+					<div class="ui button" onclick="untype_pref();" style="margin: 0 3px 0 0;">
+						Delete
+						<!-- <i class="window close icon"></i> -->
+					</div>
+					<div class="ui button" onclick="send_message();" style="margin: 0 0 0 0;">
+						Send
+						<!-- <i class="reply icon"></i> -->
+					</div>
 				</div>
-				<div class="ui button" onclick="send_message();" style="margin: 0 0 0 0;">
-					Send
-					<!-- <i class="reply icon"></i> -->
-				</div>
-			</div>
+
 
 			<div class="emojis" style="background-color: #f2f2f2;">
 				<div class="ui basic six buttons" style="padding: 0 0 0px;">
