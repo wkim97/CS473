@@ -3,20 +3,25 @@
 
 <head>
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
     <style>
         body {
             background-color: #f8f3e8;
         }
+
     </style>
 
 </head>
 
 <body>
+    <br>
+    <div align = "center">
+        <img src="app_logo.png" alt="logo" style="max-width:20%">
+    </div>
     <br>
     <div class="page-login">
         <div class="ui centered grid container">
@@ -30,15 +35,19 @@
                         <br><br>
                         <label>Password &nbsp;</label>
                         <div class="ui input">
-                            
+
                             <input type="password" name="pass" placeholder="Password" id="pw">
                         </div>
                         <br>
                         <br>
-                        <a href="#" onclick="login();" class="ui large form">
-                            <button class="ui primary labeled icon button" type="submit">
+                        <a class="ui large form">
+                            <button class="ui primary labeled icon button" type="submit" onclick="login();">
                                 <i class="unlock alternate icon"></i>
                                 Login
+                            </button>
+                            <button class="ui secondary labeled icon button" type="submit" onclick="signup();">
+                                <i class="unlock alternate icon"></i>
+                                Sign up
                             </button>
                         </a>
                     </div>
@@ -53,17 +62,17 @@
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-functions.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-storage.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
 
-    <script src="login.js"></script>
+     <script src="login.js"></script>
 
 
-    <div align = "center">
-            <img src="logo.png" alt="logo" style="max-width:10%">
-            <p><small>@ 2019 흑당마라갈비</small></p>
+     <div align = "center">
+        <img src="logo.png" alt="logo" style="max-width:10%">
+        <p><small>@ 2019 흑당마라갈비</small></p>
     </div>
 
 

@@ -52,8 +52,8 @@ preference_ref.on('value', function (snapshot) {
 
     var cuisine_text = temp[0].split(":")[1].replace(/['"{}]+/g, '');
     if (cuisine_text == "Null") {
-        cuisine.innerHTML = "-";
-        cuisine.value = "-";
+        cuisine.innerHTML = "Food Type";
+        cuisine.value = "Food Type";
     }
     else {
         cuisine.innerHTML = cuisine_text;
@@ -62,8 +62,8 @@ preference_ref.on('value', function (snapshot) {
 
     var restaurant_text = temp[1].split(":")[1].replace(/['"{}]+/g, '');
     if (restaurant_text == "Null") {
-        restaurant.innerHTML = "-";
-        restaurant.value = "-";
+        restaurant.innerHTML = "Restaurant";
+        restaurant.value = "Restaurant";
     }
     else {
         restaurant.innerHTML = restaurant_text;
