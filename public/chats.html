@@ -365,13 +365,14 @@
                     // add link to chatroom
                     
                     var user = sessionStorage.getItem("id");
+
                     database.ref('ChatroomPart/Chatroom'+chat_id+"/"+user).set(false);
                 }
             });
 
             var status = document.createElement("div");
             status.setAttribute('class', "grid-item status");
-  
+
 
             if (available == "true") {
                 status.appendChild(document.createTextNode("In Progress"));
@@ -419,27 +420,47 @@
 
             if (available == "true") {
                 //icon_ava.setAttribute('class', "ui toggle basic icon button large active");
-                button_ava.addEventListener("click", function() {
-                var modal = document.getElementById("myModal");
-                var span = document.getElementById("close");
-                var done = document.getElementById("yes");
-                var notdone = document.getElementById("no");
+                var userlist = database.ref("ChatroomPart/Chatroom" + chat_id).on("value", function(snapshot){
+                    var user = sessionStorage.getItem("id");
+                    var ishost = snapshot.val()[user];
+                    if(ishost == false || ishost == undefined){
+                        button_ava.addEventListener("click", function(){
+                            var yourmodal = document.getElementById("yourModal");
+                            var span = document.getElementById("close4");
+                            yourmodal.style.display = "block";
 
-                modal.style.display = "block";
-                
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
+                            span.onclick = function () {
+                                yourmodal.style.display = "none";
+                            }
+                        });
+                    }
+                    else{
+                        button_ava.addEventListener("click", function() {
+                            var modal = document.getElementById("myModal");
+                            var span = document.getElementById("close");
+                            var done = document.getElementById("yes");
+                            var notdone = document.getElementById("no");
 
-                notdone.onclick = function () {
-                    modal.style.display = "none";
-                }
-                done.onclick = function () {
-                    icon_ava.classList.add('inactive');
-                    database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
-                    modal.style.display = "none";
-                }
+                            modal.style.display = "block";
+
+                            span.onclick = function () {
+                                modal.style.display = "none";
+                            }
+
+                            notdone.onclick = function () {
+                                modal.style.display = "none";
+                            }
+                            done.onclick = function () {
+                                icon_ava.classList.add('inactive');
+                                database.ref("ChatroomMeta/Chatroom" + chat_id + "/Availability").set(false);
+                                modal.style.display = "none";
+                            }
+                        });
+                    }
                 });
+
+
+                
 
             }
             else {
@@ -529,71 +550,83 @@
                         <div align="center">
                             <div>
                                 <!-- <input type="number" min="0" max="23" placeholder="00" id="hour">:
-                                <input type="number" min="0" max="59" placeholder="00" id="minute"> -->
-                                <input type = "time" id="time">
-                            </div>
-                            <br>
-                            <br>
+                                    <input type="number" min="0" max="59" placeholder="00" id="minute"> -->
+                                    <input type = "time" id="time">
+                                </div>
+                                <br>
+                                <br>
 
-                            <div class="ui button" id="done"> Done </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-                <!-- The Modal -->
-                <div id="myModal" class="modal">
-                    <div align="center">
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <div class="close" id="close">x</div>
-                            <br>
-                            <p>Are you done gathering people?</p>
-                            <br>
-                            <br>
-                            <div class="ui button" id="yes">
-                                Yes
+                                <div class="ui button" id="done"> Done </div>
                             </div>
 
-                            <div class="ui button" id="no">
-                                No
+
+                        </div>
+                    </div>
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <div align="center">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="close" id="close">x</div>
+                                <br>
+                                <p>Are you done gathering people?</p>
+                                <br>
+                                <br>
+                                <div class="ui button" id="yes">
+                                    Yes
+                                </div>
+
+                                <div class="ui button" id="no">
+                                    No
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div id = "joinModal" class = "modal">
-                    <div align = "center">
-                        <div class = "modal-content">
-                            <div class = "close" id = "close3">x</div> 
-                            <br>
-                            <p> Are you sure you want to join this chatroom? </p>
-                            <br>
-                            <div class = "ui button" id = "joinchat"> Yes </div>
-                            <div class = "ui button" id = "nochat"> No </div>
+                    <div id="yourModal" class="modal">
+                        <div align="center">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="close" id="close4">x</div>
+                                <br>
+                                <p>You are not the host of this chatroom!!</p>
+                                <br>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <div id = "joinModal" class = "modal">
+                        <div align = "center">
+                            <div class = "modal-content">
+                                <div class = "close" id = "close3">x</div> 
+                                <br>
+                                <p> Are you sure you want to join this chatroom? </p>
+                                <br>
+                                <div class = "ui button" id = "joinchat"> Yes </div>
+                                <div class = "ui button" id = "nochat"> No </div>
+                            </div>
+                        </div>
+                    </div>
 
 
-                <script>
-                    var chatmodal = document.getElementById("createmodal");
-                    var createbtn = document.getElementById("create");
-                    var span2 = document.getElementById("close2");
+                    <script>
+                        var chatmodal = document.getElementById("createmodal");
+                        var createbtn = document.getElementById("create");
+                        var span2 = document.getElementById("close2");
 
-                    createbtn.onclick = function () {
-                        chatmodal.style.display = "block";
-                    }
+                        createbtn.onclick = function () {
+                            chatmodal.style.display = "block";
+                        }
 
-                    span2.onclick = function () {
-                        chatmodal.style.display = "none";
-                    }
-                    var finished = document.getElementById("done");
+                        span2.onclick = function () {
+                            chatmodal.style.display = "none";
+                        }
+                        var finished = document.getElementById("done");
 
 
-                    finished.onclick = function () {
-                        chatmodal.style.display = "none";
+                        finished.onclick = function () {
+                            chatmodal.style.display = "none";
 
                         // var chat = document.createElement('div');
                         // chat.id = 'myChat';
@@ -725,9 +758,9 @@
                     rootRef.child("ChatroomPart").child("Chatroom" + dateTime + "/" + username).set(true);
 
                     rootRef.child("ChatroomMsg").child("Chatroom" + dateTime + "/chat0").set({
-                            Text : "Nothing",
-                            Time : "00:00",
-                            User : "Dummy"
+                        Text : "Nothing",
+                        Time : "00:00",
+                        User : "Dummy"
                     });
 
                 }

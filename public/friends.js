@@ -39,6 +39,8 @@ function save_preferences() {
         Restaurant: restaurant,
         Time: time
     });
+
+    alert("Your preference is changed!!");
 };
 
 var preference_ref = database.ref("Users/" + name);
