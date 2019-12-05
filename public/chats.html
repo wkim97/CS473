@@ -410,7 +410,7 @@
             container.appendChild(div_ava);
 
             var filler = document.createElement("span");
-            filler.setAttribute('class', 'grid-item fillter');
+            filler.setAttribute('class', 'grid-item filler');
 
             rootelem.prepend(filler);
             rootelem.prepend(container);
@@ -519,8 +519,9 @@
                         <p style="text-align:center"> Time </p>
                         <div align="center">
                             <div>
-                                <input type="number" min="0" max="23" placeholder="00" id="hour">:
-                                <input type="number" min="0" max="59" placeholder="00" id="minute">
+                                <!-- <input type="number" min="0" max="23" placeholder="00" id="hour">:
+                                <input type="number" min="0" max="59" placeholder="00" id="minute"> -->
+                                <input type = "time" id="time">
                             </div>
                             <br>
                             <br>
@@ -585,9 +586,9 @@
                     finished.onclick = function () {
                         chatmodal.style.display = "none";
 
-                        var chat = document.createElement('div');
-                        chat.id = 'myChat';
-                        chat.classList.add("grid-container");
+                        // var chat = document.createElement('div');
+                        // chat.id = 'myChat';
+                        // chat.classList.add("grid-container");
 
                     // Display Profile
                     var profile = document.createElement('div');
@@ -626,8 +627,17 @@
 
 
                     // Display Time
-                    var hourValue = document.getElementById("hour").value;
-                    var minValue = document.getElementById("minute").value;
+                    // var hourValue = document.getElementById("hour").value;
+                    // var minValue = document.getElementById("minute").value;
+
+                    var time_temp = document.getElementById("time").value;
+                    // console.log(time_temp);
+                    var hourValue = "";
+                    var minValue = "";
+                    if (time_temp != "") {
+                        hourValue = time_temp.split(":")[0].replace(/['"{}]+/g, '');
+                        minValue = time_temp.split(":")[1].replace(/['"{}]+/g, '');
+                    }
 
                     var time = document.createElement('div');
                     // time.classList.add('grid-item', 'time');
@@ -640,10 +650,6 @@
                     // timeLabel.appendChild(timeText);
                     // time.appendChild(timeLabel);
                     // chat.appendChild(time);
-
-                    
-
-
                     // Availability Button
 
                     var btn = document.createElement('div');
@@ -691,7 +697,7 @@
                     var first = document.getElementById('firstChat');
                     var parentDiv = first.parentNode;
 
-                    parentDiv.insertBefore(chat, first);
+                    // parentDiv.insertBefore(chat, first);
 
                     // Save restaurant and time to DB
                     var today = new Date();
