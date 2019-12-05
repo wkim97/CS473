@@ -50,7 +50,7 @@ $(document).ready(function () {
 $(document).ready(function () {
     window.signup = function () {
         console.log("sign up in not implemented");
-        alert("Sign up is not implemented\nYou cans sign in by using new Username");
+        alert("Sign up is not implemented yet\nYou can login with any Username you want.");
 
     }
 });
