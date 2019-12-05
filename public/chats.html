@@ -17,15 +17,16 @@
         display: grid;
         grid-template-columns: 80px 1fr 1fr 1fr 100px;
         /* grid-template-rows: auto 80px; */
-        background-color: #f2f8e8;
+        background-color: #f8f3e8;
         border-style: solid;
-        border-width: 2px;
-        padding: 2px;
+        border-color: #66645f;
+        border-width: 1.5px;
+        padding: 1px;
         cursor: pointer;
     }
     
     .grid-item.name:hover{
-        background-color: rgba(229, 255, 0, 0.514);
+        background-color: rgba(255, 174, 0, 0.185);
     }
 
     .grid-item {
@@ -36,7 +37,7 @@
     }
 
     .grid-item.filler {
-        background-color: #f2f8e8;
+        background-color: #f8f3e8;
     }
 
     .profile {
@@ -52,7 +53,7 @@
     .name {
         justify-items: start;
         /* margin-left: 5%; */
-        grid-column: 2 / Span 2;
+        grid-column: 2 / Span 3;
         grid-row: 1;
     }
 
@@ -168,6 +169,9 @@
 
     .show {
         display: block;
+    }
+    p {
+        font-family: "Gill Sans", sans-serif;;
     }
 </style>
 
@@ -718,12 +722,16 @@
 
         <!-- List of Chatrooms -->
         <br>
+
         <div id="chatList">
             <div class="grid-container" id="firstChat">
 
             </div>
         </div>
 
+        <br>
+        <br>
+        <br>
         <!-- Footer -->
         <div class="footer">
             <div class="footer-container">
